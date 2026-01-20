@@ -1,13 +1,21 @@
+:root {
+    --background-main: rgb(36, 53, 99);
+    --menu-link: rgb(187, 185, 185);
+}
+
 * {
     margin: 0;
     padding: 0;
 }
 
 body {
-    width: 100%;
+    width: 100dvw;
     height: 100dvh;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: 15% 70% 15%;
+    /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
 }
 
 /* ----------------
@@ -17,6 +25,8 @@ body {
 header {
     background-color: mediumpurple;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
 }
 
@@ -24,8 +34,8 @@ header {
    ---- MAIN ----
    -------------- */
 main {
-    flex-grow: 1;
-    background-color: blanchedalmond;
+    background-color: var(--background-main);
+    
 }
 
 /* ----------------
@@ -34,5 +44,8 @@ main {
 footer {
     background-color: lightgreen;
     display: flex;
+    align-items: center;
     justify-content: center;
 }
+
+

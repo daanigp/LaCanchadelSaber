@@ -1,0 +1,18 @@
+.menu ul {
+    margin-top: 15px;
+    display: flex;
+    gap: 15px;
+}
+
+.menu li {
+    list-style: none;
+    font-size: 1.1em;
+}
+
+.menu a {
+    text-decoration: none;
+}
+
+.menu a:visited {
+    color: var(--menu-link);
+}
