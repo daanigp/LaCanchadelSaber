@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LaCanchaDelSaber</title>
     <link rel="stylesheet" href="app/style/style.css">
-    <link rel="stylesheet" href="app/style/styleHeader.css">
+    <?php if(isset($css)) { ?>
+        <link rel="stylesheet" href="<?= $css ?>">
+    <?php } ?>
 </head>
 <body>
     <header>
@@ -18,13 +20,3 @@
             </ul>
         </nav>
     </header>
-
-    <main>
-
-    </main>
-
-    <footer>
-        <h1>Redes sociales</h1>
-    </footer>
-</body>
-</html>
