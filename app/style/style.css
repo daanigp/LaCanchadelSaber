@@ -1,6 +1,8 @@
 :root {
     --background-main: rgb(36, 53, 99);
     --menu-link: rgb(187, 185, 185);
+    --background-header-footer: #2c2a2a;
+    --color-header-footer: #ffffff;
 }
 
 * {
@@ -23,7 +25,8 @@ body {
    ---------------- */
 
 header {
-    background-color: mediumpurple;
+    background-color: var(--background-header-footer);
+    color: var(--color-header-footer);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -53,7 +56,8 @@ header {
    ---- FOOTER ----
    ---------------- */
 footer {
-    background-color: lightgreen;
+    background-color: var(--background-header-footer);
+    color: var(--color-header-footer);
     display: flex;
     align-items: center;
     justify-content: center;
