@@ -3,4 +3,26 @@
    -------------- */
 main {
     background-color: cornflowerblue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+fieldset {
+    background-color: #b1b1b1;
+    border: none;
+    padding: 4em;
+    width: 20%;
+}
+
+.formLogin {
+    display: flex;
+    flex-direction: column;
+    gap: 3em;
+}
+
+.formLogin .nick, .formLogin .pwd {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
 }

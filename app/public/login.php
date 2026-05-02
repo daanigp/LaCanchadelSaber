@@ -5,8 +5,16 @@
     <main>
         <fieldset>
             <h1>Login</h1>
-            <form>
-                <label for="nickname">Nombre de usuario:</label>
+            <form class="formLogin">
+                <div class="nick">
+                    <label for="nickname">Nombre de usuario:</label>
+                    <input type="text" name="nickname" id="nickname">
+                </div>
+
+                <div class="pwd">
+                    <label for="pass">Contraseña:</label>
+                    <input type="password" name="pass" id="pass">
+                </div>
             </form>
         </fieldset>
     </main>

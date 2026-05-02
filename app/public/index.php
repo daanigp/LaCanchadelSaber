@@ -4,7 +4,9 @@
 ?>
 
     <main>
-        <h1>Index</h1>
+        <div class="layout">
+            <h1>Index</h1>
+        </div>
     </main>
 
 <?php

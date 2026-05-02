@@ -8,7 +8,17 @@
 * {
     margin: 0;
     padding: 0;
+    list-style: none;
 }
+
+.menu a {
+    text-decoration: none;
+}
+
+.menu a:visited {
+    color: var(--menu-link);
+}
+
 
 body {
     width: 100dvw;
@@ -27,29 +37,50 @@ body {
 header {
     background-color: var(--background-header-footer);
     color: var(--color-header-footer);
+    padding: 2em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+/* 
+    --------------
+    ---- MENU ----
+    -------------- 
+*/
+
+#hamburguesa {
+    display: none;
+}
+
+#hamburguesa:checked ~ .menu { 
+    transform: translateY(0); 
+    display: flex; 
+}
+
+#icono{
+    display: block;
+}
+
+.menu {
+    width: 100%;
+    position: absolute;
+    top: 8em;
+    left: 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    background-color: #555555;  
+
+    transform: translateY(-160%);
+    transition: transform 1s;
 }
 
-.menu ul {
-    margin-top: 15px;
-    display: flex;
-    gap: 15px;
-}
-
-.menu li {
-    list-style: none;
-    font-size: 1.1em;
-}
-
-.menu a {
-    text-decoration: none;
-}
-
-.menu a:visited {
-    color: var(--menu-link);
+.menu>li {
+    text-align: center;
+    margin: .3em;
+    padding: .8em;
+    cursor: cell;
 }
 
 /* ----------------
@@ -61,4 +92,40 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+
+
+/*
+============================
+======= MEDIA QUERYS =======
+============================
+*/
+
+@media (min-width: 768px) {
+   /* 
+   --------------
+   ---- MENU ----
+   -------------- 
+   */
+    #icono{
+        display: none;
+    }
+
+    #hamburguesa:checked ~ .menu { 
+        transform: translateY(0); 
+        display: block; 
+    }
+
+    .menu {
+        position: static;
+        top: auto;
+        left: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        background-color: transparent;
+
+        transform: translateY(0);
+    }
 }
