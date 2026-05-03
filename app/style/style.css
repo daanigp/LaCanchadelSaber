@@ -31,11 +31,11 @@ html {
     -webkit-text-size-adjust: 100%;
 }
 
-.menu a {
+a {
     text-decoration: none;
 }
 
-.menu a:visited {
+a:visited {
     color: var(--menu-link);
 }
 
@@ -50,6 +50,10 @@ body {
     /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
 }
 
+main {
+    height: 100dvh;
+}
+
 /* ----------------
    ---- HEADER ----
    ---------------- */
@@ -62,6 +66,7 @@ header {
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
+    gap: 1em;
 }
 
 /* 
@@ -109,11 +114,22 @@ footer {
     background-color: var(--background-header-footer);
     color: var(--color-header-footer);
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 1.2em;
+    padding: 2em;
 }
 
+footer .menu-rrss {
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+}
 
+footer i {
+    font-size: 24px;
+}
 
 /*
 ============================
