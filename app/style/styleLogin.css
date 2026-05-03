@@ -1,24 +1,36 @@
 /* --------------
    ---- MAIN ----
    -------------- */
-main {
+.section-login {
     background-color: cornflowerblue;
+    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 32px 20px;
 }
 
-fieldset {
-    background-color: #b1b1b1;
-    border: none;
-    padding: 4em;
-    width: 20%;
+.login-card {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    padding: 32px 24px;
+    width: 100%;
 }
 
+.login-card > h1 {
+    color: var(--color-dark);
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+/* LOGIN FORM */
 .formLogin {
     display: flex;
     flex-direction: column;
-    gap: 3em;
+    gap: 2em;
 }
 
 .formLogin .nick, .formLogin .pwd {
@@ -26,3 +38,97 @@ fieldset {
     flex-direction: column;
     gap: 0.5em;
 }
+
+.formLogin input {
+    width: 100%;
+    padding: 13px 14px;
+    background-color: #fafaf8;
+    color: var(--color-dark);
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    outline: none;
+}
+
+.formLogin input:focus {
+    border-color: var(--color-dark);
+    background-color: var(--color-surface);
+}
+
+.formLogin .pwd {
+    position: relative;
+}
+
+.formLogin .pwd .pwd-input{
+    padding-right: 48px;
+}
+
+.formLogin .pwd .field-toggle {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 48px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-muted);
+}
+
+.txt-err {
+    color: var(--color-error);
+    font-size: 12px;
+    min-height: 1rem;
+}
+
+#btnLogin {
+    color: var(--color-accent);
+    background-color: var(--color-dark);
+
+    display: block;
+    width: 100%;
+    padding: 14px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    letter-spacing: 0.2px;
+    margin-top: 8px;
+}
+
+#btnLogin:hover  { background-color: var(--color-dark-soft); }
+/*
+============================
+======= MEDIA QUERYS =======
+============================
+*/
+/* TABLET */
+@media (min-width: 480px) {
+    .section-login {
+        padding: 48px 24px;
+        flex: 1;
+        min-height: 0;
+    }
+
+    .login-card {
+        padding: 40px 36px;
+        width: 50%;
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.10);
+    }
+
+    .login-card h1 {
+        font-size: 28px;
+    }
+}
+
+/* DESKTOP */
+@media (min-width: 768px) {
+    .section-login {
+        padding: 64px 32px;
+    }
+}
+
+
