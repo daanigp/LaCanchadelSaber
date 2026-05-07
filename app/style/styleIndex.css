@@ -3,6 +3,8 @@
    -------------- */
 main {
     background-color: var(--background-main);
+    flex: 1;
+    min-height: 0; 
 }
 
 .layout {

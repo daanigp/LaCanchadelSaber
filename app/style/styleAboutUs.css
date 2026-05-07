@@ -3,4 +3,6 @@
    -------------- */
 main {
     background-color: saddlebrown;
+    flex: 1;
+    min-height: 0; 
 }

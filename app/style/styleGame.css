@@ -3,4 +3,6 @@
    -------------- */
 main {
     background-color: rgb(208, 211, 63);
+    flex: 1;
+    min-height: 0; 
 }
