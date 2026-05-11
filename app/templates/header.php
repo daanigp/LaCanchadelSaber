@@ -20,7 +20,7 @@
             <ul class="menu">
                 <li><a href="../public/index.php">Index</a></li>
                 <li><a href="../public/game.php">Game</a></li>
-                <li><a href="../public/about_us.php">About Us</a></li>
+                <li><a href="../public/about_us.php">Sobre nosotros</a></li>
                 <li><a href="../public/login.php">Login</a></li>
             </ul>
         </div>
