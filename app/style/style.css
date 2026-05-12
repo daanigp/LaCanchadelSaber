@@ -130,6 +130,10 @@ footer i {
     font-size: 24px;
 }
 
+footer p {
+    font-size: 12px;
+}
+
 /*
 ============================
 ======= MEDIA QUERYS =======

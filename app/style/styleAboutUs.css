@@ -62,17 +62,19 @@
     text-align: center;
 }
 
-.top-card h5 {
+.top-card .top-texto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8em;
+}
+
+.top-card .top-texto h5 {
+    width: auto;
     margin-top: 0.8em;
     padding: 0.7em;
     background-color: #1D9E75;
     border-radius: 25px;
-}
-
-.top-card .top-texto {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8em;
 }
 
 .layout-minicard {
@@ -188,6 +190,46 @@
 */
 /* TABLET */
 @media (min-width: 768px) {
+
+    .top-card {
+        border: 1px solid rgba(222, 220, 209, 0.15);
+        border-radius: 15px;
+        background-color: rgba(38, 38, 36, 1);
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        align-items: center;
+        gap: 1em;
+        padding: 2em;
+        text-align: left;
+    }
+
+    .top-card .logo {
+        grid-column: 2;
+        grid-row: 1;
+        display: flex;
+        justify-content: flex-end;
+        justify-self: end;
+        align-items: center;
+    }
+
+    .top-card .top-texto {
+        grid-column: 1;
+        grid-row: 1;
+        padding-left: 1.5em;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8em;
+    }
+
+    .top-card .top-texto h5 {
+        width: auto;
+        padding: 0.5em 1.5em;
+        background-color: #1D9E75;
+        border-radius: 25px;
+        margin: 0;
+    }
+
     .layout-minicard {
         grid-template-columns: repeat(3, 1fr);
     }

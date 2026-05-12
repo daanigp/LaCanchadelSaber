@@ -12,6 +12,7 @@
                 </a>
             </li>
         </ul>
+        <p>&copy; 2026 Daniel García Pascual. Todos los derechos reservados.</p>
     </footer>
 </body>
 </html>

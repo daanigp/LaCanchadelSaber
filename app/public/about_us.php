@@ -8,10 +8,10 @@
         <div class="faq">
             <div class="top-card">
                 <div class="logo">
-                    <h2 class="img-logo">img</h2>
-                    <h5>TFG · 2026</h5>
+                    <img src="../assets/logo-LCDS.png" alt="Logo WEB" width="200px" height="200px">
                 </div>
                 <div class="top-texto">
+                    <h5>TFG · 2026</h5>
                     <h3>La Cancha Del Saber</h3>
                     <p>Quiz de fútbol para poner a prueba tus conocimientos 🤓</p>
                 </div>
