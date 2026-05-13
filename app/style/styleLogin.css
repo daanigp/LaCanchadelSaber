@@ -2,7 +2,7 @@
    ---- MAIN ----
    -------------- */
 .section-login {
-    background-color: cornflowerblue;
+    background-color: var(--background-main);
     flex: 1;
     display: flex;
     align-items: center;

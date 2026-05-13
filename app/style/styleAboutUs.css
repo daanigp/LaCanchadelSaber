@@ -25,7 +25,7 @@
    ---- MAIN ----
    -------------- */
 .main-about_us {
-    background-color: rgba(48, 48, 46, 1);
+    background-color: var(--background-main);
     color: rgb(216, 213, 209);
     flex: 1;
     min-height: 0; 
@@ -35,7 +35,7 @@
     text-align: center;
     padding: 1em;
     margin-bottom: 0em;
-    color: rgb(64, 114, 14);
+    color: var(--color-title);
 }
 
 .faq {

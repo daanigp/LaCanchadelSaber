@@ -2,7 +2,11 @@
    ---- MAIN ----
    -------------- */
 main {
-    background-color: rgb(208, 211, 63);
+    background-color: var(--background-main);
     flex: 1;
     min-height: 0; 
+}
+
+h1 {
+    color: var(--color-title);
 }
