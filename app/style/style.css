@@ -219,43 +219,35 @@ header {
         cursor: pointer;
     }
 
-    /* Submenús en desktop: flotan */
+    /* Submenús en desktop */
     .dropdown-submenu,
     .dropdown-submenu-difc {
         display: none;
         position: absolute;
         z-index: 1000;
-        min-width: 160px;
+        min-width: 200px;
         border-radius: 5px;
         padding: .3em 0;
     }
 
-    /* Primer nivel: cae hacia abajo */
     .dropdown-btn > .dropdown-submenu {
         top: 100%;
-        left: 0;
+        right: 0;
     }
 
-    /* Segundo nivel (dificultad): flyout a la derecha */
     .dropdown-submenu > .dropdown-btn {
         position: relative;
     }
 
     .dropdown-submenu > .dropdown-btn > .dropdown-submenu-difc {
         top: 0;
-        left: 100%;  /* ← flyout a la derecha */
+        right: 100%;
     }
 
-    /* Indentación solo en mobile, quitamos en desktop */
     .dropdown-submenu-difc {
-        margin-left: 0;
+        margin-right: 0;
         border-left: none;
-    }
-
-    /* Hover en desktop abre los submenús */
-    .dropdown-btn:hover > .dropdown-submenu,
-    .dropdown-btn:hover > .dropdown-submenu-difc {
-        display: block;
+        width: auto;
     }
 }
 
@@ -267,6 +259,31 @@ header {
     .menu a,
     .dropdown-toggle {
         padding: 1em 1.5em;
+    }
+
+    .dropdown-btn > .dropdown-submenu {
+        top: 100%;
+        left: 0;
+    }
+
+    .dropdown-submenu > .dropdown-btn {
+        position: relative;
+    }
+
+    .dropdown-submenu > .dropdown-btn > .dropdown-submenu-difc {
+        top: 0;
+        left: 100%;
+    }
+
+    .dropdown-submenu-difc {
+        margin-left: 0;
+        border-left: none;
+        width: auto;
+    }
+
+    .dropdown-btn:hover > .dropdown-submenu,
+    .dropdown-btn:hover > .dropdown-submenu-difc {
+        display: block;
     }
 }
 

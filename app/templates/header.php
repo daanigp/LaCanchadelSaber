@@ -51,20 +51,20 @@
                             <i class="fa-solid fa-layer-group"></i> Jugar <span class="flecha">↓</span>
                         </button>
                         <ul class="dropdown-submenu">
-                            <li><a href="../public/scores.php">Puntuaciones</a></li>
+                            <li><a href="../public/scores.php"><i class="fa-solid fa-ranking-star"></i> Puntuaciones</a></li>
                             <li class="dropdown-btn">
                                 <button class="dropdown-toggle">
                                     <i class="fa-solid fa-layer-group"></i> Dificultad <span class="flecha">↓</span>
                                 </button>
                                 <ul class="dropdown-submenu-difc">
-                                    <li><a href="../public/game.php?difc=easy">Fácil</a></li>
-                                    <li><a href="../public/game.php?difc=medium">Media</a></li>
-                                    <li><a href="../public/game.php?difc=difficult">Dificil</a></li>
+                                    <li><a href="../public/game.php?difc=easy"><i class="fa-solid fa-star"></i> Fácil</a></li>
+                                    <li><a href="../public/game.php?difc=medium"><i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> Media</a></li>
+                                    <li><a href="../public/game.php?difc=difficult"><i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> Dificil</a></li>
                                 </ul>
                             </li>
                         </ul>
                     </li>
-                    <li><a href="../public/about_us.php" class="<?php echo ($nombrePagina == "about_us.php") ? "active" : ""  ?>">FAQ</a></li>
+                    <li><a href="../public/about_us.php" class="<?php echo ($nombrePagina == "about_us.php") ? "active" : ""  ?>"><i class="fa-solid fa-circle-question"></i> FAQ</a></li>
                     <?php
                         if(isset($_SESSION['usuario']) && isset($_SESSION['rol'])) {
                             ?>

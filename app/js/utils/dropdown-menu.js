@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    const isMobile = () => window.innerWidth < 768;
+    const isMobile = () => window.innerWidth < 1024;
 
     // Cierra todos los submenús
     const closeAll = () => {
