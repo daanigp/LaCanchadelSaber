@@ -8,7 +8,7 @@
         <div class="faq">
             <div class="top-card">
                 <div class="logo">
-                    <img src="../assets/logo-LCDS.png" alt="Logo WEB" width="200px" height="200px">
+                    <img src="../static/img/logo-LCDS.png" alt="Logo WEB" width="200px" height="200px">
                 </div>
                 <div class="top-texto">
                     <h5>TFG · 2026</h5>
@@ -116,7 +116,7 @@
             <div class="card-faq">
                 <h4><i class="fa-solid fa-user"></i> Autor</h4>
                 <div class="author">
-                    <img src="../assets/nutria-1.jpg" alt="Imágen de una nutria" width="75px" height="75px">
+                    <img src="../static/img/nutria-1.jpg" alt="Imágen de una nutria" width="75px" height="75px">
                     <div class="text-auth">
                         <p>Daniel García Pascual</p>
                         <span>Estudiante de desarrollo de aplicaciobes web.</span>

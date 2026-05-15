@@ -1,6 +1,8 @@
 :root {
     --background-main: rgba(48, 48, 46, 1);
     --background-header-footer: #2c2a2a;
+    --background-dropdown-menu: #383636;
+    --background-dropdown-submenu: #494848;
     --menu-link: rgb(187, 185, 185);
     
     --color-header-footer: #ffffff;
@@ -42,17 +44,21 @@ a:visited {
     color: var(--menu-link);
 }
 
-
 body {
-    background-color: red;
     width: 100dvw;
     min-height: 100dvh;
     /*height: 100dvh;*/
     display: flex;
     flex-direction: column;
     /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
-    font-family: var(--font-family)
+    font-family: var(--font-family);
     /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
+}
+
+.active {
+    padding: 1em;
+    border-radius: 10px;
+    background-color: var(--color-title);
 }
 
 /* ----------------
@@ -76,37 +82,195 @@ header {
     -------------- 
 */
 
+/* ================
+        MOBILE
+   ================ */
+
+#icono {
+    display: block;
+    cursor: pointer;
+    font-size: 1.5em;
+}
+
 #hamburguesa {
     display: none;
-}
-
-#hamburguesa:checked ~ .menu { 
-    transform: translateY(0); 
-    display: flex; 
-}
-
-#icono{
-    display: block;
 }
 
 .menu {
     width: 100%;
     position: absolute;
-    top: 6.2em;
+    top: 11.5em;
     left: 0;
     display: flex;
     flex-direction: column;
-    background-color: #555555;  
-
-    transform: translateY(-150%);
+    background-color: #555555;
+    transform: translateY(-180%);
     transition: transform 1s;
+    z-index: 999;
 }
 
-.menu>li {
+#hamburguesa:checked ~ nav .menu {
+    transform: translateY(0);
+}
+
+.menu > li {
     text-align: center;
     margin: .3em;
-    padding: .8em;
+    padding: 0;
 }
+
+.menu a {
+    display: block;
+    padding: 1em;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.menu li:hover {
+    border-radius: 10px;
+    background-color: var(--color-title);
+}
+
+/* BOTÓN DROPDOWN */
+.dropdown-toggle {
+    display: block;
+    padding: 1em;
+    width: 100%;
+    background: none;
+    border: none;
+    color: var(--menu-link);
+    font-size: inherit;
+    cursor: pointer;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.dropdown-toggle.active {
+    background-color: var(--color-title);
+    font-weight: bold;
+}
+
+.flecha {
+    display: inline-block;
+    transition: transform 0.3s;
+}
+
+.flecha.rotada {
+    transform: rotate(180deg);
+}
+
+/* SUBMENÚS MOBILE */
+.dropdown-btn {
+    position: relative;
+}
+
+.dropdown-submenu,
+.dropdown-submenu-difc {
+    display: none;
+    background-color: var(--background-dropdown-menu);
+    border-radius: 5px;
+}
+
+.dropdown-submenu.open,
+.dropdown-submenu-difc.open {
+    display: block;
+}
+
+.dropdown-submenu-difc {
+    background-color: var(--background-dropdown-submenu);
+}
+
+.dropdown-submenu li a,
+.dropdown-submenu-difc li a {
+    display: block;
+}
+
+.dropdown-submenu li:hover,
+.dropdown-submenu-difc li:hover {
+    border-radius: 5px;
+    background-color: var(--color-title);
+}
+
+
+/* ================
+        TABLET
+   ================ */
+@media (min-width: 768px) {
+
+    #icono {
+        display: none;
+    }
+
+    .menu {
+        position: static;
+        flex-direction: row;
+        transform: none;
+        transition: none;
+        background-color: transparent;
+        width: auto;
+        align-items: center;
+    }
+
+    .menu > li {
+        margin: 0;
+    }
+
+    .dropdown-toggle {
+        cursor: pointer;
+    }
+
+    /* Submenús en desktop: flotan */
+    .dropdown-submenu,
+    .dropdown-submenu-difc {
+        display: none;
+        position: absolute;
+        z-index: 1000;
+        min-width: 160px;
+        border-radius: 5px;
+        padding: .3em 0;
+    }
+
+    /* Primer nivel: cae hacia abajo */
+    .dropdown-btn > .dropdown-submenu {
+        top: 100%;
+        left: 0;
+    }
+
+    /* Segundo nivel (dificultad): flyout a la derecha */
+    .dropdown-submenu > .dropdown-btn {
+        position: relative;
+    }
+
+    .dropdown-submenu > .dropdown-btn > .dropdown-submenu-difc {
+        top: 0;
+        left: 100%;  /* ← flyout a la derecha */
+    }
+
+    /* Indentación solo en mobile, quitamos en desktop */
+    .dropdown-submenu-difc {
+        margin-left: 0;
+        border-left: none;
+    }
+
+    /* Hover en desktop abre los submenús */
+    .dropdown-btn:hover > .dropdown-submenu,
+    .dropdown-btn:hover > .dropdown-submenu-difc {
+        display: block;
+    }
+}
+
+
+/* =================
+        DESKTOP
+   ================= */
+@media (min-width: 1024px) {
+    .menu a,
+    .dropdown-toggle {
+        padding: 1em 1.5em;
+    }
+}
+
+
 
 /* ----------------
    ---- FOOTER ----
@@ -134,38 +298,4 @@ footer i {
 
 footer p {
     font-size: 12px;
-}
-
-/*
-============================
-======= MEDIA QUERYS =======
-============================
-*/
-/* DESKTOP */
-@media (min-width: 768px) {
-   /* 
-   --------------
-   ---- MENU ----
-   -------------- 
-   */
-    #icono{
-        display: none;
-    }
-
-    #hamburguesa:checked ~ .menu { 
-        transform: translateY(0); 
-        display: block; 
-    }
-
-    .menu {
-        position: static;
-        top: auto;
-        left: auto;
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end;
-        background-color: transparent;
-
-        transform: translateY(0);
-    }
 }
