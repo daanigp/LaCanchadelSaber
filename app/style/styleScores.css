@@ -5,15 +5,58 @@ main {
     background-color: var(--background-main);
     flex: 1;
     min-height: 0; 
+    padding: 1em;
 }
 
 main h1 {
     color: var(--color-title);
 }
 
-.layout {
+.scores-top {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+.tabla-puntuacion {
+    overflow-x: auto;
+    width: 100%;
+}
+
+.tabla-pts {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    text-align: center;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 3em;
+}
+
+.tabla-pts thead {
+    color: var(--color-title);
+    font-size: large;
+}
+
+.tabla-pts th, .tabla-pts td{
+    padding: 1em;
+}
+
+
+/*
+============================
+======= MEDIA QUERYS =======
+============================
+*/
+/* TABLET */
+@media (min-width: 768px) {
+    main {
+        padding: 3em;
+    }
+}
+
+/* DESKTOP */
+@media (min-width: 1024px) {
+    main {
+        padding: 5em;
+    }
+}

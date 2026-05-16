@@ -6,13 +6,13 @@
 
     $conexion = conectarDB();
 
-    $categorias = [];
-    $sql = "SELECT DISTINCT nombre FROM categorias ORDER BY nombre";
+    $dificultades = [];
+    $sql = "SELECT DISTINCT nombre FROM dificultades ORDER BY id";
     $stmt = $conexion->prepare($sql);
     $stmt->execute();
 
     foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $fila) {
-        $categorias[] = $fila['nombre'];
+        $dificultades[] = $fila['nombre'];
     }
 ?>
 
@@ -45,10 +45,10 @@
                     $nombrePagina = basename($_SERVER['REQUEST_URI']);
                 ?>
                 <ul class="menu">
-                    <li><a href="../public/index.php" class="<?php echo ($nombrePagina == "index.php") ? "active" : ""  ?>">Index</a></li>
+                    <li><a href="../public/index.php" class="<?php echo ($nombrePagina == "index.php") ? "active" : ""  ?>"><i class="fa-solid fa-house"></i> Home</a></li>
                     <li class="dropdown-btn">
                         <button class="dropdown-toggle <?php echo (str_starts_with($nombrePagina, "game.php?difc=") || $nombrePagina == "scores.php") ? "active" : ""  ?>">
-                            <i class="fa-solid fa-layer-group"></i> Jugar <span class="flecha">↓</span>
+                            <i class="fa-solid fa-gamepad"></i> Jugar <span class="flecha">↓</span>
                         </button>
                         <ul class="dropdown-submenu">
                             <li><a href="../public/scores.php"><i class="fa-solid fa-ranking-star"></i> Puntuaciones</a></li>
@@ -57,9 +57,18 @@
                                     <i class="fa-solid fa-layer-group"></i> Dificultad <span class="flecha">↓</span>
                                 </button>
                                 <ul class="dropdown-submenu-difc">
-                                    <li><a href="../public/game.php?difc=easy"><i class="fa-solid fa-star"></i> Fácil</a></li>
-                                    <li><a href="../public/game.php?difc=medium"><i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> Media</a></li>
-                                    <li><a href="../public/game.php?difc=difficult"><i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> Dificil</a></li>
+                                    <?php for($i = 0; $i < count($dificultades); $i++) { ?>
+                                        <li>
+                                            <a href="../public/game.php?difc=<?= $dificultades[$i] ?>">
+                                                <?php for($x = 0; $x <= $i; $x++) { ?>
+                                                        <i class="fa-solid fa-star"></i> 
+                                                <?php 
+                                                } ?>
+                                                <?= $dificultades[$i] ?>
+                                            </a>
+                                        </li>
+                                    <?php   
+                                    } ?>
                                 </ul>
                             </li>
                         </ul>
