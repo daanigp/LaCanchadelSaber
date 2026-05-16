@@ -51,7 +51,7 @@
                             <i class="fa-solid fa-gamepad"></i> Jugar <span class="flecha">↓</span>
                         </button>
                         <ul class="dropdown-submenu">
-                            <li><a href="../public/scores.php"><i class="fa-solid fa-ranking-star"></i> Puntuaciones</a></li>
+                            <li><a href="../public/scores.php?difc=TODAS&cat=TODAS"><i class="fa-solid fa-ranking-star"></i> Puntuaciones</a></li>
                             <li class="dropdown-btn">
                                 <button class="dropdown-toggle">
                                     <i class="fa-solid fa-layer-group"></i> Dificultad <span class="flecha">↓</span>

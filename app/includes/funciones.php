@@ -15,11 +15,11 @@
         }
 
         // Consulta usando PDO
-        $sql = "SELECT DISTINCT $columna FROM $tabla ORDER BY $columna";
+        $sql = "SELECT DISTINCT $columna FROM $tabla";
         $stmt = $conexion->prepare($sql);
         $stmt->execute();
 
-        foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $fila) {
+        foreach ($stmt->fetchAll() as $fila) {
             $opcion = htmlspecialchars($fila[$columna]);
             $selected = ($valorSeleccionado === $opcion) ? " selected" : "";
             $html .= " <option value='$opcion'$selected>$opcion</option>\n";
@@ -65,7 +65,7 @@
         $sql = "SELECT * FROM " . $tabla . " WHERE nombre= :nombre";
         $stmt = $conexion->prepare($sql);
         $stmt->execute([
-            ":nombre" => $campo
+            ":nombre" => $filtro
         ]);
 
         foreach($stmt->fetchAll() as $fila) {
@@ -85,6 +85,13 @@
      * @param String $filtroDifc (por defecto = null)
      */
     function generarTabla($conexion, $tabla, $filtroCat = null, $filtroDifc = null) {
+        if($filtroCat === "TODAS") {
+            $filtroCat = null;
+        }
+        if($filtroDifc === "TODAS") {
+            $filtroDifc = null;
+        }
+
         if ($filtroCat !== null && $filtroDifc !== null) {
             //Primero obtenemos ids
             $idCat = obtenerIDByName($conexion, 'categorias', $filtroCat);
@@ -126,32 +133,39 @@
             $stmt->execute();
         }
 
+        $filas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        // PINTAMOS LA TABLA
-        foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $fila) { ?>
-            <tr>
-                <td><?= $fila['puntuacion'] ?></td>
-                <td><?= obtenerNombreById($conexion, "users", $fila['id_user'], "nick") ?></td>
-                <td>
-                    <?php 
-                    if($filtroCat !== null) { 
-                        echo $filtroCat;
-                    } else {
-                        echo obtenerNombreById($conexion, "categorias", $fila['categoria_id']);
-                    }
-                    ?>
-                </td>
-                <td>
-                    <?php
-                    if($filtroDifc !== null) {
-                        echo $filtroCat;
-                    } else {
-                        echo obtenerNombreById($conexion, "dificultades", $fila['dificultad_id']);
-                    }
-                    ?>
-                </td>
-            </tr>
-        <?php
+        if (empty($filas)) {
+            echo "<tr>";
+            echo "<td colspan='4'>No se han encontrado resultados.</td>";
+            echo "</tr>";
+        } else {
+            // PINTAMOS LA TABLA
+            foreach ($filas as $fila) { ?>
+                <tr>
+                    <td><?= $fila['puntuacion'] ?></td>
+                    <td><?= obtenerNombreById($conexion, "users", $fila['id_user'], "nick") ?></td>
+                    <td>
+                        <?php 
+                        if($filtroCat !== null) { 
+                            echo "" . $filtroCat;
+                        } else {
+                            echo obtenerNombreById($conexion, "categorias", $fila['categoria_id']);
+                        }
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                        if($filtroDifc !== null) {
+                            echo "" . $filtroDifc;
+                        } else {
+                            echo obtenerNombreById($conexion, "dificultades", $fila['dificultad_id']);
+                        }
+                        ?>
+                    </td>
+                </tr>
+            <?php
+            }
         }
     }
 ?>

@@ -14,10 +14,86 @@ main h1 {
 
 .scores-top {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    margin-top: 1em;
 }
 
+.scores-top h1 {
+    font-size: 1.5em;
+    text-align: center;
+}
+
+/* --------------------
+   ---- FORMULARIO ----
+   -------------------- */
+
+.filtros-scores {
+    padding-top: 2em;
+    padding-left: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    align-items: flex-start;
+    color: var(--color-title);
+}
+
+.filtros-scores form {
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+}
+
+form label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #1D9E75;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+/* BOTONES DEL FORMULARIO */
+.btns-form-scores select {
+    appearance: none;
+    background-color: var(--background-header-footer);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%231D9E75' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6em center;
+    border: 1px solid var(--color-greenLight);
+    border-radius: 99px;
+    color: var(--color-surface);
+    outline: none;
+    cursor: pointer;
+    width: 120px;
+}
+
+.btns-form-scores select:focus {
+    border-color: var(--color-greenLight-dark);
+    box-shadow: 0 0 0 3px rgba(29, 158, 117, 0.15);
+}
+
+.btns-form-scores select, .btns-form-scores button {
+    padding: 0.4em 0.6em;
+    font-size: 0.9em;
+}
+
+.btnFiltro {
+    background: var(--color-greenLight);
+    color: var(--color-surface);
+    border: none;
+    border-radius: 99px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btnFiltro:hover {
+    background: var(--color-greenLight-dark);
+}
+
+
+/* ----------------------------
+   ---- TABLA PUNTUACIONES ----
+   ---------------------------- */
 .tabla-puntuacion {
     overflow-x: auto;
     width: 100%;
@@ -52,6 +128,25 @@ main h1 {
     main {
         padding: 3em;
     }
+
+    .scores-top h1 {
+        font-size: 2em;
+    }
+
+    .filtros-scores {
+        flex-direction: row;
+        gap: 2em;
+        margin-top: 2em;
+    }
+
+    .btns-form-scores select, .btns-form-scores button {
+        padding: 0.4em 0.6em;
+        font-size: .95em;
+    }
+
+    .btns-form-scores select {
+        width: 140px;
+    }
 }
 
 /* DESKTOP */
@@ -59,4 +154,18 @@ main h1 {
     main {
         padding: 5em;
     }
+
+    .scores-top h1 {
+        font-size: 2.5em;
+    }
+
+    .filtros-scores {
+        gap: 6em;
+    }
 }
+
+
+
+
+
+

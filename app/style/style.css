@@ -1,6 +1,6 @@
 :root {
     --background-main: rgba(48, 48, 46, 1);
-    --background-header-footer: #2c2a2a;
+    --background-header-footer: #2c2a28;
     --background-dropdown-menu: #383636;
     --background-dropdown-submenu: #494848;
     --menu-link: rgb(187, 185, 185);
@@ -15,6 +15,7 @@
     --color-dark-soft: #2d2d4e;
     --color-title: rgb(64, 114, 14);
     --color-greenLight: #1D9E75;
+    --color-greenLight-dark: #0f533e;
 
     --font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
@@ -69,12 +70,12 @@ body {
 header {
     background-color: var(--background-header-footer);
     color: var(--color-header-footer);
-    padding: 2em;
+    padding: 1em;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    gap: 1em;
+    gap: .8em;
 }
 
 /* 
@@ -196,7 +197,7 @@ header {
 /* ================
         TABLET
    ================ */
-@media (min-width: 768px) {
+@media (min-width: 790px) {
 
     #icono {
         display: none;
