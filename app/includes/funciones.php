@@ -98,7 +98,7 @@
             $idDifc = obtenerIDByName($conexion, 'dificultades', $filtroDifc);
 
             //Buscamos en la tabla los que sean con esos ids
-            $sql = "SELECT * FROM " . $tabla . " WHERE categoria_id= :cat AND dificultad_id= :difc";
+            $sql = "SELECT * FROM " . $tabla . " WHERE categoria_id= :cat AND dificultad_id= :difc ORDER BY puntuacion DESC";
             $stmt = $conexion->prepare($sql);
             $stmt->execute([
                 ":cat" => $idCat,
@@ -110,7 +110,7 @@
             $idCat = obtenerIDByName($conexion, 'categorias', $filtroCat);
 
             //Buscamos en la tabla los que sean con ese id
-            $sql = "SELECT * FROM " . $tabla . " WHERE categoria_id= :cat";
+            $sql = "SELECT * FROM " . $tabla . " WHERE categoria_id= :cat ORDER BY puntuacion DESC";
             $stmt = $conexion->prepare($sql);
             $stmt->execute([
                 ":cat" => $idCat
@@ -121,14 +121,14 @@
             $idDifc = obtenerIDByName($conexion, 'dificultades', $filtroDifc);
 
             //Buscamos en la tabla los que sean con ese id
-            $sql = "SELECT * FROM " . $tabla . " WHERE dificultad_id= :difc";
+            $sql = "SELECT * FROM " . $tabla . " WHERE dificultad_id= :difc ORDER BY puntuacion DESC";
             $stmt = $conexion->prepare($sql);
             $stmt->execute([
                 ":difc" => $idDifc
             ]);
 
         } else {
-            $sql = "SELECT * FROM " . $tabla;
+            $sql = "SELECT * FROM " . $tabla . " ORDER BY puntuacion DESC";
             $stmt = $conexion->prepare($sql);
             $stmt->execute();
         }
@@ -163,6 +163,7 @@
                         }
                         ?>
                     </td>
+                    <td><?= str_replace(['-', ' '], ['/', ' - '], $fila['fecha']) ?></td>
                 </tr>
             <?php
             }

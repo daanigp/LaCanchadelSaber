@@ -21,33 +21,23 @@
 
             <div class="filtros-scores">
                 <form method="get">
-                    <label for="cat">Filtrar por categoría:</label>
-                    
                     <div class="btns-form-scores">
-                        <?php 
-                            echo generarSelect($conexion, 'categorias', 'nombre', 'cat', $valorSeleccionadoCat);
-                        ?>
-                        <?php 
-                            if($valorSeleccionadoDifc !== "") {
-                                echo "<input type='hidden' name='difc' value=" . $valorSeleccionadoDifc . ">";
-                            }
-                        ?>
-                        <button type="submit" class="btn btnFiltro"><i class="fa-solid fa-filter"></i> Filtrar Categoría</button>
-                    </div>
-                </form>
+                        <div class="filtro-btns">
+                            <div class="filtro">
+                                <label for="cat">Filtrar por categoría:</label>
+                                <?php 
+                                    echo generarSelect($conexion, 'categorias', 'nombre', 'cat', $valorSeleccionadoCat);
+                                ?>
+                            </div>
+                            
+                            <div class="filtro">
+                                <label for="difc">Filtrar por dificultad:</label>
+                                <?php 
+                                    echo generarSelect($conexion, 'dificultades', 'nombre', 'difc', $valorSeleccionadoDifc);
+                                ?>
+                            </div>
+                        </div>
 
-                <form method="get">
-                    <label for="difc">Filtrar por dificultad:</label>
-                        
-                    <div class="btns-form-scores">
-                        <?php 
-                            echo generarSelect($conexion, 'dificultades', 'nombre', 'difc', $valorSeleccionadoDifc);
-                        ?>
-                        <?php 
-                            if($valorSeleccionadoCat !== "") {
-                                echo "<input type='hidden' name='cat' value=" . $valorSeleccionadoCat . ">";
-                            }
-                        ?>
                         <button type="submit" class="btn btnFiltro"><i class="fa-solid fa-filter"></i> Filtrar Dificultad</button>
                     </div>
                 </form>
@@ -62,6 +52,7 @@
                         <th>NOMBRE</th>
                         <th>CATEGORÍA</th>
                         <th>DIFICULTAD</th>
+                        <th>FECHA</th>
                     </tr>
                 </thead>
 

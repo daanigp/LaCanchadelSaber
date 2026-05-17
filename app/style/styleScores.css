@@ -26,7 +26,6 @@ main h1 {
 /* --------------------
    ---- FORMULARIO ----
    -------------------- */
-
 .filtros-scores {
     padding-top: 2em;
     padding-left: 1em;
@@ -37,10 +36,16 @@ main h1 {
     color: var(--color-title);
 }
 
-.filtros-scores form {
+.btns-form-scores {
     display: flex;
     flex-direction: column;
-    gap: .5em;
+    gap: 1em;
+}
+
+.filtro-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
 }
 
 form label {
@@ -52,6 +57,22 @@ form label {
 }
 
 /* BOTONES DEL FORMULARIO */
+.filtro-btns {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+}
+
+.filtro-btns .filtro {
+    display: flex;
+    flex-direction: column;
+    gap: .7em;
+}
+
+.filtro label {
+    width: 70%;
+}
+
 .btns-form-scores select {
     appearance: none;
     background-color: var(--background-header-footer);
@@ -84,6 +105,7 @@ form label {
     font-weight: 600;
     cursor: pointer;
     transition: background 0.2s;
+    width: 80%;
 }
 
 .btnFiltro:hover {
@@ -133,10 +155,25 @@ form label {
         font-size: 2em;
     }
 
-    .filtros-scores {
+    .filtro-btns {
         flex-direction: row;
         gap: 2em;
         margin-top: 2em;
+    }
+
+    .filtro-btns .filtro {
+        display: flex;
+        flex-direction: column;
+        gap: .7em;
+    }
+
+    .filtro label {
+        width: auto;
+    }
+
+    .btns-form-scores {
+        flex-direction: row;
+        align-items: flex-end;
     }
 
     .btns-form-scores select, .btns-form-scores button {
