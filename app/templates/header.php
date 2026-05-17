@@ -1,8 +1,10 @@
 <?php
-    session_start();
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
 
-    include('../includes/funciones.php');
-    include('../includes/conexion.php');
+    require_once('../includes/funciones.php');
+    require_once('../includes/conexion.php');
 
     $conexion = conectarDB();
 
@@ -75,7 +77,7 @@
                     </li>
                     <li><a href="../public/about_us.php" class="<?php echo ($nombrePagina == "about_us.php") ? "active" : ""  ?>"><i class="fa-solid fa-circle-question"></i> FAQ</a></li>
                     <?php
-                        if(isset($_SESSION['usuario']) && isset($_SESSION['rol'])) {
+                        if(isset($_SESSION['nick']) && isset($_SESSION['rol'])) {
                             ?>
                             <li class="dropdown-btn">
                                 <button class="dropdown-toggle <?php echo ($nombrePagina == "perfil.php" || $nombrePagina == "amigos.php" || $nombrePagina == "logout.php") ? "active" : ""  ?>"">

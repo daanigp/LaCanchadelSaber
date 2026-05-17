@@ -2,6 +2,8 @@
     $css = "../style/styleScores.css";
     require_once(__DIR__. "/../templates/header.php");
 
+    require_once('../includes/conexion.php');
+    require_once('../includes/funciones.php');
     $conexion = conectarDB();
 
     $valorSeleccionadoCat = "";

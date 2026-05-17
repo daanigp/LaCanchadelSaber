@@ -1,5 +1,28 @@
 <?php
     /**
+     * Comprueba si existe un usuario y contraseña (para hacer login)
+     * @param PDO $conexion
+     * @param String $user
+     * @param String $pass
+     */
+    function loginDB($conexion, $user, $pass) {
+        $sql = "SELECT * FROM users WHERE nick= :nickname AND password= :pwd";
+        $stmt = $conexion->prepare($sql);
+        $stmt->execute([
+            ":nickname" => $user,
+            ":pwd" => $pass
+        ]);
+
+        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($usuario) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    /**
      * Genera un select a partir de ciertos datos
      * @param PDO $conexion
      * @param String $tabla
@@ -167,6 +190,28 @@
                 </tr>
             <?php
             }
+        }
+    }
+
+    /**
+     * Genera filas para una tabla html
+     * @param PDO $conexion
+     * @param String $user
+     */
+    function obtenerDatosUsuario($conexion, $user) {
+        //Buscamos los datos del usuario $user
+        $sql = "SELECT * FROM users WHERE nick= :nickname";
+        $stmt = $conexion->prepare($sql);
+        $stmt->execute([
+            ":nickname" => $user
+        ]);
+
+        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($usuario) {
+            return $usuario;
+        } else {
+            return null;
         }
     }
 ?>

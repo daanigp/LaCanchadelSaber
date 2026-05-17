@@ -1,12 +1,59 @@
 <?php
+    session_start();
+
+    if(isset($_SESSION['nick'])) {
+        header("Location: index.php");
+        exit;
+    }
+    $error = "";
+
+    require_once('../includes/funciones.php');
+    require_once('../includes/conexion.php');
+    $conexion = conectarDB();
+
+    if($_SERVER["REQUEST_METHOD"] === "POST") {
+        if(isset($_POST["iniSesion"])) {
+            $userForm = $_POST["nickname"] ?? "";
+            $passForm = $_POST["pass"] ?? "";
+            if(loginDB($conexion, $userForm, $passForm)) {
+                $_SESSION['nick'] = $userForm;
+                $_SESSION['rol'] = "user";
+                header('Location: index.php');
+                exit;
+            } else {
+                $error = "Debes rellenar los campos con el nombre y la contraseña correctos";
+            }
+        }
+
+        if(isset($_POST["cancelar"])) {
+            header('Location: index.php');
+            exit;
+        }
+    }
+
     $css = "../style/styleLogin.css";
     require_once(__DIR__. "/../templates/header.php");
+
 ?>
     <main class="section-login">
         <div class="login-card">
             <h1>Iniciar sesión</h1>
 
-            <form class="formLogin">
+            <?php
+                if($error !== "") {
+                    ?>
+                    <p style="color: red;"><?= $error ?></p>
+                    <?php
+                }
+
+                if(isset($_GET["redirigido"])) {
+                    ?>
+                    <p class="alerta">Por favor, identifícate para poder acceder a esa página.</p>
+                    <?php
+                }
+            ?>
+
+            <form action="" class="formLogin" method="post">
                 <div class="nick">
                     <label for="nickname">Nombre de usuario:</label>
                     <input type="text" name="nickname" id="nickname" placeholder="Nombre de usuario ...">
@@ -26,7 +73,8 @@
                     <span class="txt-err"></span>
                 </div>
 
-                <button type="submit" id="btnLogin">Iniciar Sesión</button>
+                <input type="submit" id="btnLogin" value="Iniciar Sesión" name="iniSesion">
+                <input type="submit" id="btnCancelar" value="CANCELAR" name="cancelar">
             </form>
         </div>
     </main>
