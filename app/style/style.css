@@ -3,6 +3,8 @@
     --background-header-footer: #2c2a28;
     --background-dropdown-menu: #383636;
     --background-dropdown-submenu: #494848;
+    --background-btns: #fc740b;
+    --background-btns-hover: #af5008;
     --menu-link: rgb(187, 185, 185);
     
     --color-header-footer: #ffffff;
@@ -16,6 +18,7 @@
     --color-title: rgb(64, 114, 14);
     --color-greenLight: #1D9E75;
     --color-greenLight-dark: #0f533e;
+    --color-text: rgb(216, 213, 209);
 
     --font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
@@ -60,7 +63,7 @@ body {
 .active {
     padding: 1em;
     border-radius: 10px;
-    background-color: var(--color-title);
+    background-color: var(--background-btns-hover);
 }
 
 /* ----------------
@@ -130,7 +133,7 @@ header {
 
 .menu li:hover {
     border-radius: 10px;
-    background-color: var(--color-title);
+    background-color: var(--background-btns-hover);
 }
 
 /* BOTÓN DROPDOWN */
@@ -148,7 +151,7 @@ header {
 }
 
 .dropdown-toggle.active {
-    background-color: var(--color-title);
+    background-color: var(--background-btns-hover);
     font-weight: bold;
 }
 
@@ -190,7 +193,7 @@ header {
 .dropdown-submenu li:hover,
 .dropdown-submenu-difc li:hover {
     border-radius: 5px;
-    background-color: var(--color-title);
+    background-color: var(--background-btns-hover);
 }
 
 

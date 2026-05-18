@@ -303,3 +303,102 @@ INSERT INTO amistades (id_user1, id_user2, estado) VALUES
 (4, 6, 'pendiente'),  -- pedreitor   →  neymarjr (sin respuesta)
 (6, 7, 'pendiente'),  -- neymarjr    →  modricmagic (sin respuesta)
 (8, 2, 'bloqueada');  -- xavimaster  bloqueó a cr7fan
+
+
+-- ================================================
+-- PARTIDA_RESPUESTAS
+-- Partidas 1-12, preguntas 1-14 (validadas)
+-- Categoría 1=Historia, 2=Selecciones, 3=Ligueras
+-- ================================================
+
+-- PARTIDA 1 | user 2 | categoria 1 (Historia) | preguntas 1,2,3,4,5
+INSERT INTO partida_respuestas (id_partida, id_pregunta, respuesta_dada, es_correcta) VALUES
+(1, 1, 'B', TRUE),   -- ¿Año fundación Barça?        correcta: B
+(1, 2, 'A', TRUE),   -- ¿Gol final Mundial 2010?     correcta: A
+(1, 3, 'A', FALSE),  -- ¿Mundiales Brasil?            correcta: C
+(1, 4, 'B', TRUE),   -- ¿Final Mundial 2002?          correcta: B
+(1, 5, 'C', FALSE);  -- ¿Primer Mundial 1930?         correcta: D
+
+-- PARTIDA 2 | user 2 | categoria 2 (Selecciones) | preguntas 6,7,8,9,10
+INSERT INTO partida_respuestas (id_partida, id_pregunta, respuesta_dada, es_correcta) VALUES
+(2, 6,  'A', TRUE),  -- ¿Jugadores en campo?          correcta: A
+(2, 7,  'B', FALSE), -- ¿Eurocopa 2021?               correcta: C
+(2, 8,  'B', TRUE),  -- ¿Goles Ronaldo R9 2002?       correcta: B
+(2, 9,  'A', TRUE),  -- ¿Más Eurocopas?               correcta: A
+(2, 10, 'C', FALSE); -- ¿Mundial 2018?                correcta: D
+
+-- PARTIDA 3 | user 3 | categoria 3 (Ligueras) | preguntas 11,12,13,14
+INSERT INTO partida_respuestas (id_partida, id_pregunta, respuesta_dada, es_correcta) VALUES
+(3, 11, 'C', TRUE),  -- ¿Champions Real Madrid?       correcta: C
+(3, 12, 'A', TRUE),  -- ¿Más veces La Liga?           correcta: A
+(3, 13, 'B', TRUE),  -- ¿Leicester Premier?           correcta: B
+(3, 14, 'A', TRUE);  -- ¿Máximo goleador Champions?   correcta: A
+
+-- PARTIDA 4 | user 3 | categoria 1 (Historia) | preguntas 1,2,3,4,5
+INSERT INTO partida_respuestas (id_partida, id_pregunta, respuesta_dada, es_correcta) VALUES
+(4, 1, 'B', TRUE),
+(4, 2, 'C', FALSE),
+(4, 3, 'C', TRUE),
+(4, 4, 'A', FALSE),
+(4, 5, 'D', TRUE);
+
+-- PARTIDA 5 | user 4 | categoria 2 (Selecciones) | preguntas 6,7,8,9,10
+INSERT INTO partida_respuestas (id_partida, id_pregunta, respuesta_dada, es_correcta) VALUES
+(5, 6,  'A', TRUE),
+(5, 7,  'C', TRUE),
+(5, 8,  'D', FALSE),
+(5, 9,  'B', FALSE),
+(5, 10, 'D', TRUE);
+
+-- PARTIDA 6 | user 4 | categoria 3 (Ligueras) | preguntas 11,12,13,14
+INSERT INTO partida_respuestas (id_partida, id_pregunta, respuesta_dada, es_correcta) VALUES
+(6, 11, 'C', TRUE),
+(6, 12, 'A', TRUE),
+(6, 13, 'B', TRUE),
+(6, 14, 'D', FALSE);
+
+-- PARTIDA 7 | user 6 | categoria 1 (Historia) | preguntas 1,2,3,4,5
+INSERT INTO partida_respuestas (id_partida, id_pregunta, respuesta_dada, es_correcta) VALUES
+(7, 1, 'A', FALSE),
+(7, 2, 'A', TRUE),
+(7, 3, 'C', TRUE),
+(7, 4, 'B', TRUE),
+(7, 5, 'D', TRUE);
+
+-- PARTIDA 8 | user 7 | categoria 2 (Selecciones) | preguntas 6,7,8,9,10
+INSERT INTO partida_respuestas (id_partida, id_pregunta, respuesta_dada, es_correcta) VALUES
+(8, 6,  'A', TRUE),
+(8, 7,  'C', TRUE),
+(8, 8,  'B', TRUE),
+(8, 9,  'A', TRUE),
+(8, 10, 'D', TRUE);
+
+-- PARTIDA 9 | user 7 | categoria 3 (Ligueras) | preguntas 11,12,13,14
+INSERT INTO partida_respuestas (id_partida, id_pregunta, respuesta_dada, es_correcta) VALUES
+(9, 11, 'A', FALSE),
+(9, 12, 'B', FALSE),
+(9, 13, 'A', FALSE),
+(9, 14, 'A', TRUE);
+
+-- PARTIDA 10 | user 8 | categoria 1 (Historia) | preguntas 1,2,3,4,5
+INSERT INTO partida_respuestas (id_partida, id_pregunta, respuesta_dada, es_correcta) VALUES
+(10, 1, 'B', TRUE),
+(10, 2, 'A', TRUE),
+(10, 3, 'C', TRUE),
+(10, 4, 'C', FALSE),
+(10, 5, 'D', TRUE);
+
+-- PARTIDA 11 | user 8 | categoria 2 (Selecciones) | preguntas 6,7,8,9,10
+INSERT INTO partida_respuestas (id_partida, id_pregunta, respuesta_dada, es_correcta) VALUES
+(11, 6,  'A', TRUE),
+(11, 7,  'C', TRUE),
+(11, 8,  'B', TRUE),
+(11, 9,  'A', TRUE),
+(11, 10, 'A', FALSE);
+
+-- PARTIDA 12 | user 2 | categoria 3 (Ligueras) | preguntas 11,12,13,14
+INSERT INTO partida_respuestas (id_partida, id_pregunta, respuesta_dada, es_correcta) VALUES
+(12, 11, 'C', TRUE),
+(12, 12, 'A', TRUE),
+(12, 13, 'B', TRUE),
+(12, 14, 'A', TRUE);

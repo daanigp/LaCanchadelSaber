@@ -214,4 +214,87 @@
             return null;
         }
     }
+
+    /**
+     * Genera filas para una tabla html
+     * @param PDO $conexion
+     * @param Int $id
+     */
+    function obtenerRankingUsuarioById($conexion, $id){
+        $sql = "SELECT 
+                    posicion,
+                    nick,
+                    avatar_url,
+                    mejor_puntuacion,
+                    total_partidas,
+                    total_respuestas,
+                    total_aciertos,
+                    CASE 
+                        WHEN total_respuestas = 0 OR total_respuestas IS NULL 
+                        THEN 0 
+                        ELSE ROUND((total_aciertos / total_respuestas) * 100, 1)
+                    END AS porcentaje_acierto
+                FROM (
+                    SELECT 
+                        u.id,
+                        u.nick,
+                        u.avatar_url,
+                        COALESCE(MAX(p.puntuacion), 0)                        AS mejor_puntuacion,
+                        RANK() OVER (ORDER BY COALESCE(MAX(p.puntuacion), 0) DESC) AS posicion,
+                        COUNT(DISTINCT p.id)                                  AS total_partidas,
+                        COUNT(pr.id)                                          AS total_respuestas,
+                        COALESCE(SUM(pr.es_correcta), 0)                      AS total_aciertos
+                    FROM users u
+                    LEFT JOIN partidas p            ON p.id_user    = u.id
+                    LEFT JOIN partida_respuestas pr ON pr.id_partida = p.id
+                    GROUP BY u.id
+                ) AS ranking
+                WHERE id = :id";
+        
+        $stmt = $conexion->prepare($sql);
+        $stmt->execute([
+            ":id" => $id
+        ]);
+
+        $resultado = $stmt->fetch();
+
+        if($resultado) {
+            return $resultado;
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Genera filas para una tabla html
+     * @param PDO $conexion
+     * @param Int $userId
+     */
+    function tablaHistorialPartidas($conexion, $userId){
+        $sql = "SELECT * FROM partidas WHERE id_user= :id ORDER BY puntuacion DESC";
+        $stmt = $conexion->prepare($sql);
+        $stmt->execute([
+            ":id" => $userId
+        ]);
+
+        $filas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if (empty($filas)) {
+            echo "<tr>";
+            echo "<td colspan='4'>No se han encontrado resultados.</td>";
+            echo "</tr>";
+        } else {
+            // PINTAMOS LA TABLA
+            foreach ($filas as $fila) { ?>
+                <tr>
+                    <td>Fútbol</td>
+                    <td><?= obtenerNombreById($conexion, "dificultades", $fila['dificultad_id']) ?></td>
+                    <td><?= obtenerNombreById($conexion, "categorias", $fila['categoria_id']) ?></td>
+                    <td><?= $fila['puntuacion'] ?></td>
+                    <td><?= str_replace(['-', ' '], ['/', ' - '], $fila['fecha']) ?></td>
+                </tr>
+            <?php
+            }
+        }
+    }
 ?>
