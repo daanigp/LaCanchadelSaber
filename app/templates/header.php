@@ -85,7 +85,7 @@
                                 </button>
                                 <ul class="dropdown-submenu">
                                     <li class="admin-panel">
-                                        <a href="../public/perfil.php"><i class="fa-solid fa-user-tie"></i> Ver perfil</a>
+                                        <a href="../public_user/perfil.php"><i class="fa-solid fa-user-tie"></i> Ver perfil</a>
                                     </li>
                                     <li class="admin-panel">
                                         <a href="../public/amigos.php"><i class="fa-solid fa-user-tie"></i> Amigos</a>

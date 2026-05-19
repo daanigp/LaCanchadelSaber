@@ -52,7 +52,7 @@ main h1 {
     border-radius: 25px;
 }
 
-.texto-perfil .bottom-text button {
+.texto-perfil .bottom-text .btn-editar {
     width: auto;
     margin-top: 0.8em;
     padding: 0.7em 1.5em;
@@ -65,7 +65,7 @@ main h1 {
     cursor: pointer;
 }
 
-.texto-perfil .bottom-text button:hover {
+.texto-perfil .bottom-text .btn-editar:hover {
     background-color: var(--background-btns-hover);
     box-shadow: 0px 0px 3px var(--menu-link);
 }

@@ -1,0 +1,20 @@
+/* --------------
+   ---- MAIN ----
+   -------------- */
+main {
+    background-color: var(--background-main);
+    flex: 1;
+    min-height: 0; 
+    padding: 1em;
+}
+
+main h1 {
+    color: var(--color-text);
+}
+
+#btnCancelar {
+    border: none;
+    background: none;
+    color: var(--color-greenLight);
+    cursor: pointer;
+}

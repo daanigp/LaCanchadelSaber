@@ -1,11 +1,13 @@
 <?php
-    $css = "../style/stylePerfil.css";
-    require_once(__DIR__. "/../templates/header.php");
+    session_start();
  
     if(!isset($_SESSION['nick']) && !isset($_SESSION['rol'])) {
         header("Location: ../public/login.php?redirigido=true");
         exit;
     }
+
+    $css = "../style/stylePerfil.css";
+    require_once(__DIR__. "/../templates/header.php");
     
     $user = $_SESSION['nick'];
 
@@ -31,7 +33,7 @@
                         <h5>@<?= $user ?><span class="email-perfil"> <span class="punto-txt-perfil">·</span> <?= $usuario['email'] ?></span></h5>
                         <div class="bottom-text">
                             <h4><i class="fa-solid fa-trophy"></i> <?= "#" .$datosRanking['posicion']  ?? "-" ?> global</h4>
-                            <button><i class="fa-solid fa-pen-to-square"></i> Editar</button>
+                            <button class="btn-editar"><a href="perfil_edit.php?id=<?= $usuario['id'] ?>"><i class="fa-solid fa-pen-to-square"></i> Editar</a></button>
                         </div>
                     </div>
                 </div>
