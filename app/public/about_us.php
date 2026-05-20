@@ -116,7 +116,7 @@
             <div class="card-faq">
                 <h4><i class="fa-solid fa-user"></i> Autor</h4>
                 <div class="author">
-                    <img src="../static/img/nutria-1.jpg" alt="Imágen de una nutria" width="75px" height="75px">
+                    <img src="../static/img/profile/nutria-1.jpg" alt="Imágen de una nutria" width="75px" height="75px">
                     <div class="text-auth">
                         <p>Daniel García Pascual</p>
                         <span>Estudiante de desarrollo de aplicaciobes web.</span>

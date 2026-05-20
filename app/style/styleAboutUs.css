@@ -106,7 +106,7 @@
 }
 
 .card-faq {
-    border: 1px solid rgba(222, 220, 209, 0.15);
+    border: 1px solid var(--background-cards);
     border-radius: 15px;
     padding: 1.5em;
     display: flex;

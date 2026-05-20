@@ -1,5 +1,6 @@
 :root {
     --background-main: rgba(48, 48, 46, 1);
+    --background-cards: rgba(222, 220, 209, 0.15);
     --background-header-footer: #2c2a28;
     --background-dropdown-menu: #383636;
     --background-dropdown-submenu: #494848;
@@ -17,6 +18,8 @@
     --color-dark-soft: #2d2d4e;
     --color-title: rgb(64, 114, 14);
     --color-greenLight: #1D9E75;
+    --color-greenLight-shadow: rgba(29, 158, 117, 0.12);
+    --color-greenLight-hover: #17b585;
     --color-greenLight-dark: #0f533e;
     --color-text: rgb(216, 213, 209);
 

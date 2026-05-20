@@ -1,7 +1,7 @@
 <?php
     session_start();
  
-    if(!isset($_SESSION['nick']) && !isset($_SESSION['rol'])) {
+    if(!isset($_SESSION['id']) && !isset($_SESSION['rol'])) {
         header("Location: ../public/login.php?redirigido=true");
         exit;
     }
@@ -9,28 +9,34 @@
     $css = "../style/stylePerfil.css";
     require_once(__DIR__. "/../templates/header.php");
     
-    $user = $_SESSION['nick'];
+    $userId = $_SESSION['id'];
 
     require_once('../includes/conexion.php');
     require_once('../includes/funciones.php');
     $conexion = conectarDB();
+
+    $usuario = null;
 ?>
     <main>
         <?php 
-            $usuario = obtenerDatosUsuario($conexion, $user);
-            $datosRanking = obtenerRankingUsuarioById($conexion, $usuario['id']);
+            if(!isset($_GET['updated'])) {
+                $usuario = obtenerDatosUsuarioById($conexion, $userId);
+            } else {
+                $usuario = obtenerDatosUsuarioById($conexion, $_GET['idUser']);
+            }
 
             if($usuario === null) {
-                echo "<p>El usuario " . $user . " no ha sido encontrado</p>";
+                echo "<p>El usuario " . $userId . " no ha sido encontrado</p>";
                 echo "<p>Lo sentimos. Seguiremos trabajando para corregir los fallos</p>";
-            } else { ?>
+            } else { 
+                $datosRanking = obtenerRankingUsuarioById($conexion, $usuario['id']); ?>
                 <div class="perfil">
                     <div class="logo-perfil">
-                        <img src="../static/img/nutria-1.jpg" alt="Imagen de perfil" width="150px" height="150px">
+                        <img src="../static/img/profile/<?= $usuario['avatar_url'] ?>" alt="Imagen de perfil" width="150px" height="150px">
                     </div>
                     <div class="texto-perfil">
                         <h3><?= $usuario['nombre'] ?> <?= $usuario['apellido1'] ?></h3>
-                        <h5>@<?= $user ?><span class="email-perfil"> <span class="punto-txt-perfil">·</span> <?= $usuario['email'] ?></span></h5>
+                        <h5>@<?= $usuario['nick'] ?><span class="email-perfil"> <span class="punto-txt-perfil">·</span> <?= $usuario['email'] ?></span></h5>
                         <div class="bottom-text">
                             <h4><i class="fa-solid fa-trophy"></i> <?= "#" .$datosRanking['posicion']  ?? "-" ?> global</h4>
                             <button class="btn-editar"><a href="perfil_edit.php?id=<?= $usuario['id'] ?>"><i class="fa-solid fa-pen-to-square"></i> Editar</a></button>

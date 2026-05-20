@@ -34,6 +34,8 @@ main h1 {
 
 .logo-perfil img {
     border-radius: 15px;
+    object-fit: cover;
+    display: block;
 }
 
 .texto-perfil {
@@ -59,7 +61,7 @@ main h1 {
     font-size: medium;
     font-weight: bold;
     background-color: var(--background-btns);
-    color: var(--color-dark);
+    color: var(--color-surface);
     border: none;
     border-radius: 25px;
     cursor: pointer;

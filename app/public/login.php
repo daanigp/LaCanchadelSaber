@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    if(isset($_SESSION['nick'])) {
+    if(isset($_SESSION['id'])) {
         header("Location: index.php");
         exit;
     }
@@ -16,7 +16,7 @@
             $userForm = $_POST["nickname"] ?? "";
             $passForm = $_POST["pass"] ?? "";
             if(loginDB($conexion, $userForm, $passForm)) {
-                $_SESSION['nick'] = $userForm;
+                $_SESSION['id'] = obtenerIDByNick($conexion, 'users', $userForm);
                 $_SESSION['rol'] = "user";
                 header('Location: index.php');
                 exit;

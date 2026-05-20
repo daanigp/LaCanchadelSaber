@@ -40,7 +40,7 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btnFiltro"><i class="fa-solid fa-filter"></i> Filtrar Dificultad</button>
+                        <button type="submit" class="btn btnFiltro"><i class="fa-solid fa-filter"></i> Filtrar</button>
                     </div>
                 </form>
             </div>

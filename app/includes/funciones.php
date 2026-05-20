@@ -101,6 +101,31 @@
     }
 
     /**
+     * Obtener el id del valor del $filtro de la $tabla según el nombre
+     * $campo -> el campo que se quiere obtener
+     * @param PDO $conexion
+     * @param String $tabla
+     * @param String $filtro
+     * @param String $campo (por defecto = 'id')
+     */
+    function obtenerIDByNick($conexion, $tabla, $filtro, $campo = 'id') {
+        $id = 0;
+        $sql = "SELECT * FROM " . $tabla . " WHERE nick= :nick";
+        $stmt = $conexion->prepare($sql);
+        $stmt->execute([
+            ":nick" => $filtro
+        ]);
+
+        foreach($stmt->fetchAll() as $fila) {
+            if($fila['nick'] === $filtro) {
+                $id = $fila[$campo];
+            }
+        }
+
+        return $id;
+    }
+
+    /**
      * Genera filas para una tabla html
      * @param PDO $conexion
      * @param String $tabla
@@ -215,6 +240,28 @@
         }
     }
 
+     /**
+     * Genera filas para una tabla html
+     * @param PDO $conexion
+     * @param Int $id
+     */
+    function obtenerDatosUsuarioById($conexion, $id) {
+        //Buscamos los datos del usuario $user
+        $sql = "SELECT * FROM users WHERE id= :idUser";
+        $stmt = $conexion->prepare($sql);
+        $stmt->execute([
+            ":idUser" => $id
+        ]);
+
+        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($usuario) {
+            return $usuario;
+        } else {
+            return null;
+        }
+    }
+
     /**
      * Genera filas para una tabla html
      * @param PDO $conexion
@@ -296,5 +343,71 @@
             <?php
             }
         }
+    }
+
+    
+    /**
+     * Actualiza la información del usuario en la bbdd
+     * @param PDO $conexion
+     * @param Int $id
+     * @param String $nickNuevo
+     * @param String $nombreNuevo
+     * @param String $ape1Nuevo
+     * @param String $ape2Nuevo
+     * @param String $emailNuevo
+     * @param String $pwdNueva
+     */
+    function  updateUserInfo($conexion, $id, $nickNuevo, $nombreNuevo, $ape1Nuevo, $ape2Nuevo, $emailNuevo, $pwdNueva) {
+        $sql = "UPDATE users
+            SET nick = :nick,
+                email = :email,
+                password = :pass,
+                nombre = :nombre,
+                apellido1 = :apellido1,
+                apellido2 = :apellido2
+            WHERE id = :idUser";
+        $stmt = $conexion->prepare($sql);
+        $update = $stmt->execute([
+            ":nick" => $nickNuevo,
+            ":email" => $emailNuevo,
+            ":pass" => $pwdNueva,
+            ":nombre" => $nombreNuevo,
+            ":apellido1" => $ape1Nuevo,
+            ":apellido2" => $ape2Nuevo,
+            ":idUser" => $id
+        ]);
+
+        if (!$update) {
+            return false;
+        }
+
+        return $stmt->rowCount() > 0;
+
+
+    }
+
+    /**
+     * Actualiza la información del usuario en la bbdd
+     * @param PDO $conexion
+     * @param Int $id
+     * @param String $image
+     */
+    function  updateUserImage($conexion, $id, $image) {
+        $sql = "UPDATE users
+            SET avatar_url = :imageName
+            WHERE id = :idUser";
+        $stmt = $conexion->prepare($sql);
+        $update = $stmt->execute([
+            ":imageName" => $image,
+            ":idUser" => $id
+        ]);
+
+        if (!$update) {
+            return false;
+        }
+
+        return $stmt->rowCount() > 0;
+
+
     }
 ?>
