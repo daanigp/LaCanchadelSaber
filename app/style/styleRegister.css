@@ -1,7 +1,7 @@
 /* --------------
    ---- MAIN ----
    -------------- */
-.section-edit-profile {
+.section-register-profile {
     min-height: 100vh;
     background: var(--background-main);
     padding: 1.25rem 1rem;
@@ -10,11 +10,11 @@
     gap: 1rem;
 }
 
-.cancelar-edit {
+.cancelar-register {
     display: inline-block;
 }
 
-.cancelar-edit button {
+.cancelar-register button {
     background: transparent;
     color: var(--color-greenLight);
     border: 1px solid var(--color-greenLight);
@@ -28,14 +28,14 @@
     transition: transform;
 }
 
-.cancelar-edit button:hover {
+.cancelar-register button:hover {
     transform: scale(1.1);
     box-shadow: 0px 0px 5px var(--color-greenLight-dark);
     background-color: var(--color-greenLight);
     color: var(--color-text);
 }
 
-.edit-profile-card {
+.register-profile-card {
     background: #242422;
     border: 1px solid var(--background-cards);
     border-radius: 14px;
@@ -45,29 +45,20 @@
     gap: 1.25rem;
 }
 
-.header-edit-profile {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.75rem;
+.header-register-profile {
+    text-align: center;
     padding-bottom: 1rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.header-edit-profile h3 {
+.header-register-profile h3 {
     font-size: 17px;
     font-weight: 700;
     color: var(--color-greenLight-dark);
     margin: 0;
 }
 
-/* Imagen de perfil + botón editar */
-.edit-img {
-    position: relative;
-    display: inline-block;
-}
-
-.edit-img img {
+.img-rgstr img {
     width: 80px;
     height: 80px;
     border-radius: 50%;
@@ -76,54 +67,32 @@
     display: block;
 }
 
-.form-Img {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-}
-
-.form-Img button {
-    background: var(--color-greenLight);
-    color: var(--color-text);
-    border: 2px solid var(--background-header-footer);
-    border-radius: 99px;
-    padding: 3px 10px;
-    font-size: 11px;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
+.img-rgstr {
+    margin-bottom: 1.3em;
     align-items: center;
-    gap: 4px;
-    white-space: nowrap;
-    transition: background 0.2s;
 }
 
-.form-Img button:hover {
-    background: var(--color-greenLight-hover);
-}
-
-/* Formulario de edición */
-.formEdit {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.nick-edt,
-.name-edt,
-.ape1-edt,
-.ape2-edt,
-.pais-edt,
-.email-edt,
-.pwd-edt,
-.pwd-conf-edt {
+.img-rgstr,
+.nick-rgstr,
+.name-rgstr,
+.ape1-rgstr,
+.ape2-rgstr,
+.pais-rgstr,
+.email-rgstr,
+.pwd-rgstr,
+.pwd-conf-rgstr {
     display: flex;
     flex-direction: column;
     gap: 0.35rem;
     position: relative;
 }
 
-.formEdit label {
+.img-rgstr input {
+    width: 100%;
+    text-align: center;
+}
+
+.formRegister label {
     font-size: 10px;
     font-weight: 700;
     color: var(--color-greenLight);
@@ -131,9 +100,9 @@
     letter-spacing: 0.07em;
 }
 
-.formEdit input[type="text"],
-.formEdit input[type="email"],
-.formEdit input[type="password"] {
+.formRegister input[type="text"],
+.formRegister input[type="email"],
+.formRegister input[type="password"] {
     background: #2a2a28;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
@@ -145,11 +114,11 @@
     transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.formEdit input::placeholder {
+.formRegister input::placeholder {
     color: #555;
 }
 
-.formEdit input:focus {
+.formRegister input:focus {
     border-color: var(--color-greenLight-hover);
     box-shadow: 0 0 0 3px var(--color-greenLight-shadow);
 }
@@ -180,7 +149,7 @@
     min-height: 14px;
 }
 
-.pwd-edt {
+.pwd-rgstr {
     margin-top: 0.5rem;
     padding-top: 1rem;
     border-top: 1px solid rgba(255, 255, 255, 0.06);
@@ -212,42 +181,56 @@
 */
 /* TABLET */
 @media (min-width: 768px) {
-    .section-edit-profile {
+    .section-register-profile {
         padding: 1.5rem;
     }
 
-    .edit-profile-card {
+    .register-profile-card {
         padding: 1.5rem;
     }
 
-    .header-edit-profile {
+    .header-register-profile {
         flex-direction: row;
         align-items: center;
         text-align: center;
         gap: 1rem;
     }
 
-    .header-edit-profile h3 {
+    .header-register-profile h3 {
         font-size: 22px;
     }
 
-    .edit-img img {
-        width: 70px;
-        height: 70px;
+    .img-rgstr {
+        margin-bottom: 0;
     }
 
-    .formEdit {
+    .img-rgstr img {
+        width: 80px;
+        height: 80px;
+        align-items: normal;
+    }
+
+    .formRegister {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 1rem;
     }
 
-    .nick-edt,
-    .name-edt,
-    .pais-edt,
-    .email-edt,
-    .pwd-edt,
-    .pwd-conf-edt,
+    .img-rgstr {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 3em;
+    }
+
+    .img-rgstr,
+    .nick-rgstr,
+    .name-rgstr,
+    .pais-rgstr,
+    .email-rgstr,
+    .pwd-rgstr,
+    .pwd-conf-rgstr,
     #btnSaveChanges {
         grid-column: 1 / -1;
     }
@@ -259,13 +242,13 @@
         background-color: var(--background-main);
     }
 
-    .section-edit-profile {
+    .section-register-profile {
         padding: 2rem;
         width: 80%;
         margin: 0 auto;
     }
 
-    .edit-profile-card {
+    .register-profile-card {
         padding: 2rem;
     }
 

@@ -15,6 +15,7 @@
     $nombre = "";
     $apellido1 = "";
     $apellido2 = "";
+    $pais = "";
     $email = "";
     $contraseña = "";
     $imgActual = "nutria-2.jpg";
@@ -30,14 +31,20 @@
         $nombre = $usuario['nombre'];
         $apellido1 = $usuario['apellido1'];
         $apellido2 = $usuario['apellido2'];
+        $pais = $usuario['nacionalidad'];
         $email = $usuario['email'];
         $imgActual = $usuario['avatar_url'] ?? "nutria-2.jpg";
     }
 
     if($_SERVER['REQUEST_METHOD'] === "POST") {
         if(isset($_POST['cancelar'])) {
-            header("Location: perfil.php?updated=true&idUser=" . urlencode($idusuario));
-            exit;
+            if($guardado !== ""){
+                header("Location: perfil.php");
+                exit;
+            } else {
+                header("Location: perfil.php?updated=true&idUser=" . urlencode($idusuario));
+                exit;
+            }
         }
 
         if(isset($_POST['userID-img'])) {
@@ -49,7 +56,7 @@
 
             if(!empty($_FILES['img']['name'])) {
                 if(!in_array($_FILES['img']['type'], $imagenesPermitidas)) {
-                    $errores[] = "La imagen selecciona no tiene el tipo necesario (jpeg, png, jpg).";
+                    $errores[] = "La imagen seleccionada no tiene el tipo necesario (jpeg, png, jpg).";
                 }
                 $imagenNueva = $_FILES['img']['name'];
                 $existeImagen = true;
@@ -95,6 +102,7 @@
             $nombreNuevo = $_POST['name-edit'] ?? "";
             $ape1Nuevo = $_POST['ape1-edit'] ?? "";
             $ape2Nuevo = $_POST['ape2-edit'] ?? "";
+            $paisNuevo = $_POST['pais-edit'] ?? "";
             $emailNuevo = $_POST['email-edit'] ?? "";
             $pwdNueva = $_POST['pass-edit'] ?? "1111";
 
@@ -104,6 +112,7 @@
                         $nombreNuevo, 
                         $ape1Nuevo, 
                         $ape2Nuevo,
+                        $paisNuevo,
                         $emailNuevo,
                         $pwdNueva);
 
@@ -112,9 +121,11 @@
                 $nombre = $nombreNuevo;
                 $apellido1 = $ape1Nuevo;
                 $apellido2 = $ape2Nuevo;
+                $pais = $paisNuevo;
                 $email = $emailNuevo;
+                $guardado = "GUARDADO OK.";
             } else {
-                $guardado = "Ha ocurrido un error inesperado en el guardado del usuario, lo sentimos :(.";
+                $errores = "Ha ocurrido un error inesperado en el guardado del usuario, lo sentimos :(.";
             }
         }
     }
@@ -133,7 +144,7 @@
 
        <?php
         if($guardado !== "") {
-            echo "<p style='color: red;'>$guardado</p>";
+            echo "<p style='color: green;'>$guardado</p>";
         }
 
         if(!empty($errores)) {
@@ -189,6 +200,12 @@
                     <span class="txt-err"></span>
                 </div>
 
+                <div class="pais-edt">
+                    <label for="pais-edit">Nacionalidad:</label>
+                    <input type="text" name="pais-edit" id="pais-edit" placeholder="Nacionalidad ..." value="<?= $pais ?>">
+                    <span class="txt-err"></span>
+                </div>
+
                 <div class="email-edt">
                     <label for="email-edit">Email:</label>
                     <input type="email" name="email-edit" id="email-edit" placeholder="tuemail@gmail.com" value="<?= $email ?>">
@@ -209,7 +226,7 @@
                 </div>
 
                 <div class="pwd-conf-edt">
-                    <label for="pass-conf-edit">Contraseña:</label>
+                    <label for="pass-conf-edit">Confirmar Contraseña:</label>
                     <input type="password" class="pwd-input-conf-edit" name="pass-conf-edit" id="pass-conf-edit" placeholder="Confirmar Contraseña ...">
 
                     <button type="button" class="field-toggle" aria-label="Mostrar contraseña" data-target="password">

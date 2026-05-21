@@ -354,17 +354,19 @@
      * @param String $nombreNuevo
      * @param String $ape1Nuevo
      * @param String $ape2Nuevo
+     * @param String $paisNuevo
      * @param String $emailNuevo
      * @param String $pwdNueva
      */
-    function  updateUserInfo($conexion, $id, $nickNuevo, $nombreNuevo, $ape1Nuevo, $ape2Nuevo, $emailNuevo, $pwdNueva) {
+    function  updateUserInfo($conexion, $id, $nickNuevo, $nombreNuevo, $ape1Nuevo, $ape2Nuevo, $paisNuevo, $emailNuevo, $pwdNueva) {
         $sql = "UPDATE users
             SET nick = :nick,
                 email = :email,
                 password = :pass,
                 nombre = :nombre,
                 apellido1 = :apellido1,
-                apellido2 = :apellido2
+                apellido2 = :apellido2,
+                nacionalidad = :pais
             WHERE id = :idUser";
         $stmt = $conexion->prepare($sql);
         $update = $stmt->execute([
@@ -374,6 +376,7 @@
             ":nombre" => $nombreNuevo,
             ":apellido1" => $ape1Nuevo,
             ":apellido2" => $ape2Nuevo,
+            ":pais" => $paisNuevo,
             ":idUser" => $id
         ]);
 
@@ -410,4 +413,48 @@
 
 
     }
+
+    /**
+     * Actualiza la información del usuario en la bbdd
+     * @param PDO $conexion
+     * @param String $nick
+     * @param String $nombre
+     * @param String $ape1
+     * @param String $ape2
+     * @param String $email
+     * @param String $pwd
+     * @param String $pais
+     * @param String $imageURL
+     */
+    function  createUser($conexion, $nick, $nombre, $ape1, $ape2, $email, $pwd, $pais, $imageURL) {
+        $sql = "INSERT INTO users (nick, email, password, nombre, apellido1, apellido2, nacionalidad, avatar_url)
+            VALUES (:nick,
+                :email,
+                :pass,
+                :nombre,
+                :apellido1,
+                :apellido2,
+                :nacionalidad,
+                :imagen)";
+        $stmt = $conexion->prepare($sql);
+        $update = $stmt->execute([
+            ":nick" => $nick,
+            ":email" => $email,
+            ":pass" => $pwd,
+            ":nombre" => $nombre,
+            ":apellido1" => $ape1,
+            ":apellido2" => $ape2,
+            ":nacionalidad" => $pais,
+            ":imagen" => $imageURL
+        ]);
+
+        if (!$update) {
+            return false;
+        }
+
+        return $stmt->rowCount() > 0;
+
+
+    }
+
 ?>

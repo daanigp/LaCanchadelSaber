@@ -32,7 +32,7 @@
                 $datosRanking = obtenerRankingUsuarioById($conexion, $usuario['id']); ?>
                 <div class="perfil">
                     <div class="logo-perfil">
-                        <img src="../static/img/profile/<?= $usuario['avatar_url'] ?>" alt="Imagen de perfil" width="150px" height="150px">
+                        <img src="../static/img/profile/<?= $usuario['avatar_url'] ?? "nutria-2.jpg" ?>" alt="Imagen de perfil" width="150px" height="150px">
                     </div>
                     <div class="texto-perfil">
                         <h3><?= $usuario['nombre'] ?> <?= $usuario['apellido1'] ?></h3>

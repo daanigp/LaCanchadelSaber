@@ -101,13 +101,18 @@
 
 #btnLogin:hover  { background-color: var(--color-dark-soft); }
 
+.bottom-login {
+    margin-top: 1em;
+    text-align: center;
+}
+
 /*
 ============================
 ======= MEDIA QUERYS =======
 ============================
 */
 /* TABLET */
-@media (min-width: 480px) {
+@media (min-width: 768px) {
     .section-login {
         padding: 48px 24px;
         flex: 1;
@@ -126,7 +131,7 @@
 }
 
 /* DESKTOP */
-@media (min-width: 768px) {
+@media (min-width: 1024) {
     .section-login {
         padding: 64px 32px;
     }

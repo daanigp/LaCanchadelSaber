@@ -76,6 +76,8 @@
                 <input type="submit" id="btnLogin" value="Iniciar Sesión" name="iniSesion">
                 <input type="submit" id="btnCancelar" value="CANCELAR" name="cancelar">
             </form>
+
+            <p class="bottom-login">¿No tienes cuenta? <a href="register.php">Regístrate aquí</a></p>
         </div>
     </main>
 <?php
