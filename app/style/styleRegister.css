@@ -1,0 +1,260 @@
+/* --------------
+   ---- MAIN ----
+   -------------- */
+.section-register-profile {
+    min-height: 100vh;
+    background: var(--background-main);
+    padding: 1.25rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.cancelar-register {
+    display: inline-block;
+}
+
+.cancelar-register button {
+    background: transparent;
+    color: var(--color-greenLight);
+    border: 1px solid var(--color-greenLight);
+    border-radius: 99px;
+    padding: 0.5em 1.2em;
+    font-size: 13px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: transform;
+}
+
+.cancelar-register button:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 0px 5px var(--color-greenLight-dark);
+    background-color: var(--color-greenLight);
+    color: var(--color-text);
+}
+
+.register-profile-card {
+    background: #242422;
+    border: 1px solid var(--background-cards);
+    border-radius: 14px;
+    padding: 1.25rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.header-register-profile {
+    text-align: center;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.header-register-profile h3 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--color-greenLight-dark);
+    margin: 0;
+}
+
+.img-rgstr img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--color-greenLight);
+    display: block;
+}
+
+.img-rgstr {
+    margin-bottom: 1.3em;
+    align-items: center;
+}
+
+.img-rgstr,
+.nick-rgstr,
+.name-rgstr,
+.ape1-rgstr,
+.ape2-rgstr,
+.pais-rgstr,
+.email-rgstr,
+.pwd-rgstr,
+.pwd-conf-rgstr {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    position: relative;
+}
+
+.img-rgstr input {
+    width: 100%;
+    text-align: center;
+}
+
+.formRegister label {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--color-greenLight);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+}
+
+.formRegister input[type="text"],
+.formRegister input[type="email"],
+.formRegister input[type="password"] {
+    background: #2a2a28;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: var(--color-text);
+    font-size: 13px;
+    padding: 0.55em 2.5em 0.55em 0.9em;
+    outline: none;
+    width: 100%;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.formRegister input::placeholder {
+    color: #555;
+}
+
+.formRegister input:focus {
+    border-color: var(--color-greenLight-hover);
+    box-shadow: 0 0 0 3px var(--color-greenLight-shadow);
+}
+
+/* Botón mostrar/ocultar contraseña */
+.field-toggle {
+    position: absolute;
+    right: 0.7rem;
+    bottom: 1.6rem;
+    background: transparent;
+    border: none;
+    color: #555;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s;
+}
+
+.field-toggle:hover {
+    color: var(--color-greenLight);
+}
+
+/* Mensajes de error */
+.txt-err {
+    font-size: 11px;
+    color: #e06060;
+    min-height: 14px;
+}
+
+.pwd-rgstr {
+    margin-top: 0.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Botón guardar */
+#btnSaveChanges {
+    background: var(--background-btns);
+    color: var(--color-surface);
+    border: none;
+    border-radius: 8px;
+    padding: 0.7em 1.5em;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 0.5rem;
+    transition: background 0.2s;
+}
+
+#btnSaveChanges:hover {
+    background: var(--background-btns-hover);
+}
+
+/*
+============================
+======= MEDIA QUERYS =======
+============================
+*/
+/* TABLET */
+@media (min-width: 768px) {
+    .section-register-profile {
+        padding: 1.5rem;
+    }
+
+    .register-profile-card {
+        padding: 1.5rem;
+    }
+
+    .header-register-profile {
+        flex-direction: row;
+        align-items: center;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .header-register-profile h3 {
+        font-size: 22px;
+    }
+
+    .img-rgstr {
+        margin-bottom: 0;
+    }
+
+    .img-rgstr img {
+        width: 80px;
+        height: 80px;
+        align-items: normal;
+    }
+
+    .formRegister {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+
+    .img-rgstr {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 3em;
+    }
+
+    .img-rgstr,
+    .nick-rgstr,
+    .name-rgstr,
+    .pais-rgstr,
+    .email-rgstr,
+    .pwd-rgstr,
+    .pwd-conf-rgstr,
+    #btnSaveChanges {
+        grid-column: 1 / -1;
+    }
+}
+
+/* DESKTOP */
+@media (min-width: 1024px) {
+    body {
+        background-color: var(--background-main);
+    }
+
+    .section-register-profile {
+        padding: 2rem;
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .register-profile-card {
+        padding: 2rem;
+    }
+
+    #btnSaveChanges {
+        width: auto;
+        align-self: flex-end;
+        padding: 0.65em 2rem;
+    }
+}

@@ -1,0 +1,208 @@
+/* --------------
+   ---- MAIN ----
+   -------------- */
+main {
+    background-color: var(--background-main);
+    flex: 1;
+    min-height: 0; 
+    padding: 1em;
+}
+
+main h1 {
+    color: var(--color-title);
+}
+
+.scores-top {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1em;
+}
+
+.scores-top h1 {
+    font-size: 1.5em;
+    text-align: center;
+}
+
+/* --------------------
+   ---- FORMULARIO ----
+   -------------------- */
+.filtros-scores {
+    padding-top: 2em;
+    padding-left: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    align-items: flex-start;
+    color: var(--color-title);
+}
+
+.btns-form-scores {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.filtro-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+form label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #1D9E75;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+/* BOTONES DEL FORMULARIO */
+.filtro-btns {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+}
+
+.filtro-btns .filtro {
+    display: flex;
+    flex-direction: column;
+    gap: .7em;
+}
+
+.filtro label {
+    width: 70%;
+}
+
+.btns-form-scores select {
+    appearance: none;
+    background-color: var(--background-header-footer);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%231D9E75' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6em center;
+    border: 1px solid var(--color-greenLight);
+    border-radius: 99px;
+    color: var(--color-surface);
+    outline: none;
+    cursor: pointer;
+    width: 120px;
+}
+
+.btns-form-scores select:focus {
+    border-color: var(--color-greenLight-dark);
+    box-shadow: 0 0 0 3px rgba(29, 158, 117, 0.15);
+}
+
+.btns-form-scores select, .btns-form-scores button {
+    padding: 0.4em 0.6em;
+    font-size: 0.9em;
+}
+
+.btnFiltro {
+    background: var(--color-greenLight);
+    color: var(--color-surface);
+    border: none;
+    border-radius: 99px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    width: 80%;
+}
+
+.btnFiltro:hover {
+    background: var(--color-greenLight-dark);
+}
+
+
+/* ----------------------------
+   ---- TABLA PUNTUACIONES ----
+   ---------------------------- */
+.tabla-puntuacion {
+    overflow-x: auto;
+    width: 100%;
+}
+
+.tabla-pts {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    text-align: center;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 3em;
+}
+
+.tabla-pts thead {
+    color: var(--color-title);
+    font-size: large;
+}
+
+.tabla-pts th, .tabla-pts td{
+    padding: 1em;
+}
+
+
+/*
+============================
+======= MEDIA QUERYS =======
+============================
+*/
+/* TABLET */
+@media (min-width: 768px) {
+    main {
+        padding: 3em;
+    }
+
+    .scores-top h1 {
+        font-size: 2em;
+    }
+
+    .filtro-btns {
+        flex-direction: row;
+        gap: 2em;
+        margin-top: 2em;
+    }
+
+    .filtro-btns .filtro {
+        display: flex;
+        flex-direction: column;
+        gap: .7em;
+    }
+
+    .filtro label {
+        width: auto;
+    }
+
+    .btns-form-scores {
+        flex-direction: row;
+        align-items: flex-end;
+    }
+
+    .btns-form-scores select, .btns-form-scores button {
+        padding: 0.4em 0.6em;
+        font-size: .95em;
+    }
+
+    .btns-form-scores select {
+        width: 140px;
+    }
+}
+
+/* DESKTOP */
+@media (min-width: 1024px) {
+    main {
+        padding: 5em;
+    }
+
+    .scores-top h1 {
+        font-size: 2.5em;
+    }
+
+    .filtros-scores {
+        gap: 6em;
+    }
+}
+
+
+
+
+
+

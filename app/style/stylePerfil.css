@@ -1,0 +1,272 @@
+/* --------------
+   ---- MAIN ----
+   -------------- */
+main {
+    background-color: var(--background-main);
+    flex: 1;
+    min-height: 0; 
+    padding: 1em;
+}
+
+main h1 {
+    color: var(--color-title);
+}
+
+.pts-tablet {
+    display: none;
+}
+
+.pts-desktop {
+    display: none;
+}
+
+.perfil {
+    border: 1px solid rgba(222, 220, 209, 0.15);
+    border-radius: 15px;
+    background-color: rgba(38, 38, 36, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5em;
+    padding: 2em;
+    text-align: center;
+}
+
+.logo-perfil img {
+    border-radius: 15px;
+    object-fit: cover;
+    display: block;
+}
+
+.texto-perfil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8em;
+    color: rgb(216, 213, 209);
+}
+
+.texto-perfil h4 {
+    width: auto;
+    margin-top: 0.8em;
+    padding: 0.7em;
+    background-color: var(--color-greenLight);
+    border-radius: 25px;
+}
+
+.texto-perfil .bottom-text .btn-editar {
+    width: auto;
+    margin-top: 0.8em;
+    padding: 0.7em 1.5em;
+    font-size: medium;
+    font-weight: bold;
+    background-color: var(--background-btns);
+    color: var(--color-surface);
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.texto-perfil .bottom-text .btn-editar:hover {
+    background-color: var(--background-btns-hover);
+    box-shadow: 0px 0px 3px var(--menu-link);
+}
+
+
+.perfil-stats-layout {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: space-evenly;
+    gap: .5em;
+    padding: .5em;
+    margin-top: 1em;
+    color: var(--color-text);
+}
+
+.perfil-stats-layout h4 {
+    display: none;
+    color: var(--color-greenLight-dark);
+}
+
+.card-stat {
+    border-radius: 15px;
+    background-color:  rgba(38, 38, 36, 1);
+    display: flex;
+    flex-direction: column;
+    gap: 0.2em;
+    text-align: center;
+    padding: 1em;
+    width: 100%;
+    font-size: small;
+}
+
+.card-stat h3 {
+    color: var(--color-greenLight);
+}
+
+.hist-cont h4{
+    color: var(--color-greenLight-dark);
+}
+
+.hist-cont {
+    margin-top: 1em;
+    overflow: auto;
+    width: 100%;
+    padding: .5em;
+}
+
+.hist-cont table {
+    border: 1px solid var(--color-greenLight-dark);
+    text-align: center;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: .5em;
+}
+
+.hist-cont table thead {
+    color: var(--color-greenLight-dark);
+    font-size: large;
+}
+
+.hist-cont table tbody {
+    color: var(--color-text);
+}
+
+.hist-cont table th, .hist-cont table td{
+    padding: 1em;
+}
+
+
+
+/*
+============================
+======= MEDIA QUERYS =======
+============================
+*/
+/* TABLET */
+@media (min-width: 768px) {
+    .pts-mobile {
+        display: none;
+    }
+
+    .pts-tablet {
+        display: block;
+    }
+
+    main {
+        padding: 3em;
+    }
+
+    .pts-desktop {
+        display: none;
+    }
+
+    .perfil {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        text-align: left;
+    }
+
+    .texto-perfil .bottom-text {
+        display: flex;
+        gap: 1em;
+    }
+
+    .texto-perfil {
+        align-items: flex-start;
+    }
+
+    .card-stat {
+        font-size: medium;
+    }
+}
+
+/* DESKTOP */
+@media (min-width: 1024px) {
+    /* AREAS GRID */ 
+    .perfil {
+        grid-area: perfil;
+    }
+
+    .perfil-stats-layout {
+        grid-area: stats;
+    }
+
+    .hist-cont {
+        grid-area: hist;
+    }
+
+    .pts-mobile {
+        display: none;
+    }
+
+    .pts-tablet {
+        display: none;
+    }
+
+    .pts-desktop {
+        display: block;
+    }
+
+    main {
+        display: grid;
+        grid-template-areas: 'perfil hist'
+                             'stats  hist';
+        grid-template-columns: 1fr 2fr;
+        grid-template-rows: auto auto;
+        gap: .6em;
+        padding: 2.3em;
+    }
+
+    .perfil {
+        display: flex;
+        padding: 1em;
+    }
+
+    .texto-perfil {
+        align-items: center;
+    }
+
+    .punto-txt-perfil {
+        display: none;
+    }
+
+    .texto-perfil h5 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: .5em;
+    }
+
+    .perfil-stats-layout {
+        padding: 1em;
+    }
+
+    .perfil-stats-layout h4 {
+        display: block;
+        grid-area: tit;
+    }
+
+    .card-stat:nth-child(2) {
+        grid-area: partidas;
+    }
+
+    .card-stat:nth-child(3) {
+        grid-area: aciertos;
+    }
+
+    .card-stat:nth-child(4) {
+        grid-area: puntuacion;
+    }
+
+    .perfil-stats-layout {
+        display: grid;
+        grid-template-areas: 'tit tit'
+                             'partidas aciertos'
+                             'puntuacion puntuacion';
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+        border: 1px solid rgba(222, 220, 209, 0.15);
+        border-radius: 15px;
+    }
+}

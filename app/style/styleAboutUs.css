@@ -1,6 +1,256 @@
+/*
+------ ICONOS TECNOLOGÍAS ------
+*/
+.fa-html5 {
+    color: #ff5125;
+}
+
+.fa-css {
+    color: #0851e8;
+}
+
+.fa-js {
+    color: #f7e025;
+}
+
+.fa-php {
+    color: #7b7fb5;
+}
+
+.fa-database {
+    color: #ffc208;
+}
+
 /* --------------
    ---- MAIN ----
    -------------- */
-main {
-    background-color: saddlebrown;
+.main-about_us {
+    background-color: var(--background-main);
+    color: var(--color-text);
+    flex: 1;
+    min-height: 0; 
+}
+
+.tit-about_us {
+    text-align: center;
+    padding: 1em;
+    margin-bottom: 0em;
+    color: var(--color-title);
+}
+
+.faq {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    padding: 0 2em 4em 2em;
+    margin-bottom: 5em;
+}
+
+.faq hr {
+    color: #1D9E75;
+}
+
+.top-card {
+    border: 1px solid rgba(222, 220, 209, 0.15);
+    border-radius: 15px;
+    background-color: rgba(38, 38, 36, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5em;
+    padding: 2em;
+    text-align: center;
+}
+
+.top-card .top-texto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8em;
+}
+
+.top-card .top-texto h5 {
+    width: auto;
+    margin-top: 0.8em;
+    padding: 0.7em;
+    background-color: #1D9E75;
+    border-radius: 25px;
+}
+
+.layout-minicard {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: space-evenly;
+    gap: 1em;
+}
+
+.mini-card {
+    border-radius: 15px;
+    background-color:  rgba(38, 38, 36, 1);
+    display: flex;
+    flex-direction: column;
+    gap: 0.2em;
+    text-align: center;
+    padding: 1.5em;
+    width: 100%;
+    font-size: smaller;
+}
+
+.layout-minicard .mini-card:nth-child(3) {
+    display: none;
+}
+
+.layout-minicard span {
+    font-weight: bold;
+    font-size: large;
+}
+
+.card-faq {
+    border: 1px solid var(--background-cards);
+    border-radius: 15px;
+    padding: 1.5em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.paralelas {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8em;
+}
+
+.card-faq h4 {
+    color: #1D9E75;
+}
+
+.tecnologias {
+    display: flex;
+    align-items: start;
+    flex-wrap: wrap;
+    gap: 1em;
+    margin: 0;
+    padding: 0;
+}
+
+.tecnologias li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.tecnologias .tech {
+    background-color: rgba(38, 38, 36, 1);
+    border: 1px solid rgba(222, 220, 209, 0.15);
+    padding: 0.7em;
+    border-radius: 25px;
+    display: flex;
+    gap: 0.3em;
+}
+
+.improvements ul {
+    padding-left: 1.5em;
+}
+
+.improvements li {
+    list-style: circle;
+}
+
+.card-faq:nth-last-child(1) .author {
+    display: flex;
+    gap: 1em;
+    height: 75px;
+    align-items: flex-end;
+}
+
+.card-faq:nth-last-child(1) .author img {
+    vertical-align: bottom;
+    border-radius: 50px;
+}
+
+.card-faq:nth-last-child(1) .author .text-auth {
+    flex: 1;
+    min-width: 0;
+    margin-bottom: 0.5em;
+}
+
+.card-faq:nth-last-child(1) span {
+    font-size: small;
+    margin-top: -0.5em;
+}
+
+.card-faq:nth-last-child(1) p:nth-last-child(1) {
+    font-size: smaller;
+}
+
+/*
+============================
+======= MEDIA QUERYS =======
+============================
+*/
+/* TABLET */
+@media (min-width: 768px) {
+
+    .top-card {
+        border: 1px solid rgba(222, 220, 209, 0.15);
+        border-radius: 15px;
+        background-color: rgba(38, 38, 36, 1);
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        align-items: center;
+        gap: 1em;
+        padding: 2em;
+        text-align: left;
+    }
+
+    .top-card .logo {
+        grid-column: 2;
+        grid-row: 1;
+        display: flex;
+        justify-content: flex-end;
+        justify-self: end;
+        align-items: center;
+    }
+
+    .top-card .top-texto {
+        grid-column: 1;
+        grid-row: 1;
+        padding-left: 1.5em;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8em;
+    }
+
+    .top-card .top-texto h5 {
+        width: auto;
+        padding: 0.5em 1.5em;
+        background-color: #1D9E75;
+        border-radius: 25px;
+        margin: 0;
+    }
+
+    .layout-minicard {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .layout-minicard .mini-card:nth-child(3) {
+        display: block;
+    }
+
+    .paralelas {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        justify-content: space-evenly;
+        gap: 1em;
+    }
+
+    .paralelas hr {
+        display: none;
+    }
+}
+
+/* DESKTOP */
+@media (min-width: 1024px) {
+    
 }

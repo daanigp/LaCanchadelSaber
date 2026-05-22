@@ -3,7 +3,17 @@
    -------------- */
 main {
     background-color: var(--background-main);
-    
+    flex: 1;
+    min-height: 0; 
 }
 
+main h1 {
+    color: var(--color-title);
+}
+
+.layout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
