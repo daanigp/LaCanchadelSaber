@@ -139,6 +139,36 @@ form label {
     padding: 1em;
 }
 
+/* --------------------
+   ---- PAGINACION ----
+   -------------------- */
+.paginacion {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.btn-pagina {
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.2s;
+}
+
+.btn-pagina:hover {
+    background: #f0f0f0;
+}
+
+.btn-pagina.activa {
+    background: #4a90e2; /* el color de tu tema */
+    color: white;
+    border-color: #4a90e2;
+    font-weight: bold;
+}
+
 
 /*
 ============================

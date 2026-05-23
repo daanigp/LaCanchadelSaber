@@ -130,29 +130,55 @@
      * @param PDO $conexion
      * @param String $tabla
      * @param String $filtroDifc (por defecto = null)
+     * @param Int $pagina (por defecto = 1)
+     * @param Int $porPagina (por defecto = 10)
      */
-    function generarTabla($conexion, $tabla, $filtroDifc = null) {
+    function generarTabla($conexion, $tabla, $filtroDifc = null, $pagina = 1, $porPagina = 10) {
         if($filtroDifc === "TODAS") {
             $filtroDifc = null;
         }
+        
+        $offset = ($pagina - 1) * $porPagina;
 
         if ($filtroDifc !== null) {
             //Primero obtenemos id
             $idDifc = obtenerIDByName($conexion, 'dificultades', $filtroDifc);
 
             //Buscamos en la tabla los que sean con ese id
-            $sql = "SELECT * FROM " . $tabla . " WHERE dificultad_id= :difc ORDER BY puntuacion DESC";
-            $stmt = $conexion->prepare($sql);
-            $stmt->execute([
+            $sqlTotalFilas = "SELECT COUNT(*) FROM " . $tabla . " WHERE dificultad_id= :difc ORDER BY puntuacion DESC";
+            $stmtTotalFIlas = $conexion->prepare($sqlTotalFilas);
+            $stmtTotalFIlas->execute([
                 ":difc" => $idDifc
             ]);
 
-        } else {
-            $sql = "SELECT * FROM " . $tabla . " ORDER BY puntuacion DESC";
+            // Paginamos los elementos
+            $sql = "SELECT * FROM " . $tabla . " 
+                        WHERE dificultad_id= :difc 
+                        ORDER BY puntuacion DESC
+                        LIMIT :limite
+                        OFFSET :offset";
             $stmt = $conexion->prepare($sql);
-            $stmt->execute();
+            $stmt->bindValue(":difc", $idDifc);
+
+        } else {
+            $sqlTotalFilas = "SELECT COUNT(*) FROM " . $tabla . " ORDER BY puntuacion DESC";
+            $stmtTotalFIlas = $conexion->prepare($sqlTotalFilas);
+            $stmtTotalFIlas->execute();
+
+            $sql = "SELECT * FROM " . $tabla . " 
+                        ORDER BY puntuacion DESC
+                        LIMIT :limite
+                        OFFSET :offset";
+            $stmt = $conexion->prepare($sql);
         }
 
+        $filasTotal = $stmtTotalFIlas->fetchColumn();
+        $totalPaginas = ceil($filasTotal / $porPagina);
+
+        $stmt->bindValue(":limite", $porPagina, PDO::PARAM_INT);
+        $stmt->bindValue(":offset", $offset, PDO::PARAM_INT);
+
+        $stmt->execute();
         $filas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         if (empty($filas)) {
@@ -179,6 +205,8 @@
             <?php
             }
         }
+
+        return $totalPaginas;
     }
 
     /**
@@ -279,14 +307,35 @@
      * Genera filas para una tabla html
      * @param PDO $conexion
      * @param Int $userId
+     * @param Int $pagina (por defecto = 1)
+     * @param Int $porPagina (por defecto = 5)
      */
-    function tablaHistorialPartidas($conexion, $userId){
-        $sql = "SELECT * FROM partidas WHERE id_user= :id ORDER BY puntuacion DESC";
-        $stmt = $conexion->prepare($sql);
-        $stmt->execute([
+    function tablaHistorialPartidas($conexion, $userId, $pagina = 1, $porPagina = 5){
+        $offset = ($pagina - 1) * $porPagina;
+    
+        $sqlTotalFilas = "SELECT COUNT(*) FROM partidas 
+                                WHERE id_user= :id
+                                ORDER BY puntuacion DESC";
+        $stmtTotalFIlas = $conexion->prepare($sqlTotalFilas);
+        $stmtTotalFIlas->execute([
             ":id" => $userId
         ]);
 
+        $sql = "SELECT * FROM partidas 
+                    WHERE id_user= :id 
+                    ORDER BY puntuacion DESC
+                    LIMIT :limite
+                    OFFSET :offset";
+        $stmt = $conexion->prepare($sql);
+        $stmt->bindValue(":id", $userId);
+
+        $filasTotal = $stmtTotalFIlas->fetchColumn();
+        $totalPaginas = ceil($filasTotal / $porPagina);
+
+        $stmt->bindValue(":limite", $porPagina, PDO::PARAM_INT);
+        $stmt->bindValue(":offset", $offset, PDO::PARAM_INT);
+
+        $stmt->execute();
         $filas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         if (empty($filas)) {
@@ -305,6 +354,8 @@
             <?php
             }
         }
+
+        return $totalPaginas;
     }
     
     /**

@@ -16,6 +16,7 @@
     $conexion = conectarDB();
 
     $usuario = null;
+    $pagina = isset($_GET['pagina']) ? max(1, (int)$_GET['pagina']) : 1;
 ?>
     <main>
         <?php 
@@ -74,9 +75,27 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php tablaHistorialPartidas($conexion, $usuario['id']); ?>
+                            <?php $totalPaginas = tablaHistorialPartidas($conexion, $usuario['id'], $pagina); ?>
                         </tbody>
                     </table>
+                <?php 
+                    if ($totalPaginas > 1) {?>
+                        <div class="paginacion">
+                            <?php
+                            // Construimos los params GET conservando el filtro
+                            $params = $_GET;
+
+                            for ($i = 1; $i <= $totalPaginas; $i++) {
+                                $params['pagina'] = $i;
+                                $url = '?' . http_build_query($params);
+                                $activa = ($i === $pagina) ? 'activa' : '';
+                            ?>
+                                <a href="<?= $url ?>" class="btn-pagina <?= $activa ?>"><?= $i ?></a>
+                            <?php 
+                            } 
+                            ?>
+                        </div>
+            <?php   }   ?>
                 </div>
         <?php
             }

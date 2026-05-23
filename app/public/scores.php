@@ -10,8 +10,10 @@
     if(isset($_GET['difc'])) {
         $valorSeleccionadoDifc = $_GET['difc'];
     }
-?>
 
+    $pagina = isset($_GET['pagina']) ? max(1, (int)$_GET['pagina']) : 1;
+    $filtroDifc = isset($_GET['difc']) ? $_GET['difc'] : null;
+?>
     <main>
         <div class="scores-top">
             <h1><i class="fa-solid fa-ranking-star"></i> PUNTUACIONES <i class="fa-solid fa-ranking-star"></i></h1>
@@ -48,13 +50,32 @@
                 <tbody>
                     <?php
                     if(isset($_GET['difc'])){
-                        generarTabla($conexion, 'partidas', $_GET['difc']);
+                        $totalPaginas = generarTabla($conexion, 'partidas', $_GET['difc'], $pagina);
                     } else {
-                        generarTabla($conexion, 'partidas');
+                        $totalPaginas = generarTabla($conexion, 'partidas', 'TODAS', $pagina);
                     }
                     ?>
                 </tbody>
             </table>
+
+            <?php 
+                if ($totalPaginas > 1) {?>
+                    <div class="paginacion">
+                        <?php
+                        // Construimos los params GET conservando el filtro
+                        $params = $_GET;
+
+                        for ($i = 1; $i <= $totalPaginas; $i++) {
+                            $params['pagina'] = $i;
+                            $url = '?' . http_build_query($params);
+                            $activa = ($i === $pagina) ? 'activa' : '';
+                        ?>
+                            <a href="<?= $url ?>" class="btn-pagina <?= $activa ?>"><?= $i ?></a>
+                        <?php 
+                        } 
+                        ?>
+                    </div>
+        <?php   }   ?>
         </div>
     </main>
 
