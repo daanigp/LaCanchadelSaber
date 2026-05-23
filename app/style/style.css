@@ -1,6 +1,7 @@
 :root {
     --background-main: rgba(48, 48, 46, 1);
     --background-cards: rgba(222, 220, 209, 0.15);
+    --background-card-game: rgb(41, 41, 39);
     --background-header-footer: #2c2a28;
     --background-dropdown-menu: #383636;
     --background-dropdown-submenu: #494848;
@@ -10,13 +11,15 @@
     
     --color-header-footer: #ffffff;
     --color-error: #c0392b;
-    --color-surface:   #ffffff;
-    --color-border:    #ddd8ce;
-    --color-dark:      #1a1a2e;
-    --color-muted:     #888880;
-    --color-accent:    #e8d5b7;
+    --color-error-back: #641e17;
+    --color-surface: #ffffff;
+    --color-border: #ddd8ce;
+    --color-dark: #1a1a2e;
+    --color-muted: #888880;
+    --color-accent: #e8d5b7;
     --color-dark-soft: #2d2d4e;
-    --color-title: rgb(64, 114, 14);
+    --color-res-correct: rgb(74, 131, 17);
+    --color-res-correct-back: rgb(36, 65, 8);
     --color-greenLight: #1D9E75;
     --color-greenLight-shadow: rgba(29, 158, 117, 0.12);
     --color-greenLight-hover: #17b585;

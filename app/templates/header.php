@@ -61,7 +61,7 @@
                                 <ul class="dropdown-submenu-difc">
                                     <?php for($i = 0; $i < count($dificultades); $i++) { ?>
                                         <li>
-                                            <a href="../public/game.php?difc=<?= $dificultades[$i] ?>">
+                                            <a href="../public_user/game.php?difc=<?= $dificultades[$i] ?>">
                                                 <?php for($x = 0; $x <= $i; $x++) { ?>
                                                         <i class="fa-solid fa-star"></i> 
                                                 <?php 

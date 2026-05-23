@@ -78,9 +78,9 @@ CREATE TABLE dificultades (
 );
 
 INSERT INTO dificultades (nombre) VALUES
-('Fácil'),
+('Facil'),
 ('Media'),
-('Difícil');
+('Dificil');
 
 
 -- ============================
@@ -122,7 +122,6 @@ CREATE TABLE partidas (
     id_user INT NOT NULL,
     puntuacion INT DEFAULT 0,
     fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
-    categoria_id INT NOT NULL,
     dificultad_id INT NOT NULL,
 
     FOREIGN KEY (id_user)
@@ -137,11 +136,11 @@ CREATE TABLE partidas (
 -- 7. Tabla detalles partidas
 -- ============================
 CREATE TABLE partida_respuestas (
-    id             INT AUTO_INCREMENT PRIMARY KEY,
-    id_partida     INT  NOT NULL,
-    id_pregunta    INT  NOT NULL,
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_partida INT NOT NULL,
+    id_pregunta INT NOT NULL,
     respuesta_dada CHAR(1) NOT NULL,
-    es_correcta    BOOLEAN NOT NULL,
+    es_correcta BOOLEAN NOT NULL,
     FOREIGN KEY (id_partida)  REFERENCES partidas(id)  
         ON DELETE CASCADE,
     FOREIGN KEY (id_pregunta) REFERENCES preguntas(id) 
@@ -261,19 +260,19 @@ INSERT INTO preguntas (titulo, respuesta_correcta, respuesta_A, respuesta_B, res
 -- ================================
 -- PARTIDAS
 -- ================================
-INSERT INTO partidas (id_user, puntuacion, categoria_id, dificultad_id) VALUES
-(2, 800,  1, 1),
-(2, 650,  2, 2),
-(3, 920,  3, 3),
-(3, 700,  1, 2),
-(4, 450,  2, 1),
-(4, 880,  3, 3),
-(6, 760,  1, 2),
-(7, 990,  2, 3),
-(7, 430,  3, 1),
-(8, 670,  1, 1),
-(8, 820,  2, 2),
-(2, 910,  3, 3);
+INSERT INTO partidas (id_user, puntuacion, dificultad_id) VALUES
+(2, 800, 1),
+(2, 650, 2),
+(3, 920, 3),
+(3, 700, 2),
+(4, 450, 1),
+(4, 880, 3),
+(6, 760, 2),
+(7, 990, 3),
+(7, 430, 1),
+(8, 670, 1),
+(8, 820, 2),
+(2, 910, 3);
 
 -- ================================
 -- PARTIDA_RESPUESTAS (detalle de la partida id=1)

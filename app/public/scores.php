@@ -6,11 +6,6 @@
     require_once('../includes/funciones.php');
     $conexion = conectarDB();
 
-    $valorSeleccionadoCat = "";
-    if(isset($_GET['cat'])) {
-        $valorSeleccionadoCat = $_GET['cat'];
-    }
-
     $valorSeleccionadoDifc = "";
     if(isset($_GET['difc'])) {
         $valorSeleccionadoDifc = $_GET['difc'];
@@ -25,13 +20,6 @@
                 <form method="get">
                     <div class="btns-form-scores">
                         <div class="filtro-btns">
-                            <div class="filtro">
-                                <label for="cat">Filtrar por categoría:</label>
-                                <?php 
-                                    echo generarSelect($conexion, 'categorias', 'nombre', 'cat', $valorSeleccionadoCat);
-                                ?>
-                            </div>
-                            
                             <div class="filtro">
                                 <label for="difc">Filtrar por dificultad:</label>
                                 <?php 
@@ -52,7 +40,6 @@
                     <tr>
                         <th>PUNTOS</th>
                         <th>NOMBRE</th>
-                        <th>CATEGORÍA</th>
                         <th>DIFICULTAD</th>
                         <th>FECHA</th>
                     </tr>
@@ -60,12 +47,8 @@
 
                 <tbody>
                     <?php
-                    if(isset($_GET['cat']) && isset($_GET['difc'])){
-                        generarTabla($conexion, 'partidas', $_GET['cat'], $_GET['difc']);
-                    } else if (isset($_GET['cat']) && !isset($_GET['difc'])) {
-                        generarTabla($conexion, 'partidas', $_GET['cat'], null);
-                    } else if (!isset($_GET['cat']) && isset($_GET['difc'])) {
-                        generarTabla($conexion, 'partidas', null, $_GET['difc']);
+                    if(isset($_GET['difc'])){
+                        generarTabla($conexion, 'partidas', $_GET['difc']);
                     } else {
                         generarTabla($conexion, 'partidas');
                     }

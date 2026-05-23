@@ -129,42 +129,14 @@
      * Genera filas para una tabla html
      * @param PDO $conexion
      * @param String $tabla
-     * @param String $filtroCat (por defecto = null)
      * @param String $filtroDifc (por defecto = null)
      */
-    function generarTabla($conexion, $tabla, $filtroCat = null, $filtroDifc = null) {
-        if($filtroCat === "TODAS") {
-            $filtroCat = null;
-        }
+    function generarTabla($conexion, $tabla, $filtroDifc = null) {
         if($filtroDifc === "TODAS") {
             $filtroDifc = null;
         }
 
-        if ($filtroCat !== null && $filtroDifc !== null) {
-            //Primero obtenemos ids
-            $idCat = obtenerIDByName($conexion, 'categorias', $filtroCat);
-            $idDifc = obtenerIDByName($conexion, 'dificultades', $filtroDifc);
-
-            //Buscamos en la tabla los que sean con esos ids
-            $sql = "SELECT * FROM " . $tabla . " WHERE categoria_id= :cat AND dificultad_id= :difc ORDER BY puntuacion DESC";
-            $stmt = $conexion->prepare($sql);
-            $stmt->execute([
-                ":cat" => $idCat,
-                ":difc" => $idDifc
-            ]);
-
-        } else if ($filtroCat !== null && $filtroDifc === null) {
-            //Primero obtenemos id
-            $idCat = obtenerIDByName($conexion, 'categorias', $filtroCat);
-
-            //Buscamos en la tabla los que sean con ese id
-            $sql = "SELECT * FROM " . $tabla . " WHERE categoria_id= :cat ORDER BY puntuacion DESC";
-            $stmt = $conexion->prepare($sql);
-            $stmt->execute([
-                ":cat" => $idCat
-            ]);
-
-        } else if ($filtroCat === null && $filtroDifc !== null) {
+        if ($filtroDifc !== null) {
             //Primero obtenemos id
             $idDifc = obtenerIDByName($conexion, 'dificultades', $filtroDifc);
 
@@ -193,15 +165,6 @@
                 <tr>
                     <td><?= $fila['puntuacion'] ?></td>
                     <td><?= obtenerNombreById($conexion, "users", $fila['id_user'], "nick") ?></td>
-                    <td>
-                        <?php 
-                        if($filtroCat !== null) { 
-                            echo "" . $filtroCat;
-                        } else {
-                            echo obtenerNombreById($conexion, "categorias", $fila['categoria_id']);
-                        }
-                        ?>
-                    </td>
                     <td>
                         <?php
                         if($filtroDifc !== null) {
@@ -336,7 +299,6 @@
                 <tr>
                     <td>Fútbol</td>
                     <td><?= obtenerNombreById($conexion, "dificultades", $fila['dificultad_id']) ?></td>
-                    <td><?= obtenerNombreById($conexion, "categorias", $fila['categoria_id']) ?></td>
                     <td><?= $fila['puntuacion'] ?></td>
                     <td><?= str_replace(['-', ' '], ['/', ' - '], $fila['fecha']) ?></td>
                 </tr>
@@ -344,7 +306,6 @@
             }
         }
     }
-
     
     /**
      * Actualiza la información del usuario en la bbdd
@@ -453,8 +414,61 @@
         }
 
         return $stmt->rowCount() > 0;
-
-
     }
 
+    /**
+     * Obtiene las preguntas que sean de dificultad $dificultadID de la tabla $tabla
+     * @param PDO $conexion
+     * @param String $tabla
+     * @param Int $dificultadID
+     * @param Int $limite
+     */
+    function obtenerPreguntasAleatorias($conexion, $tabla, $dificultadID, $limite) {
+        $sql = "SELECT * FROM $tabla 
+            WHERE dificultad_id=:dificultad 
+            ORDER BY RAND() 
+            LIMIT $limite";
+        $stmt = $conexion->prepare($sql);
+        $stmt->execute([
+            ":dificultad" => $dificultadID
+        ]);
+
+        $preguntas = $stmt->fetchAll();
+
+        if ($preguntas) {
+            return $preguntas;
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Guarda la partida
+     * @param PDO $conexion
+     * @param Int $id_user
+     * @param Int $puntuacion
+     * @param Int $dificultad_id
+     */
+    function guardarPartida($conexion, $id_user, $puntuacion, $dificultad_id) {
+        $sql = "INSERT INTO partidas (id_user, puntuacion, dificultad_id)
+            VALUES (
+                :iduser,
+                :puntuacion,
+                :dificultad
+            )";
+        $stmt = $conexion->prepare($sql);
+        $guardada = $stmt->execute([
+            ":iduser" => $id_user,
+            ":puntuacion" => $puntuacion,
+            ":dificultad" => $dificultad_id
+        ]);
+
+        $partidaId = $conexion->lastInsertId();
+
+        if($guardada) {
+            return $partidaId;
+        } else {
+            return null;
+        }
+    }
 ?>

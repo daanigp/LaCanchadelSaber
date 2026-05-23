@@ -69,7 +69,6 @@
                             <tr>
                                 <td>Deporte</td>
                                 <td>Dificultad</td>
-                                <td>Categoría</td>
                                 <td>Puntuación</td>
                                 <td>Fecha</td>
                             </tr>

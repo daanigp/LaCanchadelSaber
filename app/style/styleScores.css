@@ -9,7 +9,7 @@ main {
 }
 
 main h1 {
-    color: var(--color-title);
+    color: var(--color-greenLight-dark);
 }
 
 .scores-top {
@@ -33,7 +33,7 @@ main h1 {
     flex-direction: column;
     gap: 2em;
     align-items: flex-start;
-    color: var(--color-title);
+    color: var(--color-greenLight-dark);
 }
 
 .btns-form-scores {
@@ -131,7 +131,7 @@ form label {
 }
 
 .tabla-pts thead {
-    color: var(--color-title);
+    color: var(--color-greenLight-dark);
     font-size: large;
 }
 
