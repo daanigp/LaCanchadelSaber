@@ -10,7 +10,7 @@
         exit;
     }
     
-    $css = "../style/styleEditarPreguntas.css";
+    $css = "../style/styleBorrarPreguntas.css";
     include('../templates/header_admin.php');
     require_once('../includes/funciones.php');
     require_once('../includes/conexion.php');

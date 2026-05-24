@@ -49,7 +49,7 @@
                 <ul class="menu">
                     <li><a href="../public/index.php" class="<?php echo ($nombrePagina == "index.php") ? "active" : ""  ?>"><i class="fa-solid fa-house"></i> Home</a></li>
                     <li class="dropdown-btn">
-                        <button class="dropdown-toggle <?php echo (str_starts_with($nombrePagina, "game.php?difc=") || $nombrePagina == "scores.php") ? "active" : ""  ?>">
+                        <button class="dropdown-toggle <?php echo (str_starts_with($nombrePagina, "game.php?difc=") || str_starts_with($nombrePagina, "scores.php")) ? "active" : ""  ?>">
                             <i class="fa-solid fa-gamepad"></i> Jugar <span class="flecha">↓</span>
                         </button>
                         <ul class="dropdown-submenu">
