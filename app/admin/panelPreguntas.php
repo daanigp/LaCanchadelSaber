@@ -89,11 +89,11 @@
                     if(isset($_GET['cat']) && isset($_GET['difc'])){
                         $totalPaginas = generarTablaPanel($conexion, 'preguntas', $_GET['cat'], $_GET['difc'], $pagina);
                     } else if (isset($_GET['cat']) && !isset($_GET['difc'])) {
-                        $totalPaginas = generarTablaPanel($conexion, 'preguntas', $_GET['cat'], null, $pagina);
+                        $totalPaginas = generarTablaPanel($conexion, 'preguntas', $_GET['cat'], 'TODAS', $pagina);
                     } else if (!isset($_GET['cat']) && isset($_GET['difc'])) {
-                        $totalPaginas = generarTablaPanel($conexion, 'preguntas', null, $_GET['difc'], $pagina);
+                        $totalPaginas = generarTablaPanel($conexion, 'preguntas', 'TODAS', $_GET['difc'], $pagina);
                     } else {
-                        $totalPaginas = generarTablaPanel($conexion, $userID, 'partidas', 'TODAS', 'TODAS', $pagina);
+                        $totalPaginas = generarTablaPanel($conexion, 'preguntas', 'TODAS', 'TODAS', $pagina);
                     }
                     ?>
                 </tbody>

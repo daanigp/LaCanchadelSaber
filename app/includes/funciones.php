@@ -901,6 +901,7 @@
                                 ORDER BY id ASC";
             $stmtTotalFIlas = $conexion->prepare($sqlTotalFilas);
             $stmtTotalFIlas->execute([
+                ":cat" => $idCat,
                 ":difc" => $idDifc
             ]);
 
@@ -1024,5 +1025,99 @@
         }
 
         return $totalPaginas;
+    }
+
+    /**
+     * Obtiene los datos de la pregunta
+     * @param PDO $conexion
+     * @param Int $idPregunta
+     */
+    function obtenerDatosPregunta($conexion, $idPregunta){
+        $sql = "SELECT * FROM preguntas 
+                    WHERE id= :idPreg";
+        $stmt = $conexion->prepare($sql);
+        $stmt->execute([
+            ":idPreg" => $idPregunta
+        ]);
+
+        $pregunta = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($pregunta) {
+            return $pregunta;
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Obtiene los datos de la pregunta
+     * @param PDO $conexion
+     * @param Int $idPregunta
+     * @param Int $titulo
+     * @param Int $respuestaCorrecta
+     * @param Int $respuestaA
+     * @param Int $respuestaB
+     * @param Int $respuestaC
+     * @param Int $respuestaD
+     * @param Int $categoria
+     * @param Int $dificultad
+     * @param Int $autor
+     * @param Int $validadaPor
+     * @param Int $validada
+     */
+    function actualizarPregunta(
+                $conexion,
+                $idPregunta,
+                $titulo,
+                $respuestaCorrecta,
+                $respuestaA,
+                $respuestaB,
+                $respuestaC,
+                $respuestaD,
+                $categoria,
+                $dificultad,
+                $autor,
+                $validadaPor,
+                $validada
+        ){
+        $idCat = obtenerIDByName($conexion, 'categorias', $categoria);
+        $idDifc = obtenerIDByName($conexion, 'dificultades', $dificultad);
+
+        $sql = "UPDATE preguntas
+                    SET titulo = :tit,
+                        respuesta_correcta = :respCorr,
+                        respuesta_A = :respA,
+                        respuesta_B = :respB,
+                        respuesta_C = :respC,
+                        respuesta_D = :respD,
+                        categoria_id = :cat,
+                        autor_id = :idAutor,
+                        validada_por = :idValidada,
+                        dificultad_id = :difc,
+                        validada = :validada
+                    WHERE id = :idPreg";
+        
+        $stmt = $conexion->prepare($sql);
+        $update = $stmt->execute([
+            ":tit" => $titulo,
+            ":respCorr" => $respuestaCorrecta,
+            ":respA" => $respuestaA,
+            ":respB" => $respuestaB,
+            ":respC" => $respuestaC,
+            ":respD" => $respuestaD,
+            ":cat" => $idCat,
+            ":idAutor" => $autor,
+            ":idValidada" => $validadaPor,
+            ":difc" => $idDifc,
+            ":validada" => $validada,
+            ":idPreg" => $idPregunta
+        ]);
+
+        if (!$update) {
+            return false;
+        }
+
+        return $stmt->rowCount() > 0;
+
     }
 ?>
