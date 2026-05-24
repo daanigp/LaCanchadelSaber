@@ -1,0 +1,346 @@
+/* --------------
+   ---- MAIN ----
+   -------------- */
+main {
+    background: var(--background-main);
+    min-height: 100vh;
+    padding: 1.25em 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25em;
+}
+
+main h1 {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: var(--color-greenLight);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    flex-wrap: wrap;
+}
+
+main h1 i {
+    color: var(--color-greenLight);
+    font-size: 0.9em;
+}
+
+.filtros-preguntas {
+    background: var(--background-card-game);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.75em;
+    padding: 1em 1.25em;
+}
+
+.btns-form-preguntas {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85em;
+}
+
+.filtro-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75em;
+}
+
+.filtro {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35em;
+}
+
+.filtro label {
+    font-size: 0.625em;
+    font-weight: 700;
+    color: #1D9E75;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.filtro select {
+    appearance: none;
+    background-color: #2a2a28;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%231D9E75' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75em center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 99em;
+    color: var(--color-surface);
+    font-size: 0.8em;
+    padding: 0.5em 2em 0.5em 1em;
+    outline: none;
+    cursor: pointer;
+    width: 100%;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.filtro select:focus {
+    border-color: var(--color-greenLight);
+    box-shadow: 0 0 0 3px var(--color-greenLight-shadow);
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    border-radius: 99em;
+    font-size: 0.75em;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    white-space: nowrap;
+}
+
+.btnFiltro {
+    background: var(--background-btns);
+    color: var(--color-surface);
+    padding: 0.55em 1.25em;
+    align-self: flex-start;
+}
+
+.btnFiltro:hover {
+    background-color: var(--background-btns-hover);
+}
+
+.acciones-preg {
+    display: flex;
+    gap: 0.5em;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 0.75em;
+    padding-top: 0.75em;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.btn-export {
+    background: rgba(239, 159, 39, 0.12);
+    color: var(--color-yellow);
+    border: 1px solid rgba(239, 159, 39, 0.3);
+    padding: 0.5em 1.1em;
+}
+
+.btn-export:hover {
+    background: var(--color-yellow);
+    color: var(--color-surface);
+}
+
+.btn-new {
+    background: var(--color-res-correct-back);
+    color: var(--color-greenLight);
+    border: 1px solid rgba(29, 158, 117, 0.3);
+    padding: 0.5em 1.1em;
+}
+
+.btn-new:hover {
+    background: var(--color-res-correct-back-hover);
+    color: var(--color-surface);
+}
+
+
+.btnEditar {
+    background: var(--color-greenLight-shadow);
+    color: var(--color-greenLight);
+    border: 1px solid var(--color-greenLight-dark);
+    padding: 0.4em 0.75em;
+}
+
+.btnEditar:hover {
+    background: var(--color-greenLight);
+    color: var(--color-surface);
+}
+
+.btnBorrar {
+    background: rgba(220, 80, 80, 0.1);
+    color: var(--color-error);
+    border: 1px solid rgba(220, 80, 80, 0.25);
+    padding: 0.4em 0.75em;
+}
+
+.btnBorrar:hover {
+    background: var(--color-error);
+    color: var(--color-surface);
+}
+
+.btnEditar span,
+.btnBorrar span {
+    display: none;
+}
+
+/* TABLA */
+.tabla-preguntas {
+    background: var(--background-card-game);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.75em;
+    padding: 1.25em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    overflow-x: auto;
+}
+
+.tabla {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8em;
+    min-width: 50em;
+}
+
+.tabla thead tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.tabla th {
+    padding: 0.6em 0.75em;
+    text-align: left;
+    font-size: 0.7em;
+    font-weight: 700;
+    color: var(--color-greenLight);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    white-space: nowrap;
+}
+
+.tabla td {
+    padding: 0.65em 0.75em;
+    color: var(--color-surface);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    vertical-align: middle;
+    max-width: 12em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tabla tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.tabla tbody tr:hover td {
+    background: var(--background-cards);
+}
+
+/* RESPUESTA CORRECTA */
+.tabla td:nth-child(2) {
+    color: var(--color-greenLight);
+    font-weight: 700;
+    font-size: 1em;
+    text-align: center;
+}
+
+.tabla td:last-child {
+    max-width: none;
+    overflow: visible;
+    white-space: normal;
+}
+
+/* Cuando NO HAY RESULTADOS */
+.tabla td[colspan] {
+    text-align: center;
+    color: var(--color-muted);
+    padding: 2em;
+    font-size: 0.9em;
+}
+
+.btnAcciones {
+    display: flex;
+    gap: 0.4em;
+    align-items: center;
+}
+
+.paginacion {
+    display: flex;
+    gap: 0.4em;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 0.75em;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.btn-pagina {
+    background: #2a2a28;
+    color: var(--color-surface);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.5em;
+    padding: 0.4em 0.75em;
+    font-size: 0.8em;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.btn-pagina:hover {
+    background-color: var(--background-btns-hover);
+    box-shadow: 0px 0px 3px var(--menu-link);
+}
+
+.btn-pagina.activa {
+    background: var(--background-btns-hover);
+    color: var(--color-surface);
+    border-color: var(--color-surface);
+    font-weight: bold;
+}
+
+/*
+============================
+======= MEDIA QUERYS =======
+============================
+*/
+/* TABLET */
+@media (min-width: 768px) {
+    main {
+        padding: 1.5em;
+    }
+
+    .btns-form-preguntas {
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: space-between;
+    }
+
+    .filtro-btns {
+        flex-direction: row;
+        gap: 1em;
+        flex: 1;
+    }
+
+    .filtro select {
+        width: auto;
+    }
+
+    .btnFiltro {
+        align-self: flex-end;
+        flex-shrink: 0;
+    }
+
+    .btnEditar span,
+    .btnBorrar span {
+        display: inline;
+    }
+}
+
+/* DESKTOP */
+@media (min-width: 1024px) {
+    main {
+        padding: 2em;
+    }
+
+    main h1 {
+        font-size: 1.25em;
+    }
+
+    .tabla {
+        font-size: 0.9em;
+    }
+
+    .tabla th {
+        font-size: 0.75em;
+    }
+
+    .tabla td {
+        max-width: 16em;
+    }
+}

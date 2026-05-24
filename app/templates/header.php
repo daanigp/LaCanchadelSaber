@@ -19,7 +19,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -84,6 +84,12 @@
                                     <i class="fa-solid fa-user-tie"></i> Perfil <span class="flecha">↓</span>
                                 </button>
                                 <ul class="dropdown-submenu">
+                                    <?php 
+                                    if($_SESSION['rol'] === 'ADMIN') { ?>
+                                        <li class="admin-panel">
+                                            <a href="../admin/panelPreguntas.php"><i class="fa-solid fa-user-tie"></i> Panel Preguntas</a>
+                                        </li>
+                            <?php   } ?>
                                     <li class="admin-panel">
                                         <a href="../public_user/perfil.php"><i class="fa-solid fa-user-tie"></i> Ver perfil</a>
                                     </li>

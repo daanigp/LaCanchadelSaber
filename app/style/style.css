@@ -27,6 +27,7 @@
     --color-greenLight-hover: #17b585;
     --color-greenLight-dark: #0f533e;
     --color-text: rgb(216, 213, 209);
+    --color-yellow: #ffbc17;
 
     --font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
@@ -141,6 +142,24 @@ header {
 }
 
 .menu li:hover {
+    border-radius: 10px;
+    background-color: var(--background-btns-hover);
+}
+
+.menu-admin > li {
+    text-align: center;
+    margin: .3em;
+    padding: 0;
+}
+
+.menu-admin a {
+    display: block;
+    padding: 1em;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.menu-admin li:hover {
     border-radius: 10px;
     background-color: var(--background-btns-hover);
 }

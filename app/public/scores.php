@@ -17,13 +17,11 @@
     }
 
     $pagina = isset($_GET['pagina']) ? max(1, (int)$_GET['pagina']) : 1;
-    $filtroDifc = isset($_GET['difc']) ? $_GET['difc'] : null;
 ?>
     <main>
         <h1 class="tit-scores"><i class="fa-solid fa-ranking-star"></i> PUNTUACIONES <i class="fa-solid fa-ranking-star"></i></h1>
 
         <div class="scores-top">
-
             <div class="filtros-scores">
                 <form method="get">
                     <div class="btns-form-scores">

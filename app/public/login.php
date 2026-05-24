@@ -17,7 +17,7 @@
             $passForm = $_POST["pass"] ?? "";
             if(loginDB($conexion, $userForm, $passForm)) {
                 $_SESSION['id'] = obtenerIDByNick($conexion, 'users', $userForm);
-                $_SESSION['rol'] = "user";
+                $_SESSION['rol'] = comprobarRol($conexion, $_SESSION['id']);
                 header('Location: index.php');
                 exit;
             } else {

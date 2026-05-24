@@ -23,6 +23,34 @@
     }
     
     /**
+     * Comprueba el rol del usuario
+     * @param PDO $conexion
+     * @param Int $userId
+     */
+    function comprobarRol($conexion, $userId) {
+        $sql = "SELECT 
+                    rn.nombre_rol
+                FROM users u
+                INNER JOIN user_role ur ON u.id = ur.id_user
+                INNER JOIN role_names rn ON ur.id_role = rn.id
+                WHERE u.id = :iduser";
+        $stmt = $conexion->prepare($sql);
+        $stmt->execute([
+            ":iduser" => $userId
+        ]);
+
+        $rol = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($rol) {
+            return $rol['nombre_rol'];
+        }
+
+        return null;
+    }
+
+
+
+    /**
      * Genera un select a partir de ciertos datos
      * @param PDO $conexion
      * @param String $tabla
@@ -841,5 +869,160 @@
         $existe = $stmt->rowCount() > 0;
 
         return $existe;
+    }
+
+    /**
+     * Genera filas para una tabla html
+     * @param PDO $conexion
+     * @param String $tabla
+     * @param String $filtroCat (por defecto = null)
+     * @param String $filtroDifc (por defecto = null)
+     * @param Int $pagina (por defecto = 1)
+     * @param Int $porPagina (por defecto = 15)
+     */
+    function generarTablaPanel($conexion, $tabla, $filtroCat = null, $filtroDifc = null, $pagina = 1, $porPagina = 15) {
+        if($filtroCat === "TODAS") {
+            $filtroCat = null;
+        }
+        if($filtroDifc === "TODAS") {
+            $filtroDifc = null;
+        }
+
+        $offset = ($pagina - 1) * $porPagina;
+
+        if ($filtroCat !== null && $filtroDifc !== null) {
+            //Primero obtenemos ids
+            $idCat = obtenerIDByName($conexion, 'categorias', $filtroCat);
+            $idDifc = obtenerIDByName($conexion, 'dificultades', $filtroDifc);
+
+            $sqlTotalFilas = "SELECT COUNT(*) FROM " . $tabla . " 
+                                WHERE categoria_id= :cat 
+                                AND dificultad_id= :difc 
+                                ORDER BY id ASC";
+            $stmtTotalFIlas = $conexion->prepare($sqlTotalFilas);
+            $stmtTotalFIlas->execute([
+                ":difc" => $idDifc
+            ]);
+
+            //Buscamos en la tabla los que sean con esos ids
+            $sql = "SELECT * FROM " . $tabla . " 
+                        WHERE categoria_id= :cat 
+                        AND dificultad_id= :difc 
+                        ORDER BY id ASC 
+                        LIMIT :limite
+                        OFFSET :offset";
+            $stmt = $conexion->prepare($sql);
+            $stmt->bindValue(":cat", $idCat);
+            $stmt->bindValue(":difc", $idDifc);
+
+        } else if ($filtroCat !== null && $filtroDifc === null) {
+            //Primero obtenemos id
+            $idCat = obtenerIDByName($conexion, 'categorias', $filtroCat);
+
+            $sqlTotalFilas = "SELECT COUNT(*) FROM " . $tabla . " 
+                                WHERE categoria_id= :cat 
+                                ORDER BY id ASC";
+            $stmtTotalFIlas = $conexion->prepare($sqlTotalFilas);
+            $stmtTotalFIlas->execute([
+                ":cat" => $idCat
+            ]);
+
+            //Buscamos en la tabla los que sean con ese id
+            $sql = "SELECT * FROM " . $tabla . " 
+                        WHERE categoria_id= :cat 
+                        ORDER BY id ASC 
+                        LIMIT :limite
+                        OFFSET :offset";
+            $stmt = $conexion->prepare($sql);
+            $stmt->bindValue(":cat", $idCat);
+
+        } else if ($filtroCat === null && $filtroDifc !== null) {
+            //Primero obtenemos id
+            $idDifc = obtenerIDByName($conexion, 'dificultades', $filtroDifc);
+
+            $sqlTotalFilas = "SELECT COUNT(*) FROM " . $tabla . " 
+                                WHERE dificultad_id= :difc 
+                                ORDER BY id ASC";
+            $stmtTotalFIlas = $conexion->prepare($sqlTotalFilas);
+            $stmtTotalFIlas->execute([
+                ":difc" => $idDifc
+            ]);
+
+            //Buscamos en la tabla los que sean con ese id
+            $sql = "SELECT * FROM " . $tabla . " 
+                        WHERE dificultad_id= :difc 
+                        ORDER BY id ASC 
+                        LIMIT :limite
+                        OFFSET :offset";
+            $stmt = $conexion->prepare($sql);
+            $stmt->bindValue(":difc", $idDifc);
+
+        } else {
+            $sqlTotalFilas = "SELECT COUNT(*) FROM " . $tabla . " 
+                                ORDER BY id ASC";
+            $stmtTotalFIlas = $conexion->prepare($sqlTotalFilas);
+            $stmtTotalFIlas->execute();
+
+            $sql = "SELECT * FROM " . $tabla . " 
+                        ORDER BY id ASC 
+                        LIMIT :limite
+                        OFFSET :offset";
+            $stmt = $conexion->prepare($sql);
+        }
+
+        $filasTotal = $stmtTotalFIlas->fetchColumn();
+        $totalPaginas = ceil($filasTotal / $porPagina);
+
+        $stmt->bindValue(":limite", $porPagina, PDO::PARAM_INT);
+        $stmt->bindValue(":offset", $offset, PDO::PARAM_INT);
+        $stmt->execute();
+        $filas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if (empty($filas)) {
+            echo "<tr>";
+            echo "<td colspan='11'>No se han encontrado resultados.</td>";
+            echo "</tr>";
+        } else {
+            // PINTAMOS LA TABLA
+            foreach ($filas as $fila) { ?>
+                <tr>
+                    <td><?= $fila['titulo'] ?></td>
+                    <td><?= $fila['respuesta_correcta'] ?></td>
+                    <td><?= $fila['respuesta_A'] ?></td>
+                    <td><?= $fila['respuesta_B'] ?></td>
+                    <td><?= $fila['respuesta_C'] ?></td>
+                    <td><?= $fila['respuesta_D'] ?></td>
+                    <td>
+                        <?php 
+                        if($filtroCat !== null) { 
+                            echo "" . $filtroCat;
+                        } else {
+                            echo obtenerNombreById($conexion, "categorias", $fila['categoria_id']);
+                        }
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                        if($filtroDifc !== null) {
+                            echo "" . $filtroDifc;
+                        } else {
+                            echo obtenerNombreById($conexion, "dificultades", $fila['dificultad_id']);
+                        }
+                        ?>
+                    </td>
+                    <td><?= obtenerNombreById($conexion, 'users', $fila['autor_id'], 'nick') ?></td>
+                    <td><?= str_replace(['-', ' '], ['/', ' - '], $fila['fecha_creacion']) ?></td>
+                    <td>
+                        <div class="btnAcciones">
+                            <a href="editarPregunta.php?id=<?= $fila['id'] ?>" class="btn btnEditar"><i class="fa-solid fa-file-pen"></i> <span>Editar</span></a>
+                            <a href="borrarPregunta.php?id=<?= $fila['id'] ?>" class="btn btnBorrar"><i class="fa-solid fa-file-circle-xmark"></i> <span>Borrar</span></a>
+                        </div>
+                    </td>
+                </tr>
+            <?php
+            }
+        }
+
+        return $totalPaginas;
     }
 ?>
