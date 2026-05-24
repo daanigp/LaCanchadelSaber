@@ -1050,7 +1050,7 @@
     }
 
     /**
-     * Obtiene los datos de la pregunta
+     * Acutaliza los datos de la pregunta
      * @param PDO $conexion
      * @param Int $idPregunta
      * @param Int $titulo
@@ -1114,6 +1114,75 @@
         ]);
 
         if (!$update) {
+            return false;
+        }
+
+        return $stmt->rowCount() > 0;
+    }
+
+    /**
+     * Guarda la nueva pregunta
+     * @param PDO $conexion
+     * @param Int $titulo
+     * @param Int $respuestaCorrecta
+     * @param Int $respuestaA
+     * @param Int $respuestaB
+     * @param Int $respuestaC
+     * @param Int $respuestaD
+     * @param Int $categoria
+     * @param Int $dificultad
+     * @param Int $autor
+     * @param Int $validadaPor
+     * @param Int $validada
+     */
+    function guardarNuevaPregunta(
+                $conexion,
+                $titulo,
+                $respuestaCorrecta,
+                $respuestaA,
+                $respuestaB,
+                $respuestaC,
+                $respuestaD,
+                $categoria,
+                $dificultad,
+                $autor,
+                $validadaPor,
+                $validada
+        ){
+        $idCat = obtenerIDByName($conexion, 'categorias', $categoria);
+        $idDifc = obtenerIDByName($conexion, 'dificultades', $dificultad);
+
+        $sql = "INSERT INTO preguntas (titulo, respuesta_correcta, respuesta_A, respuesta_B, 
+                                        respuesta_C, respuesta_D, categoria_id, autor_id, validada_por, 
+                                        dificultad_id, validada)
+            VALUES (:tit,
+                :respCorr,
+                :respA,
+                :respB,
+                :respC,
+                :respD,
+                :cat,
+                :idAutor,
+                :idValidada,
+                :difc,
+                :validada)";
+        
+        $stmt = $conexion->prepare($sql);
+        $created = $stmt->execute([
+            ":tit" => $titulo,
+            ":respCorr" => $respuestaCorrecta,
+            ":respA" => $respuestaA,
+            ":respB" => $respuestaB,
+            ":respC" => $respuestaC,
+            ":respD" => $respuestaD,
+            ":cat" => $idCat,
+            ":idAutor" => $autor,
+            ":idValidada" => $validadaPor,
+            ":difc" => $idDifc,
+            ":validada" => $validada
+        ]);
+
+        if (!$created) {
             return false;
         }
 
