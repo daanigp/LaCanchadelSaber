@@ -37,6 +37,10 @@
                         <button type="submit" class="btn btnFiltro"><i class="fa-solid fa-filter"></i> Filtrar</button>
                     </div>
                 </form>
+
+                <div class="acciones-scores">
+                    <a href="exportarScores.php?difc=<?= $valorSeleccionadoDifc ?>" class="btn btn-export"><i class="fa-solid fa-file-arrow-down"></i> Exportar puntuaciones</a>
+                </div>
             </div>
         </div>
 

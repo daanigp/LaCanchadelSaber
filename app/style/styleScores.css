@@ -50,7 +50,7 @@ main {
 form label {
     font-size: 11px;
     font-weight: 600;
-    color: #1D9E75;
+    color: var(--color-greenLight);
     text-transform: uppercase;
     letter-spacing: 0.08em;
 }
@@ -60,55 +60,93 @@ form label {
     display: flex;
     flex-direction: row;
     gap: 1em;
+    flex-wrap: wrap;
 }
 
 .filtro-btns .filtro {
     display: flex;
     flex-direction: column;
-    gap: .7em;
+    gap: 0.35em;
 }
 
 .filtro label {
-    width: 70%;
+    font-size: 0.6em;
+    font-weight: 700;
+    color: var(--color-greenLight);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
 }
 
-.btns-form-scores select {
+.filtro-btns select {
     appearance: none;
     background-color: var(--background-header-footer);
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%231D9E75' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 0.6em center;
+    background-position: right 0.75em center;
     border: 1px solid var(--color-greenLight);
-    border-radius: 99px;
+    border-radius: 99em;
     color: var(--color-surface);
     outline: none;
     cursor: pointer;
-    width: 120px;
+    width: 100%;
+    padding: 0.45em 2em 0.45em 0.9em;
+    font-size: 0.8em;
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.btns-form-scores select:focus {
+.filtro-btns select:focus {
     border-color: var(--color-greenLight-dark);
     box-shadow: 0 0 0 3px rgba(29, 158, 117, 0.15);
-}
-
-.btns-form-scores select, .btns-form-scores button {
-    padding: 0.4em 0.6em;
-    font-size: 0.9em;
 }
 
 .btnFiltro {
     background: var(--color-greenLight);
     color: var(--color-surface);
     border: none;
-    border-radius: 99px;
-    font-weight: 600;
+    border-radius: 99em;
+    padding: 0.45em 1.25em;
+    font-size: 0.81em;
+    font-weight: 700;
     cursor: pointer;
+    width: auto;
     transition: background 0.2s;
-    width: 80%;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
 }
 
 .btnFiltro:hover {
     background: var(--color-greenLight-dark);
+}
+
+.acciones-preg {
+    display: flex;
+    gap: 0.5em;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-top: 0.75em;
+    padding-top: 0.75em;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.btn-export {
+    background: rgba(239, 159, 39, 0.12);
+    color: var(--color-yellow);
+    border: 1px solid rgba(239, 159, 39, 0.3);
+    padding: 0.5em 1.1em;
+    border-radius: 99em;
+    font-size: 0.81em;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    transition: background 0.2s, color 0.2s;
+}
+
+.btn-export:hover {
+    background: var(--color-yellow);
+    color: var(--color-surface);
 }
 
 
@@ -274,7 +312,7 @@ form label {
     }
 
     .filtros-scores {
-        gap: 6em;
+        gap: 3em;
     }
 }
 

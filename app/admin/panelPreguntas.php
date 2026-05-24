@@ -72,8 +72,7 @@
             ?>
 
             <div class="acciones-preg">
-                <a href="exportarPreguntas.php" class="btn btn-export"><i class="fa-solid fa-file-arrow-down"></i> Exportar proyectos</a>
-                <a href="addPregunta.php" class="btn btn-new"><i class="fa-solid fa-file-circle-plus"></i> Nuevo proyectos</a>
+                <a href="addPregunta.php" class="btn btn-new"><i class="fa-solid fa-file-circle-plus"></i> Nueva pregunta</a>
             </div>
         </div>
 

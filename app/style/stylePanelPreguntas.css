@@ -116,18 +116,6 @@ main h1 i {
     border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.btn-export {
-    background: rgba(239, 159, 39, 0.12);
-    color: var(--color-yellow);
-    border: 1px solid rgba(239, 159, 39, 0.3);
-    padding: 0.5em 1.1em;
-}
-
-.btn-export:hover {
-    background: var(--color-yellow);
-    color: var(--color-surface);
-}
-
 .btn-new {
     background: var(--color-res-correct-back);
     color: var(--color-greenLight);
