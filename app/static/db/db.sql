@@ -153,7 +153,7 @@ CREATE TABLE partida_respuestas (
 CREATE TABLE amistades (
     id_user1 INT NOT NULL,
     id_user2 INT NOT NULL,
-    estado ENUM('pendiente', 'aceptada', 'bloqueada') DEFAULT 'pendiente',
+    estado ENUM('pendiente', 'aceptada') DEFAULT 'pendiente',
     fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id_user1, id_user2),
     FOREIGN KEY (id_user1) REFERENCES users(id) 

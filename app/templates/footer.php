@@ -14,5 +14,8 @@
         </ul>
         <p>&copy; 2026 Daniel García Pascual. Todos los derechos reservados.</p>
     </footer>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="../js/main.js"></script>
 </body>
 </html>

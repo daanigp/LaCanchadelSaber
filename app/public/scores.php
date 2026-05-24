@@ -11,12 +11,18 @@
         $valorSeleccionadoDifc = $_GET['difc'];
     }
 
+    $userID = 0;
+    if(isset($_SESSION['id'])) {
+        $userID = $_SESSION['id'];
+    }
+
     $pagina = isset($_GET['pagina']) ? max(1, (int)$_GET['pagina']) : 1;
     $filtroDifc = isset($_GET['difc']) ? $_GET['difc'] : null;
 ?>
     <main>
+        <h1 class="tit-scores"><i class="fa-solid fa-ranking-star"></i> PUNTUACIONES <i class="fa-solid fa-ranking-star"></i></h1>
+
         <div class="scores-top">
-            <h1><i class="fa-solid fa-ranking-star"></i> PUNTUACIONES <i class="fa-solid fa-ranking-star"></i></h1>
 
             <div class="filtros-scores">
                 <form method="get">
@@ -50,9 +56,9 @@
                 <tbody>
                     <?php
                     if(isset($_GET['difc'])){
-                        $totalPaginas = generarTabla($conexion, 'partidas', $_GET['difc'], $pagina);
+                        $totalPaginas = generarTabla($conexion, $userID, 'partidas', $_GET['difc'], $pagina);
                     } else {
-                        $totalPaginas = generarTabla($conexion, 'partidas', 'TODAS', $pagina);
+                        $totalPaginas = generarTabla($conexion, $userID, 'partidas', 'TODAS', $pagina);
                     }
                     ?>
                 </tbody>

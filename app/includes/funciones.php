@@ -61,17 +61,16 @@
      * @param String $campo (por defecto = 'nombre')
      */
     function obtenerNombreById($conexion, $tabla, $filtro, $campo = 'nombre') {
-        $nombre = 0;
+        $nombre = "";
         $sql = "SELECT * FROM " . $tabla;
         $stmt = $conexion->prepare($sql);
         $stmt->execute();
 
         foreach($stmt->fetchAll() as $fila) {
-            if($fila['id'] === $filtro) {
+            if($fila['id'] == $filtro) {
                 $nombre = $fila[$campo];
             }
         }
-
         return $nombre;
     }
 
@@ -128,12 +127,13 @@
     /**
      * Genera filas para una tabla html
      * @param PDO $conexion
+     * @param Int $userID
      * @param String $tabla
      * @param String $filtroDifc (por defecto = null)
      * @param Int $pagina (por defecto = 1)
      * @param Int $porPagina (por defecto = 10)
      */
-    function generarTabla($conexion, $tabla, $filtroDifc = null, $pagina = 1, $porPagina = 10) {
+    function generarTabla($conexion, $userID = 0, $tabla, $filtroDifc = null, $pagina = 1, $porPagina = 10) {
         if($filtroDifc === "TODAS") {
             $filtroDifc = null;
         }
@@ -188,7 +188,7 @@
         } else {
             // PINTAMOS LA TABLA
             foreach ($filas as $fila) { ?>
-                <tr>
+                <tr class="<?= $fila['id_user'] === $userID ? "userActual": "" ?>">
                     <td><?= $fila['puntuacion'] ?></td>
                     <td><?= obtenerNombreById($conexion, "users", $fila['id_user'], "nick") ?></td>
                     <td>
@@ -521,5 +521,325 @@
         } else {
             return null;
         }
+    }
+
+    /**
+     * Listado de amigos
+     * @param PDO $conexion
+     * @param Int $id_user
+     * @param Int $pagina (por defecto = 1)
+     * @param Int $porPagina (por defecto = 5)
+     */
+    function verAmigos($conexion, $id_user, $pagina = 1, $porPagina = 5) {
+        $estado = "aceptada";
+        $sql = "SELECT * FROM amistades
+            WHERE (id_user1=:id OR id_user2=:id)
+            AND estado = :estado";
+        $stmt = $conexion->prepare($sql);
+        $stmt->execute([
+            ":id" => $id_user,
+            ":estado" => $estado
+        ]);
+        $filas = $stmt->fetchAll();
+
+        if (empty($filas)) {
+            echo "<p class='err-amigos'>No se han encontrado resultados.</p>";
+        } else { 
+            $usuario = null;
+            foreach($filas as $fila) {
+                $idAmigo = ($fila['id_user1'] == $id_user) ? $fila['id_user2'] : $fila['id_user1'];
+                $usuario = obtenerDatosUsuarioById($conexion, $idAmigo);
+                if($usuario !== null) { ?>
+                    <div class="card-amigo">
+                        <img src="../static/img/profile/<?= $usuario['avatar_url'] ?? "nutria-2.jpg" ?>" alt="Foto perfil amigo">
+                        <div class="texto-info">
+                            <p class="nombre-amigo"><?= $usuario['nombre'] ?></p>
+                            <span class="nick-amigo"><?= $usuario['nick'] ?></span>
+                        </div>
+                        <form action="" method="post">
+                            <input type="hidden" name="id-amigo" id="id-amigo" value="<?= $idAmigo ?>">
+                            <button type="submit" name="borrar-amigo" id="borrar-amigo">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </form>
+                    </div>
+        <?php   } else {
+                    echo "<p class='err-amigos'>No se han encontrado el amigo con id " . $fila['id_user2'] . "</p>";
+                }
+            }
+        }
+        
+    }
+
+    /**
+     * Listado de solicitudes pendientes
+     * @param PDO $conexion
+     * @param Int $id_user
+     * @param Int $pagina (por defecto = 1)
+     * @param Int $porPagina (por defecto = 5)
+     */
+    function solicitudesPendientes($conexion, $id_user, $pagina = 1, $porPagina = 5) {
+        $estado = "pendiente";
+        $sql = "SELECT * FROM amistades
+            WHERE id_user2=:id
+            AND estado = :estado";
+        $stmt = $conexion->prepare($sql);
+        $stmt->execute([
+            ":id" => $id_user,
+            ":estado" => $estado
+        ]);
+        $filas = $stmt->fetchAll();
+
+        if (empty($filas)) {
+            echo "<p class='err-amigos'>No hay solicitudes pendientes </p>";
+        } else { 
+            $usuario = null;
+            foreach($filas as $fila) {
+                $idAmigo = $fila['id_user1'];
+                $usuario = obtenerDatosUsuarioById($conexion, $idAmigo);
+                if($usuario !== null) { ?>
+                    <div class="card-solicitud">
+                        <img src="../static/img/profile/<?= $usuario['avatar_url'] ?? "nutria-2.jpg" ?>" alt="Foto perfil amigo solicitado">
+                        <div class="texto-info-solicitud">
+                            <p class="nombre-solicitud"><?= $usuario['nombre'] ?></p>
+                            <span class="nick-solicitud"><?= $usuario['nick'] ?></span>
+                        </div>
+                        <form class="btns-solicitud" action="" method="post">
+                            <input type="hidden" name="id_new_friend" value="<?= $idAmigo ?>">
+
+                            <button type="submit" name="aceptar-mobile" id="aceptar-mobile">
+                                <i class="fa-solid fa-user-check"></i>
+                            </button>
+                            <button type="submit" name="aceptar-desktop" id="aceptar-desktop">
+                                Aceptar
+                            </button>
+                            <button type="submit" name="rechazar-mobile" id="rechazar-mobile">
+                                <i class="fa-solid fa-user-xmark"></i>
+                            </button>
+                            <button type="submit" name="rechazar-desktop" id="rechazar-desktop">
+                                Rechazar
+                            </button>
+                        </form>
+                    </div>
+        <?php   } else {
+                    echo "<p class='err-amigos'>No se han encontrado el amigo con id " . $fila['id_user2'] . "</p>";
+                }
+            }
+        }
+    }
+
+    /**
+     * Genera el ranking de amigos
+     * @param PDO $conexion
+     * @param Int $id_user
+     * @param String $filtroDifc (por defecto = null)
+     * @param Int $pagina (por defecto = 1)
+     * @param Int $porPagina (por defecto = 10)
+     */
+    function generarRankingAmigos($conexion, $id_user, $filtroDifc = null, $pagina = 1, $porPagina = 10) {
+        $idAmigos = obtenerAmigos($conexion, $id_user);
+        array_push($idAmigos, $id_user);
+
+        $placeholders = implode(',', array_fill(0, count($idAmigos), '?'));
+        $offset = ($pagina - 1) * $porPagina;
+    
+        $sqlTotalFilas = "SELECT COUNT(*) FROM partidas 
+                            WHERE id_user IN ($placeholders) 
+                            ORDER BY puntuacion DESC";
+        $stmtTotalFIlas = $conexion->prepare($sqlTotalFilas);
+        $stmtTotalFIlas->execute($idAmigos);
+        
+        $filasTotal = $stmtTotalFIlas->fetchColumn();
+        $totalPaginas = ceil($filasTotal / $porPagina);
+
+        $sql = "SELECT * FROM partidas 
+            WHERE id_user IN ($placeholders) 
+            ORDER BY puntuacion DESC
+            LIMIT $porPagina
+            OFFSET $offset";
+        $stmt = $conexion->prepare($sql);
+        $stmt->execute($idAmigos);
+
+        $partidas = $stmt->fetchAll();
+
+        if(empty($idAmigos)) {
+            echo "<tr>";
+            echo "<td colspan='4'>No se han encontrado resultados.</td>";
+            echo "</tr>";
+        } else {
+            // PINTAMOS LA TABLA
+            foreach ($partidas as $fila) { ?>
+                <tr class="<?= $fila['id_user'] === $id_user ? "userActual": "" ?>">
+                    <td><?= $fila['puntuacion'] ?></td>
+                    <td><?= obtenerNombreById($conexion, "users", $fila['id_user'], "nick") ?></td>
+                    <td>
+                        <?php
+                        if($filtroDifc !== null && $filtroDifc !== "TODAS") {
+                            echo "" . $filtroDifc;
+                        } else {
+                            echo obtenerNombreById($conexion, "dificultades", $fila['dificultad_id']);
+                        }
+                        ?>
+                    </td>
+                    <td><?= str_replace(['-', ' '], ['/', ' - '], $fila['fecha']) ?></td>
+                </tr>
+            <?php
+            }
+        }
+
+        return $totalPaginas;       
+    }
+
+    /**
+     * Obtiene todos los amigos de $id_user
+     * @param PDO $conexion
+     * @param Int $id_user
+     */
+    function obtenerAmigos($conexion, $id_user) {
+        $idAmigos = [];
+
+        $estado = "aceptada";
+        $sql = "SELECT * FROM amistades
+            WHERE (id_user1=:id OR id_user2=:id)
+            AND estado = :estado";
+        $stmt = $conexion->prepare($sql);
+        $stmt->execute([
+            ":id" => $id_user,
+            ":estado" => $estado
+        ]);
+        $filas = $stmt->fetchAll();
+
+        if (!empty($filas)) {
+            foreach($filas as $fila) {
+                $idAmigo = ($fila['id_user1'] == $id_user) ? $fila['id_user2'] : $fila['id_user1'];
+                array_push($idAmigos, $idAmigo);
+            }
+        }
+
+        return $idAmigos;
+    }
+
+    /**
+     * Borra la amistad entre $idUser y $idAmigo
+     * @param PDO $conexion
+     * @param Int $idUser
+     * @param Int $idAmigo
+     */
+    function borrarAmigo($conexion, $idUser, $idAmigo) {
+        $sql = "DELETE FROM amistades 
+                WHERE (id_user1 = :user1 AND id_user2 = :user2)
+                OR (id_user1 = :user2 AND id_user2 = :user1)";
+
+        $stmt = $conexion->prepare($sql);
+        $stmt->execute([
+            ":user1" => $idUser,
+            ":user2" => $idAmigo
+        ]);
+
+        $borrado = $stmt->rowCount() > 0;
+
+        return $borrado;
+    }
+
+    /**
+     * Rechaza la amistad entre $idUser y $idAmigo
+     * @param PDO $conexion
+     * @param Int $idUser
+     * @param Int $idAmigo
+     */
+    function rechazarAmigo($conexion, $idUser, $idAmigo) {
+        $estado = "pendiente";
+        $sql = "DELETE FROM amistades
+                WHERE id_user1 = :user1 
+                AND id_user2 = :user2
+                AND estado = :estado";
+
+        $stmt = $conexion->prepare($sql);
+        $stmt->execute([
+            ":estado" => $estado,
+            ":user1" => $idAmigo,
+            ":user2" => $idUser
+        ]);
+
+        $rechazado = $stmt->rowCount() > 0;
+
+        return $rechazado;
+    }
+    
+    /**
+     * Acepta la amistad entre $idUser y $idAmigo
+     * @param PDO $conexion
+     * @param Int $idUser
+     * @param Int $idAmigo
+     */
+    function aceptarAmigo($conexion, $idUser, $idAmigo) {
+        $estado = "pendiente";
+        $newEstado = "aceptada";
+        $sql = "UPDATE amistades
+                SET estado = :nuevoEstado
+                WHERE id_user1 = :user1 
+                AND id_user2 = :user2
+                AND estado = :estado";
+
+        $stmt = $conexion->prepare($sql);
+        $stmt->execute([
+            ":estado" => $estado,
+            ":user1" => $idAmigo,
+            ":user2" => $idUser,
+            ":nuevoEstado" => $newEstado
+        ]);
+
+        $aceptado = $stmt->rowCount() > 0;
+
+        return $aceptado;
+    }
+
+    /**
+     * Envia solicitud de amistad entre $idUser y $idAmigo
+     * @param PDO $conexion
+     * @param Int $idUser
+     * @param Int $idAmigo
+     */
+    function enviarSolicitud($conexion, $idUser, $idAmigo) {
+        $estado = "pendiente";
+        $sql = "INSERT INTO amistades (id_user1, id_user2, estado)
+                VALUES (
+                    :user1, 
+                    :user2, 
+                    :estado
+                )";
+
+        $stmt = $conexion->prepare($sql);
+        $stmt->execute([
+            ":user1" => $idUser,
+            ":user2" => $idAmigo,
+            ":estado" => $estado
+        ]);
+
+        $enviada = $stmt->rowCount() > 0;
+
+        return $enviada;
+    }
+
+    /**
+     * Comprueba si existe una solicitud de amistad entre $idUser y $idAmigo
+     * @param PDO $conexion
+     * @param Int $idUser
+     * @param Int $idAmigo
+     */
+    function comprobarSolicitud($conexion, $idUser, $idAmigo) {
+        // Evitar duplicados
+        $sql = "SELECT * FROM amistades
+                    WHERE id_user1 = :user1 
+                    AND id_user2 = :user2";
+        $stmt = $conexion->prepare($sql);
+        $stmt->execute([
+            ":user1" => $idUser,
+            ":user2" => $idAmigo
+        ]);
+
+        $existe = $stmt->rowCount() > 0;
+
+        return $existe;
     }
 ?>

@@ -1,12 +1,13 @@
 :root {
     --background-main: rgba(48, 48, 46, 1);
     --background-cards: rgba(222, 220, 209, 0.15);
-    --background-card-game: rgb(41, 41, 39);
+    --background-card-game: rgba(38, 38, 36, 1);
     --background-header-footer: #2c2a28;
     --background-dropdown-menu: #383636;
     --background-dropdown-submenu: #494848;
     --background-btns: #fc740b;
     --background-btns-hover: #af5008;
+    --background-btns-shadow: rgb(187, 185, 185);
     --menu-link: rgb(187, 185, 185);
     
     --color-header-footer: #ffffff;
@@ -20,6 +21,7 @@
     --color-dark-soft: #2d2d4e;
     --color-res-correct: rgb(74, 131, 17);
     --color-res-correct-back: rgb(36, 65, 8);
+    --color-res-correct-back-hover: rgb(56, 102, 13);
     --color-greenLight: #1D9E75;
     --color-greenLight-shadow: rgba(29, 158, 117, 0.12);
     --color-greenLight-hover: #17b585;
@@ -56,6 +58,7 @@ a:visited {
 }
 
 body {
+    background-color: var(--background-main);
     width: 100dvw;
     min-height: 100dvh;
     /*height: 100dvh;*/
@@ -299,7 +302,6 @@ header {
 }
 
 
-
 /* ----------------
    ---- FOOTER ----
    ---------------- */
@@ -326,4 +328,21 @@ footer i {
 
 footer p {
     font-size: 12px;
+}
+
+
+
+/* --------------
+   ---- MAIN ----
+   -------------- */
+.txt-err {
+    font-size: 0.75em;
+    color: var(--color-error);
+    margin-top: 0.5em;
+}
+
+.txt-success {
+    font-size: 0.75em;
+    color: var(--color-res-correct);
+    margin-top: 0.5em;
 }

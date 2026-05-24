@@ -88,7 +88,7 @@
                                         <a href="../public_user/perfil.php"><i class="fa-solid fa-user-tie"></i> Ver perfil</a>
                                     </li>
                                     <li class="admin-panel">
-                                        <a href="../public/amigos.php"><i class="fa-solid fa-user-tie"></i> Amigos</a>
+                                        <a href="../public_user/amigos.php"><i class="fa-solid fa-user-tie"></i> Amigos</a>
                                     </li>
                                     <li class="cerrar-sesion">
                                         <a href="../public/logout.php"><i class="fa-solid fa-arrow-right-from-bracket"></i> Cerrar session</a>

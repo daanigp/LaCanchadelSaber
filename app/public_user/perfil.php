@@ -65,13 +65,13 @@
 
                 <div class="hist-cont">
                     <h4>Historial</h4>
-                    <table>
+                    <table class="tabla-hist">
                         <thead>
                             <tr>
-                                <td>Deporte</td>
-                                <td>Dificultad</td>
-                                <td>Puntuación</td>
-                                <td>Fecha</td>
+                                <th>Deporte</th>
+                                <th>Dificultad</th>
+                                <th>Puntuación</th>
+                                <th>Fecha</th>
                             </tr>
                         </thead>
                         <tbody>

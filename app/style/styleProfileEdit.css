@@ -146,7 +146,7 @@
 }
 
 .formEdit input::placeholder {
-    color: #555;
+    color: var(--color-muted);
 }
 
 .formEdit input:focus {
@@ -173,10 +173,9 @@
     color: var(--color-greenLight);
 }
 
-/* Mensajes de error */
+/* Mensaje de error */
 .txt-err {
     font-size: 11px;
-    color: #e06060;
     min-height: 14px;
 }
 

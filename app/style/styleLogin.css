@@ -78,7 +78,6 @@
 }
 
 .txt-err {
-    color: var(--color-error);
     font-size: 12px;
     min-height: 1rem;
 }
