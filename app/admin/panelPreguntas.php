@@ -32,6 +32,11 @@
         $difcSeleccionada = $_GET['difc'];
     }
 
+    $borrado = "";
+    if(isset($_GET['borrado'])) {
+        $borrado = $_GET['borrado'];
+    }
+
     $pagina = isset($_GET['pagina']) ? max(1, (int)$_GET['pagina']) : 1;
 ?>
 
@@ -59,6 +64,12 @@
                     <button type="submit" class="btn btnFiltro"><i class="fa-solid fa-filter"></i> Filtrar</button>
                 </div>
             </form>
+
+            <?php
+                if($borrado) {
+                    echo "<p class='txt-success'>Se ha borrado correctamente</p>";
+                }
+            ?>
 
             <div class="acciones-preg">
                 <a href="exportarPreguntas.php" class="btn btn-export"><i class="fa-solid fa-file-arrow-down"></i> Exportar proyectos</a>

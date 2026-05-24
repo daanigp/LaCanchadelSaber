@@ -210,9 +210,6 @@ main h1 i {
     border-bottom: 1px solid rgba(255, 255, 255, 0.04);
     vertical-align: middle;
     max-width: 12em;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
 .tabla tbody tr:last-child td {
@@ -222,6 +219,7 @@ main h1 i {
 .tabla tbody tr:hover td {
     background: var(--background-cards);
 }
+
 
 /* RESPUESTA CORRECTA */
 .tabla td:nth-child(2) {

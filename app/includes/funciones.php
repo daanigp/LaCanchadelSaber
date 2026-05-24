@@ -1189,4 +1189,23 @@
         return $stmt->rowCount() > 0;
 
     }
+
+    /**
+     * Borra la pregunta
+     * @param PDO $conexion
+     * @param Int $idPreg
+     */
+    function borrarPregunta($conexion, $idPreg) {
+        $sql = "DELETE FROM preguntas 
+                WHERE id = :id";
+
+        $stmt = $conexion->prepare($sql);
+        $stmt->execute([
+            ":id" => $idPreg
+        ]);
+
+        $borrado = $stmt->rowCount() > 0;
+
+        return $borrado;
+    }
 ?>
