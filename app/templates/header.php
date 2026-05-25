@@ -37,7 +37,7 @@
             src="../static/img/logo-header-LCDS.png" 
             alt="Logo de La Cancha del Saber"
             width="300px"
-            height="125px"
+            height="150px"
         >
         <div class="dropdown-menu">
             <input type="checkbox" id="hamburguesa">

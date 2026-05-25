@@ -150,11 +150,11 @@
 
        <?php
         if($guardado !== "") {
-            echo "<p style='color: green;'>$guardado</p>";
+            echo "<p class='txt-success'>$guardado</p>";
         }
 
         if(!empty($errores)) {
-            echo "<p style='color: red;'>$errores</p>";
+            echo "<p class='txt-err'>$errores</p>";
         }
         ?>
 

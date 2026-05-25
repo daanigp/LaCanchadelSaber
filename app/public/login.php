@@ -42,13 +42,13 @@
             <?php
                 if($error !== "") {
                     ?>
-                    <p style="color: red;"><?= $error ?></p>
+                    <p class="txt-err"><?= $error ?></p>
                     <?php
                 }
 
                 if(isset($_GET["redirigido"])) {
                     ?>
-                    <p class="alerta">Por favor, identifícate para poder acceder a esa página.</p>
+                    <p class="txt-err">Por favor, identifícate para poder acceder a esa página.</p>
                     <?php
                 }
             ?>

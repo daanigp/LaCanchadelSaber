@@ -43,9 +43,9 @@
 .formLogin input {
     width: 100%;
     padding: 13px 14px;
-    background-color: #2a2a28;
+    background-color: var(--background-inputs);
     color: var(--color-text);
-    border: 1.5px solid rgba(255, 255, 255, 0.1);
+    border: 1.5px solid var(--border-cards);
     border-radius: var(--radius-sm);
     outline: none;
 }

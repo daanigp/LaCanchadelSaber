@@ -96,7 +96,7 @@ form label {
 
 .filtro-btns select:focus {
     border-color: var(--color-greenLight-dark);
-    box-shadow: 0 0 0 3px rgba(29, 158, 117, 0.15);
+    box-shadow: 0 0 0 3px var(--color-greenLight-shadow);
 }
 
 .btnFiltro {
@@ -126,7 +126,7 @@ form label {
     justify-content: flex-start;
     margin-top: 0.75em;
     padding-top: 0.75em;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    border-top: 1px solid var(--border-cards);
 }
 
 .btn-export {
@@ -156,7 +156,7 @@ form label {
 .tabla-puntuacion {
     margin-top: 1.5em;
     background: var(--background-card-game);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--border-cards);
     border-radius: 0.75em;
     padding: 1.25em;
     display: flex;
@@ -173,7 +173,7 @@ form label {
 }
 
 .tabla-pts thead tr {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid var(--border-cards);
 }
 
 .tabla-pts th {
@@ -190,7 +190,7 @@ form label {
 .tabla-pts td {
     padding: 0.65em 0.75em;
     color: var(--color-surface);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    border-bottom: 1px solid var(--border-cards);
     vertical-align: middle;
     white-space: nowrap;
 }
@@ -200,7 +200,7 @@ form label {
 }
 
 .tabla-pts tbody tr:hover td {
-    background: var(--background-cards);
+    background: var(--background-table-tr-hover);
 }
 
 /* Fila userActual */
@@ -226,13 +226,13 @@ form label {
     flex-wrap: wrap;
     justify-content: center;
     padding-top: 0.5em;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    border-top: 1px solid var(--border-cards);
 }
 
 .btn-pagina {
-    background: #2a2a28;
+    background: var(--background-inputs);
     color: var(--color-surface);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--border-cards);
     border-radius: 0.5em;
     padding: 0.4em 0.75em;
     font-size: 0.8125em;

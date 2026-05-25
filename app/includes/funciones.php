@@ -1238,4 +1238,38 @@
 
         return $borrado;
     }
+
+    /**
+     * Genera filas para una tabla html
+     * @param PDO $conexion
+     * @param String $tabla
+     * @param Int $limite (por defecto = 5)
+     */
+    function generarTablaRanking5($conexion, $tabla, $limite = 5) {
+        $sql = "SELECT * FROM " . $tabla . " 
+                ORDER BY puntuacion DESC
+                LIMIT :limite";
+        $stmt = $conexion->prepare($sql);
+        $stmt->bindValue(":limite", $limite, PDO::PARAM_INT);
+        $stmt->execute();
+        $filas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if (empty($filas)) {
+            echo "<tr>";
+            echo "<td colspan='4'>No se han encontrado resultados.</td>";
+            echo "</tr>";
+        } else {
+            // PINTAMOS LA TABLA
+            foreach ($filas as $fila) { ?>
+                <tr>
+                    <td><?= $fila['puntuacion'] ?></td>
+                    <td><?= obtenerNombreById($conexion, "users", $fila['id_user'], "nick") ?></td>
+                    <td><?= obtenerNombreById($conexion, "dificultades", $fila['dificultad_id']); ?></td>
+                    <td><?= str_replace(['-', ' '], ['/', ' - '], $fila['fecha']) ?></td>
+                </tr>
+            <?php
+            }
+        }
+    }
+
 ?>

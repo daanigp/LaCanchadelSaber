@@ -75,7 +75,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $totalPaginas = tablaHistorialPartidas($conexion, $usuario['id'], $pagina); ?>
+                            <?php $totalPaginas = tablaHistorialPartidas($conexion, $usuario['id'], $pagina, 13); ?>
                         </tbody>
                     </table>
                 <?php 

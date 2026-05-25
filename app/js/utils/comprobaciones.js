@@ -262,6 +262,7 @@ $(function () {
     }
 
     $('#form-register').on('submit', function(e) {
+
         if (!validarDatosUsuario()) {
             e.preventDefault();
         }
@@ -274,12 +275,20 @@ $(function () {
     });
 
     $('#form-login').on('submit', function(e) {
+        if (document.activeElement.id === "btnCancelar") {
+            return;
+        }
+        
         if (!validarDatosLogin()) {
             e.preventDefault();
         }
     });
 
     $('#new-pregunta').on('submit', function(e) {
+        if (document.activeElement.id === "btnCancelar") {
+            return;
+        }
+
         if (!validarDatosPreguntas()) {
             e.preventDefault();
         } else {
@@ -289,7 +298,12 @@ $(function () {
             $('#fecha-creacion').val(fecha);
         }
     });
+
     $('#editar-pregunta').on('submit', function(e) {
+        if (document.activeElement.id === "btnCancelar") {
+            return;
+        }
+        
         if (!validarDatosPreguntas()) {
             e.preventDefault();
         }
