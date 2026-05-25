@@ -13,7 +13,7 @@
     $imgActual = "nutria-2.jpg";
     $nacionalidad = "España";
 
-    $errores = [];
+    $errores = "";
     $guardado = "";
 
     if($_SERVER['REQUEST_METHOD'] === "POST") {
@@ -36,7 +36,7 @@
 
             if(!empty($_FILES['img']['name'])) {
                 if(!in_array($_FILES['img']['type'], $imagenesPermitidas)) {
-                    $errores[] = "La imagen seleccionada no tiene el tipo necesario (jpeg, png, jpg).";
+                    $errores = "La imagen seleccionada no tiene el tipo necesario (jpeg, png, jpg).";
                 }
                 $imagenNueva = $_FILES['img']['name'];
                 $existeImagen = true;
@@ -51,7 +51,7 @@
                             $errores[]= "Error al mover el archivo al directorio de destino";
                         }
                     } else {
-                        $errores[] = "No se ha seleccionado ningún archivo, o se ha producido un error.";
+                        $errores = "No se ha seleccionado ningún archivo, o se ha producido un error.";
                     }
                 } else {
                     $nombreUnicoIMG = '';
@@ -73,7 +73,7 @@
                     if ($update) {
                         $guardado = "SE HA GUARDADO OK";
                     } else {
-                        $guardado = "Ha ocurrido un error inesperado en el guardado de la imagen, lo sentimos :(.";
+                        $errores = "Nick o email existentes.";
                     }
                 }
             }
@@ -106,7 +106,7 @@
                 <h3>Crear usuario</h3>
             </div>
 
-            <form action="" enctype="multipart/form-data" class="formRegister" method="post">
+            <form action="" enctype="multipart/form-data" class="formRegister" id="form-register" method="post">
                 <div class="img-rgstr">
                     <img src="../static/img/profile/<?= $imgActual ?>" alt="Imagen de perfil del usuario por defecto">
                     <input type="file" name="img" id="img">
@@ -114,43 +114,43 @@
 
                 <div class="nick-rgstr">
                     <label for="nick-register">Nickname:</label>
-                    <input type="text" name="nick-register" id="nick-register" placeholder="Nickname ...">
-                    <span class="txt-err"></span>
+                    <input type="text" name="nick-register" id="nick-register" placeholder="Nickname ..." require>
+                    <span class="txt-err" id="nick-txt-err"></span>
                 </div>
 
                 <div class="name-rgstr">
                     <label for="name-register">Nombre:</label>
-                    <input type="text" name="name-register" id="name-register" placeholder="Nombre de usuario ...">
-                    <span class="txt-err"></span>
+                    <input type="text" name="name-register" id="name-register" placeholder="Nombre de usuario ..." const packageName = require('packageName');>
+                    <span class="txt-err" id="nombre-txt-err"></span>
                 </div>
 
                 <div class="ape1-rgstr">
                     <label for="ape1-register">Apellido 1:</label>
                     <input type="text" name="ape1-register" id="ape1-register" placeholder="Apellido 1 ...">
-                    <span class="txt-err"></span>
+                    <span class="txt-err" id="ape1-txt-err"></span>
                 </div>
 
                 <div class="ape2-rgstr">
                     <label for="ape2-register">Apellido 2:</label>
                     <input type="text" name="ape2-register" id="ape2-register" placeholder="Apellido 2 ...">
-                    <span class="txt-err"></span>
+                    <span class="txt-err" id="ape2-txt-err"></span>
                 </div>
 
                 <div class="pais-rgstr">
                     <label for="pais-register">Nacionalidad:</label>
                     <input type="text" name="pais-register" id="pais-register" placeholder="Nacionalidad ...">
-                    <span class="txt-err"></span>
+                    <span class="txt-err" id="pais-txt-err"></span>
                 </div>
 
                 <div class="email-rgstr">
                     <label for="email-register">Email:</label>
-                    <input type="email" name="email-register" id="email-register" placeholder="tuemail@gmail.com">
-                    <span class="txt-err"></span>
+                    <input type="email" name="email-register" id="email-register" placeholder="tuemail@gmail.com" require>
+                    <span class="txt-err" id="email-txt-err"></span>
                 </div>
 
                 <div class="pwd-rgstr">
                     <label for="pass-register">Contraseña:</label>
-                    <input type="password" class="pwd-input-register" name="pass-register" id="pass-register" placeholder="Nueva Contraseña ...">
+                    <input type="password" class="pwd-input-register" name="pass-register" id="pass-register" placeholder="Nueva Contraseña ..." require>
 
                     <button type="button" class="field-toggle" aria-label="Mostrar contraseña" data-target="password">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -158,12 +158,12 @@
                             <circle cx="12" cy="12" r="3"/>
                         </svg>
                     </button>
-                    <span class="txt-err"></span>
+                    <span class="txt-err" id="pass-txt-err"></span>
                 </div>
 
                 <div class="pwd-conf-rgstr">
                     <label for="pass-conf-register">Confirmar Contraseña:</label>
-                    <input type="password" class="pwd-input-conf-register" name="pass-conf-register" id="pass-conf-register" placeholder="Confirmar Contraseña ...">
+                    <input type="password" class="pwd-input-conf-register" name="pass-conf-register" id="pass-conf-register" placeholder="Confirmar Contraseña ..." require>
 
                     <button type="button" class="field-toggle" aria-label="Mostrar contraseña" data-target="password">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -171,7 +171,7 @@
                             <circle cx="12" cy="12" r="3"/>
                         </svg>
                     </button>
-                    <span class="txt-err"></span>
+                    <span class="txt-err" id="pass-conf-txt-err"></span>
                 </div>
 
                 <input type="submit" id="btnSaveChanges" value="Guardar cambios" name="saveChanges">

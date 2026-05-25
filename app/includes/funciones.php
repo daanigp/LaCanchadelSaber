@@ -49,7 +49,6 @@
     }
 
 
-
     /**
      * Genera un select a partir de ciertos datos
      * @param PDO $conexion
@@ -467,6 +466,11 @@
      * @param String $imageURL
      */
     function  createUser($conexion, $nick, $nombre, $ape1, $ape2, $email, $pwd, $pais, $imageURL) {
+
+        if(existeUsuario($conexion, $nick, $email)) {
+            return false;
+        }
+
         $sql = "INSERT INTO users (nick, email, password, nombre, apellido1, apellido2, nacionalidad, avatar_url)
             VALUES (:nick,
                 :email,
@@ -493,6 +497,29 @@
         }
 
         return $stmt->rowCount() > 0;
+    }
+
+    /**
+     * Comprueba si existe usuario en la bbdd
+     * @param PDO $conexion
+     * @param String $nick
+     * @param String $email
+     */
+    function existeUsuario($conexion, $nick, $email) {
+        $sql = "SELECT * FROM users WHERE nick= :nickname OR email= :email";
+        $stmt = $conexion->prepare($sql);
+        $stmt->execute([
+            ":nickname" => $nick,
+            ":email" => $email
+        ]);
+
+        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($usuario) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -1012,7 +1039,7 @@
                         ?>
                     </td>
                     <td><?= obtenerNombreById($conexion, 'users', $fila['autor_id'], 'nick') ?></td>
-                    <td><?= str_replace(['-', ' '], ['/', ' - '], $fila['fecha_creacion']) ?></td>
+                    <td><?= date('d/m/Y', strtotime($fila['fecha_creacion'])) ?></td>
                     <td>
                         <div class="btnAcciones">
                             <a href="editarPregunta.php?id=<?= $fila['id'] ?>" class="btn btnEditar"><i class="fa-solid fa-file-pen"></i> <span>Editar</span></a>
@@ -1134,6 +1161,7 @@
      * @param Int $autor
      * @param Int $validadaPor
      * @param Int $validada
+     * @param String $fecha
      */
     function guardarNuevaPregunta(
                 $conexion,
@@ -1147,14 +1175,15 @@
                 $dificultad,
                 $autor,
                 $validadaPor,
-                $validada
+                $validada,
+                $fecha
         ){
         $idCat = obtenerIDByName($conexion, 'categorias', $categoria);
         $idDifc = obtenerIDByName($conexion, 'dificultades', $dificultad);
 
         $sql = "INSERT INTO preguntas (titulo, respuesta_correcta, respuesta_A, respuesta_B, 
                                         respuesta_C, respuesta_D, categoria_id, autor_id, validada_por, 
-                                        dificultad_id, validada)
+                                        dificultad_id, fecha_creacion, validada)
             VALUES (:tit,
                 :respCorr,
                 :respA,
@@ -1165,6 +1194,7 @@
                 :idAutor,
                 :idValidada,
                 :difc,
+                :fecha,
                 :validada)";
         
         $stmt = $conexion->prepare($sql);
@@ -1179,6 +1209,7 @@
             ":idAutor" => $autor,
             ":idValidada" => $validadaPor,
             ":difc" => $idDifc,
+            ":fecha" => $fecha,
             ":validada" => $validada
         ]);
 
@@ -1187,7 +1218,6 @@
         }
 
         return $stmt->rowCount() > 0;
-
     }
 
     /**

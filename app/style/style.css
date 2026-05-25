@@ -2,6 +2,7 @@
     --background-main: rgba(48, 48, 46, 1);
     --background-cards: rgba(222, 220, 209, 0.15);
     --background-card-game: rgba(38, 38, 36, 1);
+    --border-cards: rgba(255, 255, 255, 0.06);
     --background-header-footer: #2c2a28;
     --background-dropdown-menu: #383636;
     --background-dropdown-submenu: #494848;
@@ -358,10 +359,12 @@ footer p {
     font-size: 0.75em;
     color: var(--color-error);
     margin-top: 0.5em;
+    margin-bottom: 1em;
 }
 
 .txt-success {
     font-size: 0.75em;
     color: var(--color-res-correct);
     margin-top: 0.5em;
+    margin-bottom: 1em;
 }

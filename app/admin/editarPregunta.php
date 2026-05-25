@@ -62,7 +62,7 @@
         }
 
         if(isset($_POST['editar-pregunta'])) {
-            $idPregunta = $_POST['idPregunta'];
+            $idPregunta = $_POST['idPregunta'] ?? null;
             $titulo = $_POST['tit'];
             $respuestaCorrecta = $_POST['res-correct'];
             $respuestaA = $_POST['resp-a'];
@@ -107,11 +107,11 @@
                 echo "<p class='txt-err'>" . $error . "</p>";
             }
         ?>
-        <form action="" class="edit-pregunta" method="post">
+        <form action="" class="edit-pregunta" id="editar-pregunta" method="post">
             <div class="titulo-preg">
                 <label for="tit">Titulo</label>
                 <textarea id="tit-p" name="tit" rows="4" cols="50"><?= $titulo ?></textarea>
-                <span class="txt-err"></span>
+                <span class="txt-err" id="tit-txt-preg"></span>
             </div>
 
             <div class="resp-correct">
@@ -128,22 +128,22 @@
                 <div class="resp-p">
                     <label for="resp-a">Respuesta A</label>
                     <input type="text" name="resp-a" id="resp-a-p" value="<?= $respuestaA ?>">
-                    <span class="txt-err"></span>
+                    <span class="txt-err" id="respA-txt-preg"></span>
                 </div>
                 <div class="resp-p">
                     <label for="resp-b">Respuesta B</label>
                     <input type="text" name="resp-b" id="resp-b-p" value="<?= $respuestaB ?>">
-                    <span class="txt-err"></span>
+                    <span class="txt-err" id="respB-txt-preg"></span>
                 </div>
                 <div class="resp-p">
                     <label for="resp-c">Respuesta C</label>
                     <input type="text" name="resp-c" id="resp-c-p" value="<?= $respuestaC ?>">
-                    <span class="txt-err"></span>
+                    <span class="txt-err" id="respC-txt-preg"></span>
                 </div>
                 <div class="resp-p">
                     <label for="resp-d">Respuesta D</label>
                     <input type="text" name="resp-d" id="resp-d-p" value="<?= $respuestaD ?>">
-                    <span class="txt-err"></span>
+                    <span class="txt-err" id="respD-txt-preg"></span>
                 </div>
             </div>
 
@@ -155,7 +155,7 @@
             </div>
 
             <div class="dific-p">
-                <label for="difc">Categoria</label>
+                <label for="difc">Dificultad</label>
                 <?php 
                     echo generarSelect($conexion, 'dificultades', 'nombre', 'difc', $dificultad, false);
                 ?>
