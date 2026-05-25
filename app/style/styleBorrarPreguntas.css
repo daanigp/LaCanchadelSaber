@@ -1,0 +1,134 @@
+/* --------------
+   ---- MAIN ----
+   -------------- */
+main {
+    background-color: var(--background-main);
+    min-height: 100vh;
+    padding: 1.25em 1em;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.panel-borrarPregunta {
+    background-color: var(--background-card-game);
+    border: 1px solid var(--color-error-back);
+    border-radius: 0.75em;
+    padding: 1.75em 1.25em;
+    width: 100%;
+    max-width: 28em;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25em;
+    text-align: center;
+}
+
+.panel-borrarPregunta h1 {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: var(--color-error);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    margin: 0;
+}
+
+.panel-borrarPregunta h1 i {
+    font-size: 1em;
+}
+
+
+.mensajeBorrado {
+    background: rgba(124, 58, 58, 0.171);
+    border: 1px solid rgba(194, 76, 76, 0.15);
+    border-radius: 0.5em;
+    padding: 1em 1.25em;
+}
+
+.mensajeBorrado p {
+    font-size: 0.8em;
+    color: var(--color-muted);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.mensajeBorrado span {
+    color: var(--color-surface);
+    font-weight: 700;
+}
+
+.botones {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6em;
+}
+
+#btnCancelar,
+#btnBorrar {
+    border: none;
+    border-radius: 99em;
+    padding: 0.65em 1.5em;
+    font-size: 0.8em;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+#btnCancelar {
+    background: transparent;
+    color: var(--color-greenLight);
+    border: 1px solid var(--color-greenLight);
+}
+
+#btnCancelar:hover {
+    box-shadow: 0px 0px 5px var(--color-greenLight-dark);
+    background-color: var(--color-greenLight);
+    color: var(--color-text);
+}
+
+#btnBorrar {
+    background: var(--color-error-back);
+    color: var(--color-surface);
+    border: 1px solid rgba(220, 80, 80, 0.25);
+}
+
+#btnBorrar:hover {
+    border-color: var(--color-error);
+    color: var(--color-error);
+}
+
+/*
+============================
+======= MEDIA QUERYS =======
+============================
+*/
+/* TABLET */
+@media (min-width: 600px) {
+    .panel-borrarPregunta {
+        padding: 2em 1.75em;
+    }
+
+    .botones {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    #btnCancelar,
+    #btnBorrar {
+        width: auto;
+        min-width: 8em;
+    }
+}
+
+/* DESKTOP */
+@media (min-width: 1024px) {
+    .panel-borrarPregunta {
+        max-width: 32em;
+    }
+
+    .mensajeBorrado p {
+        font-size: 0.94em;
+    }
+}

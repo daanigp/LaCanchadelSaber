@@ -37,7 +37,7 @@
 
 .edit-profile-card {
     background: #242422;
-    border: 1px solid var(--background-cards);
+    border: 1px solid var(--border-cards);
     border-radius: 14px;
     padding: 1.25rem 1rem;
     display: flex;
@@ -51,7 +51,7 @@
     align-items: center;
     gap: 0.75rem;
     padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid var(--border-cards);
 }
 
 .header-edit-profile h3 {
@@ -134,8 +134,8 @@
 .formEdit input[type="text"],
 .formEdit input[type="email"],
 .formEdit input[type="password"] {
-    background: #2a2a28;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--background-inputs);
+    border: 1px solid var(--border-cards);
     border-radius: 8px;
     color: var(--color-text);
     font-size: 13px;
@@ -146,7 +146,7 @@
 }
 
 .formEdit input::placeholder {
-    color: #555;
+    color: var(--color-muted);
 }
 
 .formEdit input:focus {
@@ -173,17 +173,16 @@
     color: var(--color-greenLight);
 }
 
-/* Mensajes de error */
+/* Mensaje de error */
 .txt-err {
     font-size: 11px;
-    color: #e06060;
     min-height: 14px;
 }
 
 .pwd-edt {
     margin-top: 0.5rem;
     padding-top: 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    border-top: 1px solid var(--border-cards);
 }
 
 /* Botón guardar */

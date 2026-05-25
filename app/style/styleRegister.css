@@ -37,7 +37,7 @@
 
 .register-profile-card {
     background: #242422;
-    border: 1px solid var(--background-cards);
+    border: 1px solid var(--border-cards);
     border-radius: 14px;
     padding: 1.25rem 1rem;
     display: flex;
@@ -48,7 +48,7 @@
 .header-register-profile {
     text-align: center;
     padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid var(--border-cards);
 }
 
 .header-register-profile h3 {
@@ -103,8 +103,8 @@
 .formRegister input[type="text"],
 .formRegister input[type="email"],
 .formRegister input[type="password"] {
-    background: #2a2a28;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--background-inputs);
+    border: 1px solid var(--border-cards);
     border-radius: 8px;
     color: var(--color-text);
     font-size: 13px;
@@ -142,17 +142,16 @@
     color: var(--color-greenLight);
 }
 
-/* Mensajes de error */
+/* Mensaje de error */
 .txt-err {
     font-size: 11px;
-    color: #e06060;
     min-height: 14px;
 }
 
 .pwd-rgstr {
     margin-top: 0.5rem;
     padding-top: 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    border-top: 1px solid var(--border-cards);
 }
 
 /* Botón guardar */

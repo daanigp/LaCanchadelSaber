@@ -17,7 +17,7 @@
             $passForm = $_POST["pass"] ?? "";
             if(loginDB($conexion, $userForm, $passForm)) {
                 $_SESSION['id'] = obtenerIDByNick($conexion, 'users', $userForm);
-                $_SESSION['rol'] = "user";
+                $_SESSION['rol'] = comprobarRol($conexion, $_SESSION['id']);
                 header('Location: index.php');
                 exit;
             } else {
@@ -42,27 +42,27 @@
             <?php
                 if($error !== "") {
                     ?>
-                    <p style="color: red;"><?= $error ?></p>
+                    <p class="txt-err"><?= $error ?></p>
                     <?php
                 }
 
                 if(isset($_GET["redirigido"])) {
                     ?>
-                    <p class="alerta">Por favor, identifícate para poder acceder a esa página.</p>
+                    <p class="txt-err">Por favor, identifícate para poder acceder a esa página.</p>
                     <?php
                 }
             ?>
 
-            <form action="" class="formLogin" method="post">
+            <form action="" class="formLogin" id="form-login" method="post">
                 <div class="nick">
                     <label for="nickname">Nombre de usuario:</label>
-                    <input type="text" name="nickname" id="nickname" placeholder="Nombre de usuario ...">
-                    <span class="txt-err"></span>
+                    <input type="text" name="nickname" id="nick-login" placeholder="Nombre de usuario ...">
+                    <span class="txt-err" id="nick-txt-login"></span>
                 </div>
 
                 <div class="pwd">
                     <label for="pass">Contraseña:</label>
-                    <input type="password" class="pwd-input" name="pass" id="pass" placeholder="Contraseña ...">
+                    <input type="password" class="pwd-input" name="pass" id="pass-login" placeholder="Contraseña ...">
 
                     <button type="button" class="field-toggle" aria-label="Mostrar contraseña" data-target="password">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -70,7 +70,7 @@
                             <circle cx="12" cy="12" r="3"/>
                         </svg>
                     </button>
-                    <span class="txt-err"></span>
+                    <span class="txt-err" id="pass-txt-login"></span>
                 </div>
 
                 <input type="submit" id="btnLogin" value="Iniciar Sesión" name="iniSesion">

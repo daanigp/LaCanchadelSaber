@@ -19,7 +19,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,7 +37,7 @@
             src="../static/img/logo-header-LCDS.png" 
             alt="Logo de La Cancha del Saber"
             width="300px"
-            height="125px"
+            height="150px"
         >
         <div class="dropdown-menu">
             <input type="checkbox" id="hamburguesa">
@@ -49,7 +49,7 @@
                 <ul class="menu">
                     <li><a href="../public/index.php" class="<?php echo ($nombrePagina == "index.php") ? "active" : ""  ?>"><i class="fa-solid fa-house"></i> Home</a></li>
                     <li class="dropdown-btn">
-                        <button class="dropdown-toggle <?php echo (str_starts_with($nombrePagina, "game.php?difc=") || $nombrePagina == "scores.php") ? "active" : ""  ?>">
+                        <button class="dropdown-toggle <?php echo (str_starts_with($nombrePagina, "game.php?difc=") || str_starts_with($nombrePagina, "scores.php")) ? "active" : ""  ?>">
                             <i class="fa-solid fa-gamepad"></i> Jugar <span class="flecha">↓</span>
                         </button>
                         <ul class="dropdown-submenu">
@@ -61,7 +61,7 @@
                                 <ul class="dropdown-submenu-difc">
                                     <?php for($i = 0; $i < count($dificultades); $i++) { ?>
                                         <li>
-                                            <a href="../public/game.php?difc=<?= $dificultades[$i] ?>">
+                                            <a href="../public_user/game.php?difc=<?= $dificultades[$i] ?>">
                                                 <?php for($x = 0; $x <= $i; $x++) { ?>
                                                         <i class="fa-solid fa-star"></i> 
                                                 <?php 
@@ -84,11 +84,17 @@
                                     <i class="fa-solid fa-user-tie"></i> Perfil <span class="flecha">↓</span>
                                 </button>
                                 <ul class="dropdown-submenu">
+                                    <?php 
+                                    if($_SESSION['rol'] === 'ADMIN') { ?>
+                                        <li class="admin-panel">
+                                            <a href="../admin/panelPreguntas.php"><i class="fa-solid fa-user-tie"></i> Panel Preguntas</a>
+                                        </li>
+                            <?php   } ?>
                                     <li class="admin-panel">
                                         <a href="../public_user/perfil.php"><i class="fa-solid fa-user-tie"></i> Ver perfil</a>
                                     </li>
                                     <li class="admin-panel">
-                                        <a href="../public/amigos.php"><i class="fa-solid fa-user-tie"></i> Amigos</a>
+                                        <a href="../public_user/amigos.php"><i class="fa-solid fa-user-tie"></i> Amigos</a>
                                     </li>
                                     <li class="cerrar-sesion">
                                         <a href="../public/logout.php"><i class="fa-solid fa-arrow-right-from-bracket"></i> Cerrar session</a>

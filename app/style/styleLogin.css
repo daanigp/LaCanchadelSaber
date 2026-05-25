@@ -8,18 +8,19 @@
     align-items: center;
     justify-content: center;
     padding: 32px 20px;
+    color: var(--color-greenLight);
 }
 
 .login-card {
-    background: var(--color-surface);
+    background: #242422;
     border-radius: var(--radius-lg);
-    border: 1px solid var(--color-border);
+    border: 1px solid var(--border-cards);
     padding: 32px 24px;
     width: 100%;
 }
 
 .login-card > h1 {
-    color: var(--color-dark);
+    color: var(--color-greenLight);
     font-size: 24px;
     font-weight: 700;
     text-align: center;
@@ -42,16 +43,16 @@
 .formLogin input {
     width: 100%;
     padding: 13px 14px;
-    background-color: #fafaf8;
-    color: var(--color-dark);
-    border: 1.5px solid var(--color-border);
+    background-color: var(--background-inputs);
+    color: var(--color-text);
+    border: 1.5px solid var(--border-cards);
     border-radius: var(--radius-sm);
     outline: none;
 }
 
 .formLogin input:focus {
-    border-color: var(--color-dark);
-    background-color: var(--color-surface);
+    border-color: var(--color-greenLight-hover);
+    box-shadow: 0 0 0 3px var(--color-greenLight-shadow);
 }
 
 .formLogin .pwd {
@@ -78,14 +79,13 @@
 }
 
 .txt-err {
-    color: var(--color-error);
     font-size: 12px;
     min-height: 1rem;
 }
 
 #btnLogin {
-    color: var(--color-accent);
-    background-color: var(--color-dark);
+    color: var(--color-surface);
+    background-color: var(--background-btns);
 
     display: block;
     width: 100%;
@@ -99,11 +99,31 @@
     margin-top: 8px;
 }
 
-#btnLogin:hover  { background-color: var(--color-dark-soft); }
+#btnLogin:hover  { background-color: var(--background-btns-hover); }
 
 .bottom-login {
     margin-top: 1em;
     text-align: center;
+}
+
+#btnCancelar {
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 0.65em 1.5em;
+    font-size: 0.85em;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    background: transparent;
+    color: var(--color-greenLight);
+    border: 1px solid var(--color-greenLight);
+}
+
+#btnCancelar:hover {
+    box-shadow: 0px 0px 5px var(--color-greenLight-dark);
+    background-color: var(--color-greenLight);
+    color: var(--color-text);
 }
 
 /*

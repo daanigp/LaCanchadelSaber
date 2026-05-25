@@ -1,12 +1,467 @@
 /* --------------
    ---- MAIN ----
    -------------- */
-main {
-    background-color: var(--background-main);
-    flex: 1;
-    min-height: 0; 
+.card-amigo img,
+.card-solicitud img{
+    width: 80px;
+    height: 80px;
 }
 
-main h1 {
-    color: var(--color-title);
+.layout-amigos {
+    background-color: var(--background-main);
+    min-height: 100vh;
+    padding: 1.25em 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25em;
+}
+
+.ver-amigos h4,
+.solicitudes h4 {
+    font-size: 0.75em;
+    font-weight: 700;
+    color: var(--color-greenLight);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0 0 0.75em;
+}
+
+.err-amigos {
+    font-size: 0.8em;
+    color: var(--color-muted);
+    text-align: center;
+    padding: 1em;
+}
+
+/* ================================================
+   SECCIÓN: MIS AMIGOS
+   ================================================ */
+.ver-amigos {
+    background: var(--background-card-game);
+    border: 1px solid var(--border-cards);
+    border-radius: 0.75em;
+    padding: 1.25em;
+}
+
+/* Card de cada amigo */
+.card-amigo {
+    display: flex;
+    align-items: center;
+    gap: 0.75em;
+    padding: 0.65em 0;
+    border-bottom: 1px solid var(--border-cards);
+}
+
+.card-amigo:last-child {
+    border-bottom: none;
+}
+
+.card-amigo img {
+    width: 2.5em;
+    height: 2.5em;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--color-greenLight);
+    flex-shrink: 0;
+}
+
+.texto-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15em;
+}
+
+.nombre-amigo {
+    font-size: 0.9em;
+    font-weight: 600;
+    color: var(--color-surface);
+    margin: 0;
+}
+
+.nick-amigo {
+    font-size: 0.75em;
+    color: var(--color-muted);
+}
+
+/* Botón eliminar amigo */
+.card-amigo form button {
+    border-radius: 0.5em;
+    width: 2em;
+    height: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+    flex-shrink: 0;
+    border-color: var(--color-error);
+    color: var(--color-error);
+    background: rgba(220, 80, 80, 0.08);
+}
+
+
+.solicitudes {
+    background: var(--background-card-game);
+    border: 1px solid var(--border-cards);
+    border-radius: 0.75em;
+    padding: 1.25em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.solicitud {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Card de cada solicitud */
+.card-solicitud {
+    display: flex;
+    align-items: center;
+    gap: 0.75em;
+    padding: 0.65em 0;
+    border-bottom: 1px solid var(--border-cards);
+}
+
+.card-solicitud:last-child {
+    border-bottom: none;
+}
+
+.card-solicitud img {
+    width: 2.5em;
+    height: 2.5em;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--border-cards);
+    flex-shrink: 0;
+}
+
+.texto-info-solicitud {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15em;
+}
+
+.nombre-solicitud {
+    font-size: 0.9em;
+    font-weight: 600;
+    color: var(--color-surface);
+    margin: 0;
+}
+
+.nick-solicitud {
+    font-size: 0.75em;
+    color: var(--color-muted);
+}
+
+/* Botones aceptar/rechazar */
+.btns-solicitud {
+    display: flex;
+    gap: 0.4em;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.btns-solicitud button {
+    border: none;
+    border-radius: 99em;
+    cursor: pointer;
+    font-size: 0.75em;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s;
+}
+
+/* Mobile: solo iconos */
+#aceptar-mobile,
+#rechazar-mobile {
+    width: 2.3em;
+    height: 2.3em;
+}
+
+#aceptar-mobile {
+    background: var(--color-res-correct-back);
+    color: var(--color-greenLight);
+    border: 1px solid rgba(29, 158, 117, 0.3);
+}
+
+#rechazar-mobile {
+    background: var(--color-error-back);
+    color: var(--color-error);
+    border: 1px solid rgba(220, 80, 80, 0.25);
+}
+
+/* textos — ocultos en mobile */
+#aceptar-desktop,
+#rechazar-desktop {
+    display: none;
+    padding: 0.5em 1em;
+}
+
+/* AÑADIR AMIGO */
+.add-amigo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    padding-top: 1em;
+    border-top: 1px solid var(--border-cards);
+}
+
+.add-amigo label {
+    font-size: 0.6em;
+    font-weight: 700;
+    color: var(--color-greenLight);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.search-amigos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-amigos input[type="text"] {
+    flex: 1;
+    background: var(--background-inputs);
+    border: 1px solid var(--border-cards);
+    border-radius: 99em;
+    color: var(--color-surface);
+    font-size: 0.8em;
+    padding: 0.55em 1em;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.search-amigos input[type="text"]::placeholder {
+    color: var(--color-muted);
+}
+
+.search-amigos input[type="text"]:focus {
+    border-color: var(--color-greenLight);
+    box-shadow: 0 0 0 3px rgba(29, 158, 117, 0.12);
+}
+
+.search-amigos input[type="submit"] {
+    background-color: var(--background-btns);
+    color: var(--color-surface);
+    border: none;
+    border-radius: 99em;
+    padding: 0.55em 1em;
+    font-size: 0.8em;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+}
+
+.search-amigos input[type="submit"]:hover {
+    background-color: var(--background-btns-hover);
+}
+
+/* Ranking amigos */
+.ranking-amigos {
+    background: var(--background-card-game);
+    border: 1px solid var(--border-cards);
+    border-radius: 0.75em;
+    padding: 1.25em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    overflow-x: auto;
+}
+
+.tabla-pts {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8em;
+    min-width: 20em;
+}
+
+.tabla-pts thead tr {
+    border-bottom: 1px solid var(--border-cards);
+}
+
+.tabla-pts th {
+    padding: 0.55em 0.75em;
+    text-align: left;
+    font-size: 0.75em;
+    font-weight: 700;
+    color: var(--color-greenLight);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    white-space: nowrap;
+}
+
+.tabla-pts td {
+    padding: 0.65em 0.75em;
+    color: var(--color-surface);
+    border-bottom: 1px solid var(--border-cards);
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.tabla-pts tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.tabla-pts tbody tr:hover td {
+    background: var(--background-table-tr-hover);
+}
+
+/* Fila userActual */
+.tabla-pts tbody tr.userActual td {
+    background: var(--color-greenLight-shadow);
+    color: var(--color-greenLight);
+    font-weight: 600;
+}
+
+.tabla-pts tbody tr.userActual:hover {
+    background: var(--color-res-correct-back-hover);
+    color: var(--color-surface);
+    font-weight: 600;
+}
+
+/* --------------------
+   ---- PAGINACION ----
+   -------------------- */
+.paginacion {
+    display: flex;
+    gap: 0.4em;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 0.5em;
+    border-top: 1px solid var(--border-cards);
+}
+
+.btn-pagina {
+    background: var(--background-inputs);
+    color: var(--color-surface);
+    border: 1px solid var(--border-cards);
+    border-radius: 0.5em;
+    padding: 0.4em 0.75em;
+    font-size: 0.8125em;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.btn-pagina:hover {
+    background-color: var(--background-btns-hover);
+    box-shadow: 0px 0px 3px var(--menu-link);
+}
+
+.btn-pagina.activa {
+    background: var(--background-btns-hover);
+    color: var(--color-surface);
+    border-color: var(--color-surface);
+    font-weight: bold;
+}
+
+/*
+============================
+======= MEDIA QUERYS =======
+============================
+*/
+/* TABLET */
+@media (min-width: 768px) {
+    .layout-amigos {
+        padding: 1.5em;
+    }
+
+    .layout-amigos {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "amigos     solicitudes"
+            "ranking    ranking";
+        gap: 1.1em;
+        align-items: start;
+    }
+
+    .ver-amigos     { 
+        grid-area: amigos; 
+    }
+    .solicitudes    { 
+        grid-area: solicitudes; 
+    }
+    .ranking-amigos { 
+        grid-area: ranking; 
+    }
+
+    #aceptar-mobile,
+    #rechazar-mobile {
+        display: none;
+    }
+
+    #aceptar-desktop,
+    #rechazar-desktop {
+        display: flex;
+    }
+
+    #aceptar-desktop {
+        background: var(--color-res-correct-back);
+        color: var(--color-greenLight);
+        border: 1px solid rgba(29, 158, 117, 0.3);
+    }
+
+    #rechazar-desktop {
+        background: var(--color-error-back);
+        color: var(--color-error);
+        border: 1px solid rgba(220, 80, 80, 0.25);
+    }
+}
+
+/* DESKTOP */
+@media (min-width: 1024px) {
+    .layout-amigos {
+        max-width: 60em;
+        margin: 0 auto;
+        padding: 2em;
+    }
+
+    .card-amigo form button {
+        background: transparent;
+        border: 1px solid var(--border-cards);
+        color: #666;
+    }
+
+    .card-amigo form button:hover {
+        border-color: var(--color-error);
+        color: var(--color-error);
+        background: rgba(220, 80, 80, 0.08);
+    }
+
+    .card-amigo img,
+    .card-solicitud img {
+        width: 2.75em;
+        height: 2.75em;
+    }
+
+    .nombre-amigo,
+    .nombre-solicitud {
+        font-size: 0.9375em;
+    }
+
+    .tabla-pts {
+        font-size: 0.875em;
+    }
+
+    #aceptar-desktop:hover {
+        background: var(--color-res-correct-back-hover);
+
+    }
+
+    #rechazar-desktop:hover {
+        border-color: #e06060;
+        color: #e06060;
+    }
 }

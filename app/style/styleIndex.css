@@ -2,18 +2,374 @@
    ---- MAIN ----
    -------------- */
 main {
-    background-color: var(--background-main);
-    flex: 1;
-    min-height: 0; 
+    background: var(--background-main);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5em;
+    padding: 1.5em 1em 3em;
 }
 
-main h1 {
-    color: var(--color-title);
+.top-index {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    text-align: center;
+    background: var(--background-card-game);
+    border: 1px solid var(--border-cards);
+    border-radius: 0.75em;
+    padding: 2em 1.25em;
+    position: relative;
+    overflow: hidden;
 }
 
-.layout {
+.top-index img {
+    width: 8em;
+    height: 8em;
+    object-fit: contain;
+    position: relative;
+    z-index: 1;
+}
+
+.top-index h1 {
+    font-size: 1.75em;
+    font-weight: 700;
+    color: var(--color-greenLight);
+    margin: 0;
+    position: relative;
+    z-index: 1;
+    align-items: center;
+}
+
+.txt-index-top {
+    font-size: 0.9em;
+    color: var(--color-muted);
+    line-height: 1.75;
+    max-width: 36em;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.slider-layaout {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75em;
+}
+
+.slider-layaout h4 {
+    font-size: 0.6em;
+    font-weight: 700;
+    color: var(--color-greenLight);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.slider-wrap {
+    position: relative;
+    border-radius: 0.75em;
+    overflow: hidden;
+    border: 1px solid var(--border-cards);
+    background: var(--background-card-game);
+}
+
+.slider {
+    display: flex;
+    transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slide {
+    min-width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.slide img {
+    width: 100%;
+    height: 11em;
+    object-fit: cover;
+    display: block;
+}
+
+.slide-caption {
+    padding: 0.9em 1.1em 1.1em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35em;
+    background: var(--background-card-game);
+}
+
+.slide-cat {
+    font-size: 0.6em;
+    font-weight: 700;
+    color: var(--color-greenLight);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.slide-caption p {
+    font-size: 0.8em;
+    color: var(--color-muted);
+    margin: 0;
+    line-height: 1.6;
+}
+
+.slider-btn {
+    position: absolute;
+    top: 4.5em;
+    background: rgba(0, 0, 0, 0.342);
+    border: none;
+    color: var(--color-surface);
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background 0.2s;
+    z-index: 10;
+    backdrop-filter: blur(4px);
 }
 
+.slider-btn:hover {
+    background: var(--color-greenLight-hover);
+}
+
+.slider-btn--prev { 
+    left: 0.6em; 
+}
+
+.slider-btn--next { 
+    right: 0.6em; 
+}
+
+.slider-dots {
+    position: absolute;
+    bottom: 4.75em;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.4em;
+    z-index: 10;
+}
+
+.slider-dot {
+    width: 0.5em;
+    height: 0.5em;
+    border-radius: 50%;
+    background: var(--background-table-tr-hover);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.slider-dot.active {
+    background: var(--color-greenLight);
+    transform: scale(1.3);
+}
+
+.tabla-top5 {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75em;
+}
+
+.tabla-top5 legend {
+    font-size: 0.7em;
+    font-weight: 700;
+    color: var(--color-greenLight);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: flex;
+    align-items: center;
+}
+
+.tabla-ranking {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8em;
+    background: var(--background-card-game);
+    border: 1px solid var(--border-cards);
+    border-radius: 0.75em;
+    overflow: hidden;
+    padding: 1em;
+}
+
+.tabla-ranking thead tr {
+    border-bottom: 1px solid var(--border-cards);
+    background: var(--background-card-game);
+}
+
+.tabla-ranking th {
+    padding: 0.75em 1em;
+    text-align: left;
+    font-size: 0.75em;
+    font-weight: 700;
+    color: var(--color-greenLight);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    white-space: nowrap;
+}
+
+.tabla-ranking td {
+    padding: 0.75em 1em;
+    color: var(--color-surface);
+    border-bottom: 1px solid var(--border-cards);
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.tabla-ranking tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.tabla-ranking tbody tr:hover td {
+    background: var(--background-table-tr-hover);
+}
+
+.tabla-ranking td:first-child {
+    color: var(--color-greenLight);
+    font-weight: 700;
+    font-size: 1.05em;
+}
+
+.reglas {
+    background: var(--background-card-game);
+    border: 1px solid var(--border-cards);
+    border-radius: 0.75em;
+    padding: 1.5em;
+}
+
+.reglas h4 {
+    font-size: 0.6em;
+    font-weight: 700;
+    color: var(--color-greenLight);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 0 0 1.25em;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.txt-reglas {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.txt-reglas span {
+    font-size: 0.9em;
+    font-weight: 700;
+    color: var(--color-surface);
+    display: block;
+    margin-top: 0.75em;
+}
+
+.txt-reglas span:first-child {
+    margin-top: 0;
+}
+
+.txt-reglas p {
+    font-size: 0.8em;
+    color: var(--color-muted);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.txt-reglas ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4em;
+}
+
+.txt-reglas ul li {
+    font-size: 0.8em;
+    color: var(--color-muted);
+    line-height: 1.6;
+    padding-left: 1.25em;
+    position: relative;
+}
+
+.txt-reglas ul li b {
+    color: var(--color-greenLight-dark);
+    font-weight: 700;
+}
+
+/*
+============================
+======= MEDIA QUERYS =======
+============================
+*/
+/* TABLET */
+@media (min-width: 768px) {
+    main {
+        padding: 1.5em;
+        gap: 3em;
+    }
+
+    .top-index {
+        flex-direction: row;
+        text-align: left;
+        align-items: center;
+        gap: 1.5em;
+        padding: 2em;
+    }
+
+    .top-index img {
+        width: 7em;
+        height: 7em;
+        flex-shrink: 0;
+    }
+
+    .top-index h1 {
+        font-size: 1.5em;
+    }
+
+    .slide img {
+        height: 15em;
+    }
+
+    .tabla-ranking {
+        font-size: 0.9em;
+    }
+
+    .reglas {
+        padding: 1.75em;
+    }
+}
+
+/* DESKTOP */
+@media (min-width: 1024px) {
+    main {
+        max-width: 56em;
+        margin: 0 auto;
+        padding: 2em;
+    }
+
+    .top-index h1 {
+        font-size: 2em;
+    }
+
+    .txt-index-top,
+    .tabla-ranking {
+        font-size: 0.9em;
+    }
+
+    .slide img {
+        height: 20em;
+    }
+
+}

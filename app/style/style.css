@@ -1,27 +1,30 @@
 :root {
     --background-main: rgba(48, 48, 46, 1);
-    --background-cards: rgba(222, 220, 209, 0.15);
+    --border-cards: rgba(222, 220, 209, 0.08);
+    --background-table-tr-hover: rgba(222, 220, 209, 0.15);
+    --background-card-game: rgba(38, 38, 36, 1);
     --background-header-footer: #2c2a28;
     --background-dropdown-menu: #383636;
     --background-dropdown-submenu: #494848;
     --background-btns: #fc740b;
     --background-btns-hover: #af5008;
+    --background-btns-shadow: rgb(187, 185, 185);
+    --background-inputs: #2a2a28;
     --menu-link: rgb(187, 185, 185);
     
-    --color-header-footer: #ffffff;
     --color-error: #c0392b;
-    --color-surface:   #ffffff;
-    --color-border:    #ddd8ce;
-    --color-dark:      #1a1a2e;
-    --color-muted:     #888880;
-    --color-accent:    #e8d5b7;
-    --color-dark-soft: #2d2d4e;
-    --color-title: rgb(64, 114, 14);
+    --color-error-back: #641e17;
+    --color-surface: #ffffff;
+    --color-muted: #888880;
+    --color-res-correct: rgb(74, 131, 17);
+    --color-res-correct-back: rgb(36, 65, 8);
+    --color-res-correct-back-hover: rgb(56, 102, 13);
     --color-greenLight: #1D9E75;
     --color-greenLight-shadow: rgba(29, 158, 117, 0.12);
     --color-greenLight-hover: #17b585;
     --color-greenLight-dark: #0f533e;
     --color-text: rgb(216, 213, 209);
+    --color-yellow: #ffbc17;
 
     --font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
@@ -53,6 +56,7 @@ a:visited {
 }
 
 body {
+    background-color: var(--background-main);
     width: 100dvw;
     min-height: 100dvh;
     /*height: 100dvh;*/
@@ -75,7 +79,7 @@ body {
 
 header {
     background-color: var(--background-header-footer);
-    color: var(--color-header-footer);
+    color: var(--color-surface);
     padding: 1em;
     display: flex;
     flex-direction: row;
@@ -135,6 +139,24 @@ header {
 }
 
 .menu li:hover {
+    border-radius: 10px;
+    background-color: var(--background-btns-hover);
+}
+
+.menu-admin > li {
+    text-align: center;
+    margin: .3em;
+    padding: 0;
+}
+
+.menu-admin a {
+    display: block;
+    padding: 1em;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.menu-admin li:hover {
     border-radius: 10px;
     background-color: var(--background-btns-hover);
 }
@@ -296,13 +318,12 @@ header {
 }
 
 
-
 /* ----------------
    ---- FOOTER ----
    ---------------- */
 footer {
     background-color: var(--background-header-footer);
-    color: var(--color-header-footer);
+    color: var(--color-surface);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -323,4 +344,23 @@ footer i {
 
 footer p {
     font-size: 12px;
+}
+
+
+
+/* --------------
+   ---- MAIN ----
+   -------------- */
+.txt-err {
+    font-size: 0.75em;
+    color: var(--color-error);
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+}
+
+.txt-success {
+    font-size: 0.75em;
+    color: var(--color-res-correct);
+    margin-top: 0.5em;
+    margin-bottom: 1em;
 }

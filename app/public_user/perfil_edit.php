@@ -20,6 +20,7 @@
     $contraseña = "";
     $imgActual = "nutria-2.jpg";
     $guardado = "";
+    $pass = "";
 
     $idusuario = 0;
     if(isset($_GET['id'])) {
@@ -28,6 +29,7 @@
         // Obtenemos los datos del usuario de la bbdd
         $usuario = obtenerDatosUsuarioById($conexion, $idusuario);
         $nick = $usuario['nick'];
+        $pass = $usuario['password'];
         $nombre = $usuario['nombre'];
         $apellido1 = $usuario['apellido1'];
         $apellido2 = $usuario['apellido2'];
@@ -81,7 +83,7 @@
                     //ELIMINAMOS LA IMAGEN DEL SERVIDOR
                     //Borrar la ruta de la imagen
                     if($imagenAntigua && file_exists("../static/img/".$imagenAntigua)) {
-                        unlink("../static/img/profile".$imagenAntigua);
+                        unlink("../static/img/profile/".$imagenAntigua);
                     }
 
                     $updateIMG = updateUserImage($conexion, $userID, $nombreUnicoIMG);
@@ -104,7 +106,11 @@
             $ape2Nuevo = $_POST['ape2-edit'] ?? "";
             $paisNuevo = $_POST['pais-edit'] ?? "";
             $emailNuevo = $_POST['email-edit'] ?? "";
-            $pwdNueva = $_POST['pass-edit'] ?? "1111";
+            $pwdNueva = $_POST['pass-edit'] ?? "";
+
+            if($pwdNueva === "") {
+                $pwdNueva = $pass;
+            }
 
             $update = updateUserInfo($conexion, 
                         $usuarioId,
@@ -144,11 +150,11 @@
 
        <?php
         if($guardado !== "") {
-            echo "<p style='color: green;'>$guardado</p>";
+            echo "<p class='txt-success'>$guardado</p>";
         }
 
         if(!empty($errores)) {
-            echo "<p style='color: red;'>$errores</p>";
+            echo "<p class='txt-err'>$errores</p>";
         }
         ?>
 
@@ -175,41 +181,41 @@
                 <h3>Editar perfil</h3>
             </div>
 
-            <form action="" class="formEdit" method="post">
+            <form action="" class="formEdit" method="post" id="form-edit">
                 <div class="nick-edt">
                     <label for="nick-edit">Nickname:</label>
                     <input type="text" name="nick-edit" id="nick-edit" placeholder="Nickname ..." value="<?= $nick ?>">
-                    <span class="txt-err"></span>
+                    <span class="txt-err" id="nick-txt-err"></span>
                 </div>
 
                 <div class="name-edt">
                     <label for="name-edit">Nombre:</label>
                     <input type="text" name="name-edit" id="name-edit" placeholder="Nombre de usuario ..." value="<?= $nombre ?>">
-                    <span class="txt-err"></span>
+                    <span class="txt-err" id="nombre-txt-err"></span>
                 </div>
 
                 <div class="ape1-edt">
                     <label for="ape1-edit">Apellido 1:</label>
                     <input type="text" name="ape1-edit" id="ape1-edit" placeholder="Apellido 1 ..." value="<?= $apellido1 ?>">
-                    <span class="txt-err"></span>
+                    <span class="txt-err" id="ape1-txt-err"></span>
                 </div>
 
                 <div class="ape2-edt">
                     <label for="ape2-edit">Apellido 2:</label>
                     <input type="text" name="ape2-edit" id="ape2-edit" placeholder="Apellido 2 ..." value="<?= $apellido2 ?>">
-                    <span class="txt-err"></span>
+                    <span class="txt-err" id="ape2-txt-err"></span>
                 </div>
 
                 <div class="pais-edt">
                     <label for="pais-edit">Nacionalidad:</label>
                     <input type="text" name="pais-edit" id="pais-edit" placeholder="Nacionalidad ..." value="<?= $pais ?>">
-                    <span class="txt-err"></span>
+                    <span class="txt-err" id="pais-txt-err"></span>
                 </div>
 
                 <div class="email-edt">
                     <label for="email-edit">Email:</label>
                     <input type="email" name="email-edit" id="email-edit" placeholder="tuemail@gmail.com" value="<?= $email ?>">
-                    <span class="txt-err"></span>
+                    <span class="txt-err" id="email-txt-err"></span>
                 </div>
 
                 <div class="pwd-edt">
@@ -222,7 +228,7 @@
                             <circle cx="12" cy="12" r="3"/>
                         </svg>
                     </button>
-                    <span class="txt-err"></span>
+                    <span class="txt-err" id="pass-txt-err"></span>
                 </div>
 
                 <div class="pwd-conf-edt">
@@ -235,7 +241,7 @@
                             <circle cx="12" cy="12" r="3"/>
                         </svg>
                     </button>
-                    <span class="txt-err"></span>
+                    <span class="txt-err" id="pass-conf-txt-err"></span>
                 </div>
 
                 <input type="hidden" name="userID" value="<?= $idusuario ?>">

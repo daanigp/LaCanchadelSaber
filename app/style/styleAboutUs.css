@@ -26,7 +26,7 @@
    -------------- */
 .main-about_us {
     background-color: var(--background-main);
-    color: var(--color-text);
+    color: var(--color-surface);
     flex: 1;
     min-height: 0; 
 }
@@ -35,7 +35,7 @@
     text-align: center;
     padding: 1em;
     margin-bottom: 0em;
-    color: var(--color-title);
+    color: var(--color-greenLight-dark);
 }
 
 .faq {
@@ -47,13 +47,13 @@
 }
 
 .faq hr {
-    color: #1D9E75;
+    color: var(--color-greenLight);
 }
 
 .top-card {
-    border: 1px solid rgba(222, 220, 209, 0.15);
+    border: 1px solid var(--border-cards);
     border-radius: 15px;
-    background-color: rgba(38, 38, 36, 1);
+    background-color: var(--background-card-game);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -73,7 +73,7 @@
     width: auto;
     margin-top: 0.8em;
     padding: 0.7em;
-    background-color: #1D9E75;
+    background-color: var(--color-greenLight);
     border-radius: 25px;
 }
 
@@ -86,7 +86,7 @@
 
 .mini-card {
     border-radius: 15px;
-    background-color:  rgba(38, 38, 36, 1);
+    background-color:  var(--background-card-game);
     display: flex;
     flex-direction: column;
     gap: 0.2em;
@@ -106,7 +106,7 @@
 }
 
 .card-faq {
-    border: 1px solid var(--background-cards);
+    border: 1px solid var(--border-cards);
     border-radius: 15px;
     padding: 1.5em;
     display: flex;
@@ -121,7 +121,7 @@
 }
 
 .card-faq h4 {
-    color: #1D9E75;
+    color: var(--color-greenLight);
 }
 
 .tecnologias {
@@ -140,8 +140,8 @@
 }
 
 .tecnologias .tech {
-    background-color: rgba(38, 38, 36, 1);
-    border: 1px solid rgba(222, 220, 209, 0.15);
+    background-color: var(--background-card-game);
+    border: 1px solid var(--border-cards);
     padding: 0.7em;
     border-radius: 25px;
     display: flex;
@@ -192,9 +192,9 @@
 @media (min-width: 768px) {
 
     .top-card {
-        border: 1px solid rgba(222, 220, 209, 0.15);
+        border: 1px solid var(--border-cards);
         border-radius: 15px;
-        background-color: rgba(38, 38, 36, 1);
+        background-color: var(--background-card-game);
         display: grid;
         grid-template-columns: 2fr 1fr;
         align-items: center;
@@ -225,7 +225,7 @@
     .top-card .top-texto h5 {
         width: auto;
         padding: 0.5em 1.5em;
-        background-color: #1D9E75;
+        background-color: var(--color-greenLight);
         border-radius: 25px;
         margin: 0;
     }

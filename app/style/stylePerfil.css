@@ -9,7 +9,7 @@ main {
 }
 
 main h1 {
-    color: var(--color-title);
+    color: var(--color-greenLight-dark);
 }
 
 .pts-tablet {
@@ -21,9 +21,9 @@ main h1 {
 }
 
 .perfil {
-    border: 1px solid rgba(222, 220, 209, 0.15);
+    border: 1px solid var(--border-cards);
     border-radius: 15px;
-    background-color: rgba(38, 38, 36, 1);
+    background-color: var(--background-card-game);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -80,17 +80,20 @@ main h1 {
     gap: .5em;
     padding: .5em;
     margin-top: 1em;
+    margin-bottom: 1em;
     color: var(--color-text);
+    border: 1px solid var(--border-cards);
+    border-radius: 15px;
 }
 
 .perfil-stats-layout h4 {
     display: none;
-    color: var(--color-greenLight-dark);
+    color: var(--color-greenLight);
 }
 
 .card-stat {
     border-radius: 15px;
-    background-color:  rgba(38, 38, 36, 1);
+    background-color:  var(--background-card-game);
     display: flex;
     flex-direction: column;
     gap: 0.2em;
@@ -105,37 +108,92 @@ main h1 {
 }
 
 .hist-cont h4{
-    color: var(--color-greenLight-dark);
+    color: var(--color-greenLight);
 }
 
 .hist-cont {
-    margin-top: 1em;
-    overflow: auto;
-    width: 100%;
-    padding: .5em;
+    background: var(--background-card-game);
+    border: 1px solid var(--border-cards);
+    border-radius: 0.75em;
+    padding: 1.25em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    overflow-x: auto;
 }
 
-.hist-cont table {
-    border: 1px solid var(--color-greenLight-dark);
-    text-align: center;
+.tabla-hist {
     width: 100%;
     border-collapse: collapse;
-    margin-top: .5em;
+    font-size: 0.8em;
+    min-width: 20em;
 }
 
-.hist-cont table thead {
-    color: var(--color-greenLight-dark);
-    font-size: large;
+.tabla-hist thead tr {
+    border-bottom: 1px solid var(--border-cards);
 }
 
-.hist-cont table tbody {
-    color: var(--color-text);
+.tabla-hist th {
+    padding: 0.55em 0.75em;
+    text-align: left;
+    font-size: 0.75em;
+    font-weight: 700;
+    color: var(--color-greenLight);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    white-space: nowrap;
 }
 
-.hist-cont table th, .hist-cont table td{
-    padding: 1em;
+
+.tabla-hist td {
+    padding: 0.65em 0.75em;
+    color: var(--color-surface);
+    border-bottom: 1px solid var(--border-cards);
+    vertical-align: middle;
+    white-space: nowrap;
 }
 
+.tabla-hist tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.tabla-hist tbody tr:hover td {
+    background: var(--background-table-tr-hover);
+}
+
+/* --------------------
+   ---- PAGINACION ----
+   -------------------- */
+.paginacion {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: 0.5em;
+}
+
+.btn-pagina {
+    background: var(--background-inputs);
+    color: var(--color-surface);
+    padding: 6px 12px;
+    border: 1px solid var(--border-cards);
+    border-radius: 4px;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.2s;
+}
+
+.btn-pagina:hover {
+    background-color: var(--background-btns-hover);
+    box-shadow: 0px 0px 3px var(--menu-link);
+}
+
+.btn-pagina.activa {
+    background: var(--background-btns-hover);
+    color: var(--color-surface);
+    border-color: var(--color-surface);
+    font-weight: bold;
+}
 
 
 /*
@@ -266,7 +324,7 @@ main h1 {
                              'puntuacion puntuacion';
         grid-template-columns: 1fr 1fr;
         width: 100%;
-        border: 1px solid rgba(222, 220, 209, 0.15);
+        border: 1px solid var(--border-cards);
         border-radius: 15px;
     }
 }

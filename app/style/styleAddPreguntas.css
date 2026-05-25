@@ -1,0 +1,291 @@
+/* --------------
+   ---- MAIN ----
+   -------------- */
+main {
+    background: var(--background-main);
+    min-height: 100vh;
+    padding: 1.25em 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25em;
+}
+
+main h1 {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: var(--color-greenLight);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+}
+
+main h1 i {
+    color: var(--color-greenLight);
+}
+
+.edit-pregunta {
+    background: var(--background-card-game);
+    border: 1px solid var(--border-cards);
+    border-radius: 0.75em;
+    padding: 1.25em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.titulo-preg,
+.resp-correct,
+.resp-p,
+.cate-p,
+.dific-p {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35em;
+}
+
+.titulo-preg label,
+.resp-correct label,
+.resp-p label,
+.cate-p label,
+.dific-p label {
+    font-size: 0.65em;
+    font-weight: 700;
+    color: var(--color-greenLight);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.titulo-preg textarea,
+.resp-p input[type="text"] {
+    background: var(--background-inputs);
+    border: 1px solid var(--border-cards);
+    border-radius: 0.5em;
+    color: var(--color-text);
+    font-size: 0.9em;
+    padding: 0.55em 0.9em;
+    outline: none;
+    width: 100%;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.titulo-preg input[type="text"]:focus,
+.resp-p input[type="text"]:focus {
+    border-color: var(--color-greenLight-hover);
+    box-shadow: 0 0 0 3px var(--color-greenLight-shadow);
+}
+
+.titulo-preg input[type="text"]::placeholder,
+.resp-p input[type="text"]::placeholder {
+    color: var(--color-muted);
+}
+
+.resp-correct {
+    padding: 0.85em 1em;
+    background: var(--background-inputs);
+    border: 1px solid var(--color-greenLight-shadow);
+    border-radius: 0.5em;
+}
+
+.resp-correct select {
+    appearance: none;
+    background-color: var(--color-res-correct-back);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%231D9E75' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75em center;
+    border: 1px solid var(--color-greenLight-shadow);
+    border-radius: 99em;
+    color: var(--color-greenLight);
+    font-size: 0.9em;
+    font-weight: 700;
+    padding: 0.5em 2em 0.5em 1em;
+    outline: none;
+    cursor: pointer;
+    width: 100%;
+    max-width: 10em;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.resp-correct select:focus {
+    border-color: var(--color-greenLight-hover);
+    box-shadow: 0 0 0 3px var(--color-greenLight-shadow);
+}
+
+.respuestas-p-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75em;
+}
+
+.resp-p {
+    background: var(--background-inputs);
+    border: 1px solid var(--border-cards);
+    border-radius: 0.5em;
+    padding: 0.75em 1em;
+}
+
+.cate-p select,
+.dific-p select {
+    appearance: none;
+    background-color: var(--background-inputs);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%231D9E75' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75em center;
+    border: 1px solid var(--border-cards);
+    border-radius: 99em;
+    color: var(--color-surface);
+    font-size: 0.9em;
+    padding: 0.5em 2em 0.5em 1em;
+    outline: none;
+    cursor: pointer;
+    width: 100%;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.cate-p select:focus,
+.dific-p select:focus {
+    border-color: var(--color-greenLight-hover);
+    box-shadow: 0 0 0 3px var(--color-greenLight-shadow);
+}
+
+#btnCancelar,
+#btnGuardar {
+    border: none;
+    border-radius: 99em;
+    padding: 0.65em 1.5em;
+    font-size: 0.85em;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+#btnCancelar {
+    background: transparent;
+    color: var(--color-greenLight);
+    border: 1px solid var(--color-greenLight);
+}
+
+#btnCancelar:hover {
+    box-shadow: 0px 0px 5px var(--color-greenLight-dark);
+    background-color: var(--color-greenLight);
+    color: var(--color-text);
+}
+
+#btnGuardar {
+    background: var(--background-btns);
+    color: var(--color-surface);
+}
+
+#btnGuardar:hover {
+    background: var(--background-btns-hover);
+}
+
+#btnCancelar {
+    margin-top: 0.5em;
+    padding-top: 1em;
+}
+
+/*
+============================
+======= MEDIA QUERYS =======
+============================
+*/
+/* TABLET */
+@media (min-width: 768px) {
+    main {
+        padding: 1.5em;
+    }
+
+    .respuestas-p-layout {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .cate-p,
+    .dific-p {
+        display: grid;
+        grid-template-columns: 8em 1fr;
+        align-items: center;
+        gap: 0.75em;
+        background: var(--background-inputs);
+        border: 1px solid var(--border-cards);
+        border-radius: 0.5em;
+        padding: 0.75em 1em;
+    }
+
+    .cate-p label,
+    .dific-p label {
+        margin: 0;
+    }
+
+    .edit-pregunta {
+        position: relative;
+    }
+
+    #btnCancelar,
+    #btnGuardar {
+        width: auto;
+    }
+
+    #btnCancelar {
+        margin-top: 0;
+        order: 1;
+    }
+
+    #btnGuardar {
+        order: 2;
+    }
+
+    .titulo-preg { 
+        grid-area: titulo; 
+    }
+    .resp-correct { 
+        grid-area: resp-correct; 
+    }
+    .respuestas-p-layout { 
+        grid-area: respuestas; 
+    }
+    .cate-p { 
+        grid-area: categoria; 
+    }
+    .dific-p { 
+        grid-area: dificultad; 
+    }
+    #btnCancelar { 
+        grid-area: cancelar; 
+    }
+    #btnGuardar { 
+        grid-area: guardar; 
+    }
+
+    .edit-pregunta {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "titulo         titulo"
+            "resp-correct   resp-correct"
+            "respuestas     respuestas"
+            "categoria      dificultad"
+            "cancelar       guardar";
+        gap: 1em;
+        align-items: start;
+    }
+}
+
+/* DESKTOP */
+@media (min-width: 1024px) {
+    main {
+        max-width: 50em;
+        margin: 0 auto;
+        padding: 2em;
+    }
+
+    .edit-pregunta {
+        padding: 1.75em;
+    }
+
+    .titulo-preg input[type="text"],
+    .resp-p input[type="text"] {
+        font-size: 0.94em;
+    }
+}

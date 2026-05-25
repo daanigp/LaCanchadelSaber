@@ -4,23 +4,22 @@
 main {
     background-color: var(--background-main);
     flex: 1;
-    min-height: 0; 
-    padding: 1em;
+    min-height: 0;
+    padding: .5em;
 }
 
-main h1 {
-    color: var(--color-title);
+.tit-scores {
+    text-align: center;
+    margin-bottom: 0em;
+    padding: 1em;
+    font-size: 1.4em;
+    color: var(--color-greenLight-dark);
 }
 
 .scores-top {
     display: flex;
     flex-direction: column;
     margin-top: 1em;
-}
-
-.scores-top h1 {
-    font-size: 1.5em;
-    text-align: center;
 }
 
 /* --------------------
@@ -33,7 +32,7 @@ main h1 {
     flex-direction: column;
     gap: 2em;
     align-items: flex-start;
-    color: var(--color-title);
+    color: var(--color-greenLight-dark);
 }
 
 .btns-form-scores {
@@ -51,7 +50,7 @@ main h1 {
 form label {
     font-size: 11px;
     font-weight: 600;
-    color: #1D9E75;
+    color: var(--color-greenLight);
     text-transform: uppercase;
     letter-spacing: 0.08em;
 }
@@ -61,55 +60,93 @@ form label {
     display: flex;
     flex-direction: row;
     gap: 1em;
+    flex-wrap: wrap;
 }
 
 .filtro-btns .filtro {
     display: flex;
     flex-direction: column;
-    gap: .7em;
+    gap: 0.35em;
 }
 
 .filtro label {
-    width: 70%;
+    font-size: 0.6em;
+    font-weight: 700;
+    color: var(--color-greenLight);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
 }
 
-.btns-form-scores select {
+.filtro-btns select {
     appearance: none;
     background-color: var(--background-header-footer);
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%231D9E75' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 0.6em center;
+    background-position: right 0.75em center;
     border: 1px solid var(--color-greenLight);
-    border-radius: 99px;
+    border-radius: 99em;
     color: var(--color-surface);
     outline: none;
     cursor: pointer;
-    width: 120px;
+    width: 100%;
+    padding: 0.45em 2em 0.45em 0.9em;
+    font-size: 0.8em;
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.btns-form-scores select:focus {
+.filtro-btns select:focus {
     border-color: var(--color-greenLight-dark);
-    box-shadow: 0 0 0 3px rgba(29, 158, 117, 0.15);
-}
-
-.btns-form-scores select, .btns-form-scores button {
-    padding: 0.4em 0.6em;
-    font-size: 0.9em;
+    box-shadow: 0 0 0 3px var(--color-greenLight-shadow);
 }
 
 .btnFiltro {
     background: var(--color-greenLight);
     color: var(--color-surface);
     border: none;
-    border-radius: 99px;
-    font-weight: 600;
+    border-radius: 99em;
+    padding: 0.45em 1.25em;
+    font-size: 0.81em;
+    font-weight: 700;
     cursor: pointer;
+    width: auto;
     transition: background 0.2s;
-    width: 80%;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
 }
 
 .btnFiltro:hover {
     background: var(--color-greenLight-dark);
+}
+
+.acciones-preg {
+    display: flex;
+    gap: 0.5em;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-top: 0.75em;
+    padding-top: 0.75em;
+    border-top: 1px solid var(--border-cards);
+}
+
+.btn-export {
+    background: rgba(239, 159, 39, 0.12);
+    color: var(--color-yellow);
+    border: 1px solid rgba(239, 159, 39, 0.3);
+    padding: 0.5em 1.1em;
+    border-radius: 99em;
+    font-size: 0.81em;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    transition: background 0.2s, color 0.2s;
+}
+
+.btn-export:hover {
+    background: var(--color-yellow);
+    color: var(--color-surface);
 }
 
 
@@ -117,26 +154,103 @@ form label {
    ---- TABLA PUNTUACIONES ----
    ---------------------------- */
 .tabla-puntuacion {
+    margin-top: 1.5em;
+    background: var(--background-card-game);
+    border: 1px solid var(--border-cards);
+    border-radius: 0.75em;
+    padding: 1.25em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
     overflow-x: auto;
-    width: 100%;
 }
 
 .tabla-pts {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    text-align: center;
     width: 100%;
     border-collapse: collapse;
-    margin-top: 3em;
+    font-size: 0.8em;
+    min-width: 20em;
 }
 
-.tabla-pts thead {
-    color: var(--color-title);
-    font-size: large;
+.tabla-pts thead tr {
+    border-bottom: 1px solid var(--border-cards);
 }
 
-.tabla-pts th, .tabla-pts td{
-    padding: 1em;
+.tabla-pts th {
+    padding: 0.55em 0.75em;
+    text-align: left;
+    font-size: 0.75em;
+    font-weight: 700;
+    color: var(--color-greenLight);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    white-space: nowrap;
+}
+
+.tabla-pts td {
+    padding: 0.65em 0.75em;
+    color: var(--color-surface);
+    border-bottom: 1px solid var(--border-cards);
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.tabla-pts tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.tabla-pts tbody tr:hover td {
+    background: var(--background-table-tr-hover);
+}
+
+/* Fila userActual */
+.tabla-pts tbody tr.userActual td {
+    background: var(--color-greenLight-shadow);
+    color: var(--color-greenLight);
+    font-weight: 600;
+}
+
+.tabla-pts tbody tr.userActual:hover {
+    background: var(--color-res-correct-back-hover);
+    color: var(--color-surface);
+    font-weight: 600;
+}
+
+
+/* --------------------
+   ---- PAGINACION ----
+   -------------------- */
+.paginacion {
+    display: flex;
+    gap: 0.4em;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 0.5em;
+    border-top: 1px solid var(--border-cards);
+}
+
+.btn-pagina {
+    background: var(--background-inputs);
+    color: var(--color-surface);
+    border: 1px solid var(--border-cards);
+    border-radius: 0.5em;
+    padding: 0.4em 0.75em;
+    font-size: 0.8125em;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.btn-pagina:hover {
+    background-color: var(--background-btns-hover);
+    box-shadow: 0px 0px 3px var(--menu-link);
+}
+
+.btn-pagina.activa {
+    background: var(--background-btns-hover);
+    color: var(--color-surface);
+    border-color: var(--color-surface);
+    font-weight: bold;
 }
 
 
@@ -148,11 +262,12 @@ form label {
 /* TABLET */
 @media (min-width: 768px) {
     main {
-        padding: 3em;
+        padding: 2em;
     }
 
-    .scores-top h1 {
-        font-size: 2em;
+    .tit-scores {
+        font-size: 1.7em;
+        padding: 0;
     }
 
     .filtro-btns {
@@ -184,20 +299,20 @@ form label {
     .btns-form-scores select {
         width: 140px;
     }
+
+    .tabla-pts {
+        font-size: .9em;
+    }
 }
 
 /* DESKTOP */
 @media (min-width: 1024px) {
     main {
-        padding: 5em;
-    }
-
-    .scores-top h1 {
-        font-size: 2.5em;
+        padding: 3em;
     }
 
     .filtros-scores {
-        gap: 6em;
+        gap: 3em;
     }
 }
 
