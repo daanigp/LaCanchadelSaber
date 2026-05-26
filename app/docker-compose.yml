@@ -1,0 +1,60 @@
+services:
+
+  php:
+    build: ./docker/php
+    container_name: lacanchadelsaber_php
+    restart: unless-stopped
+    volumes:
+      - ./src:/var/www/html
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+    networks:
+      - lacanchadelsaber_net
+
+  mysql:
+    image: mysql:8.0
+    container_name: lacanchadelsaber_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASS}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS}
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./docker/mysql/init.sql:/docker-entrypoint-initdb.d/01_init.sql
+      - ./docker/mysql/preguntas.sql:/docker-entrypoint-initdb.d/02_preguntas.sql
+    ports:
+      - "3306:3306"
+    networks:
+      - lacanchadelsaber_net
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: lacanchadelsaber_phpmyadmin
+    restart: unless-stopped
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: ${DB_USER}
+      PMA_PASSWORD: ${DB_PASS}
+    depends_on:
+      - mysql
+    networks:
+      - lacanchadelsaber_net
+
+volumes:
+  mysql_data:
+
+networks:
+  lacanchadelsaber_net:
+    driver: bridge
