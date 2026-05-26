@@ -1,0 +1,4 @@
+.env
+app/src/static/img/profile/*
+!app/src/static/img/profile/nutria-1.jpg
+!app/src/static/img/profile/nutria-2.jpg
