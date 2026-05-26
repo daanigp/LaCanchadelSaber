@@ -5,7 +5,9 @@
         header("Location: index.php");
         exit;
     }
-    $error = "";
+    $mensaje = "";
+    $tipo_popup = "";
+    $redirigido = "";
 
     require_once('../includes/funciones.php');
     require_once('../includes/conexion.php');
@@ -21,7 +23,8 @@
                 header('Location: index.php');
                 exit;
             } else {
-                $error = "Debes rellenar los campos con el nombre y la contraseña correctos";
+                $mensaje = "<i class='fa-solid fa-person-circle-exclamation'></i> Debes rellenar los campos con el nombre y la contraseña correctos";
+                $tipo_popup = "err";
             }
         }
 
@@ -29,6 +32,11 @@
             header('Location: index.php');
             exit;
         }
+    }
+
+    if(isset($_GET["redirigido"])) {
+        $redirigido = "<i class='fa-solid fa-person-circle-minus'></i> Por favor, identifícate para poder acceder a esa página.";
+        $tipo_popup = "err";
     }
 
     $css = "../style/styleLogin.css";
@@ -39,19 +47,12 @@
         <div class="login-card">
             <h1>Iniciar sesión</h1>
 
-            <?php
-                if($error !== "") {
-                    ?>
-                    <p class="txt-err"><?= $error ?></p>
-                    <?php
-                }
-
-                if(isset($_GET["redirigido"])) {
-                    ?>
-                    <p class="txt-err">Por favor, identifícate para poder acceder a esa página.</p>
-                    <?php
-                }
-            ?>
+            <div id="overlayPopUp" class="overlay-popup">
+                <div class="popup-cont">
+                    <button class="cerrar-popup" id="btnCerrarPopUp">&times;</button>
+                    <p id="mensajePopUp"></p>
+                </div>
+            </div>
 
             <form action="" class="formLogin" id="form-login" method="post">
                 <div class="nick">
@@ -79,6 +80,24 @@
 
             <p class="bottom-login">¿No tienes cuenta? <a href="register.php">Regístrate aquí</a></p>
         </div>
+        <?php 
+            if($mensaje) { ?>
+                <script>
+                    const phpMensaje = <?= json_encode($mensaje) ?>;
+                    const phpTipo = <?= json_encode($tipo_popup) ?>;
+                </script>
+        <?php
+            }
+        ?>
+        <?php 
+            if($redirigido) { ?>
+                <script>
+                    const phpMensaje = <?= json_encode($redirigido) ?>;
+                    const phpTipo = <?= json_encode($tipo_popup) ?>;
+                </script>
+        <?php
+            }
+        ?>
     </main>
 <?php
     require_once(__DIR__. "/../templates/footer.php");

@@ -16,7 +16,6 @@
     require_once('../includes/conexion.php');
     $conexion = conectarDB();
 
-    $error = "";
     $titulo = "";
     $respuestaCorrecta = "";
     $respuestaA = "";
@@ -30,6 +29,9 @@
     $autor = $_SESSION['id'];
     $validadaPor = $_SESSION['id'];
     $validada = true;
+
+    $mensaje = "";
+    $tipo_popup = "";
     
     if($_SERVER['REQUEST_METHOD'] === 'GET') {
         if(isset($_GET['id'])) {
@@ -92,9 +94,10 @@
             );
 
             if(!$guardada) {
-                $error = "No se ha podido guardar la info de la pregunta correctametne";
+                $mensaje = "<i class='fa-solid fa-file-circle-exclamation'></i> No se ha podido guardar la info de la pregunta correctametne";
+                $tipo_popup = "err";
             } else {
-                header('Location: panelPreguntas.php');
+                header('Location: panelPreguntas.php?editada=true');
                 exit;
             }
         }
@@ -102,11 +105,7 @@
 ?>
     <main>
         <h1><i class="fa-solid fa-file-pen"></i>  EDITAR PREGUNTA</h1>
-        <?php
-            if($error !== "") {
-                echo "<p class='txt-err'>" . $error . "</p>";
-            }
-        ?>
+
         <form action="" class="edit-pregunta" id="editar-pregunta" method="post">
             <div class="titulo-preg">
                 <label for="tit">Titulo</label>
@@ -165,6 +164,15 @@
             <input type="submit" id="btnCancelar" value="Cancelar" name="cancelar">
             <input type="submit" id="btnGuardar" value="Guardar cambios" name="editar-pregunta">
         </form>
+    <?php 
+        if($mensaje) { ?>
+            <script>
+                const phpMensaje = <?= json_encode($mensaje) ?>;
+                const phpTipo = <?= json_encode($tipo_popup) ?>;
+            </script>
+    <?php
+        }
+    ?>
     </main>
 <?php
     include("../templates/footer_admin.php");

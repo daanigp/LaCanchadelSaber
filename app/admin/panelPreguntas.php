@@ -17,6 +17,9 @@
     require_once('../includes/funciones.php');
     $conexion = conectarDB();
 
+    $mensaje = "";
+    $tipo_popup = "";
+
     $userID = 0;
     if(isset($_SESSION['id'])) {
         $userID = $_SESSION['id'];
@@ -32,9 +35,22 @@
         $difcSeleccionada = $_GET['difc'];
     }
 
-    $borrado = "";
-    if(isset($_GET['borrado'])) {
-        $borrado = $_GET['borrado'];
+    // POPUP cunado se borra la pregunta
+    if(isset($_GET['borrada'])) {
+        $mensaje = "<i class='fa-solid fa-file-circle-check'></i> Se ha borrado la pregunta correctamente";
+        $tipo_popup = "success";
+    }
+
+    // POPUP cunado se edita la pregunta
+    if(isset($_GET['editada'])) {
+        $mensaje = "<i class='fa-solid fa-file-circle-check'></i> Se ha editado la pregunta correctamente";
+        $tipo_popup = "success";
+    }
+
+    // POPUP cunado se añade una nueva pregunta
+    if(isset($_GET['added'])) {
+        $mensaje = "<i class='fa-solid fa-file-circle-check'></i> Se ha añadido la pregunta correctamente";
+        $tipo_popup = "success";
     }
 
     $pagina = isset($_GET['pagina']) ? max(1, (int)$_GET['pagina']) : 1;
@@ -42,6 +58,13 @@
 
     <main>
         <h1><i class="fa-solid fa-user-tie"></i> Administrador de preguntas (admin) <i class="fa-solid fa-user-tie"></i></h1>
+
+        <div id="overlayPopUp" class="overlay-popup">
+            <div class="popup-cont">
+                <button class="cerrar-popup" id="btnCerrarPopUp">&times;</button>
+                <p id="mensajePopUp"></p>
+            </div>
+        </div>
 
         <div class="filtros-preguntas">
             <form method="get">
@@ -64,12 +87,6 @@
                     <button type="submit" class="btn btnFiltro"><i class="fa-solid fa-filter"></i> Filtrar</button>
                 </div>
             </form>
-
-            <?php
-                if($borrado) {
-                    echo "<p class='txt-success'>Se ha borrado correctamente</p>";
-                }
-            ?>
 
             <div class="acciones-preg">
                 <a href="addPregunta.php" class="btn btn-new"><i class="fa-solid fa-file-circle-plus"></i> Nueva pregunta</a>
@@ -128,6 +145,16 @@
                 </div>
     <?php   }   ?>
         </div>
+
+    <?php 
+        if($mensaje) { ?>
+            <script>
+                const phpMensaje = <?= json_encode($mensaje) ?>;
+                const phpTipo = <?= json_encode($tipo_popup) ?>;
+            </script>
+    <?php
+        }
+    ?>
     </main>
 
 <?php

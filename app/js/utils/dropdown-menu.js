@@ -2,7 +2,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const isMobile = () => window.innerWidth < 1024;
 
-    // Cierra todos los submenús
+    /**
+     * Cierra todos los submenus
+     */
     const closeAll = () => {
         document.querySelectorAll('.dropdown-submenu, .dropdown-submenu-difc').forEach(el => {
             el.classList.remove('open');
@@ -12,6 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
+    /**
+     * Cierra o abre el menú
+     */
     document.querySelectorAll('.dropdown-toggle').forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -38,7 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Click fuera cierra todo
+    /**
+     * Cuando se pulsa fuera, se cierra el menu+submenus
+     */
     document.addEventListener('click', (e) => {
         if (!e.target.closest('.dropdown-btn')) {
             closeAll();

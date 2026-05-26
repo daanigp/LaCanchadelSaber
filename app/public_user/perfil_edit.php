@@ -19,7 +19,8 @@
     $email = "";
     $contraseña = "";
     $imgActual = "nutria-2.jpg";
-    $guardado = "";
+    $mensaje = "";
+    $tipo_popup = "";
     $pass = "";
 
     $idusuario = 0;
@@ -40,7 +41,7 @@
 
     if($_SERVER['REQUEST_METHOD'] === "POST") {
         if(isset($_POST['cancelar'])) {
-            if($guardado !== ""){
+            if($mensaje !== ""){
                 header("Location: perfil.php");
                 exit;
             } else {
@@ -59,9 +60,12 @@
             if(!empty($_FILES['img']['name'])) {
                 if(!in_array($_FILES['img']['type'], $imagenesPermitidas)) {
                     $errores[] = "La imagen seleccionada no tiene el tipo necesario (jpeg, png, jpg).";
+                    $mensaje = "<i class='fa-solid fa-person-circle-exclamation'></i> La imagen seleccionada no tiene el tipo necesario (jpeg, png, jpg).";
+                    $tipo_popup = "err";
+                } else {
+                    $imagenNueva = $_FILES['img']['name'];
+                    $existeImagen = true;
                 }
-                $imagenNueva = $_FILES['img']['name'];
-                $existeImagen = true;
             }
 
             if(empty($errores)) {
@@ -71,9 +75,13 @@
                     if(is_uploaded_file($_FILES['img']['tmp_name'])) {
                         if(!move_uploaded_file($_FILES['img']['tmp_name'], "../static/img/profile/$nombreUnicoIMG")) {
                             $errores[]= "Error al mover el archivo al directorio de destino";
+                            $mensaje = "<i class='fa-solid fa-person-circle-exclamation'></i> Error al mover el archivo al directorio de destino";
+                            $tipo_popup = "err";
                         }
                     } else {
                         $errores[] = "No se ha seleccionado ningún archivo, o se ha producido un error.";
+                        $mensaje = "<i class='fa-solid fa-person-circle-exclamation'></i> No se ha seleccionado ningún archivo, o se ha producido un error.";
+                        $tipo_popup = "err";
                     }
                 } else {
                     $nombreUnicoIMG = '';
@@ -91,8 +99,11 @@
                     //Editamos el usuario y añadimos la nueva img:
                     if ($updateIMG) {
                         $imgActual = $nombreUnicoIMG;
+                        $mensaje = "<i class='fa-solid fa-person-circle-check'></i> Se ha editado el la imagen correctamente.";
+                        $tipo_popup = "success";
                     } else {
-                        $guardado = "Ha ocurrido un error inesperado en el guardado de la imagen, lo sentimos :(.";
+                        $mensaje = "<i class='fa-solid fa-person-circle-exclamation'></i> Ha ocurrido un error inesperado en el guardado de la imagen, lo sentimos :(.";
+                        $tipo_popup = "err";
                     }
                 }
             }
@@ -129,9 +140,11 @@
                 $apellido2 = $ape2Nuevo;
                 $pais = $paisNuevo;
                 $email = $emailNuevo;
-                $guardado = "GUARDADO OK.";
+                $mensaje = "<i class='fa-solid fa-person-circle-check'></i> Se ha editado el perfil correctamente.";
+                $tipo_popup = "success";
             } else {
-                $errores = "Ha ocurrido un error inesperado en el guardado del usuario, lo sentimos :(.";
+                $mensaje = "<i class='fa-solid fa-person-circle-check'></i> Ha ocurrido un error inesperado en el guardado del usuario, lo sentimos :(.";
+                $tipo_popup = "err";
             }
         }
     }
@@ -148,35 +161,25 @@
             </button>
         </form>
 
-       <?php
-        if($guardado !== "") {
-            echo "<p class='txt-success'>$guardado</p>";
-        }
-
-        if(!empty($errores)) {
-            echo "<p class='txt-err'>$errores</p>";
-        }
-        ?>
+        <div id="overlayPopUp" class="overlay-popup">
+            <div class="popup-cont">
+                <button class="cerrar-popup" id="btnCerrarPopUp">&times;</button>
+                <p id="mensajePopUp"></p>
+            </div>
+        </div>
 
         <div class="edit-profile-card">
             <div class="header-edit-profile">
                 <div class="edit-img">
                     <img src="../static/img/profile/<?= $imgActual ?>" alt="Imagen de perfil del usuario">
-                    <form action="" enctype="multipart/form-data" method="post" class="form-Img" id="form-img">
+                    <form action="" enctype="multipart/form-data" method="post" class="form-Img" id="form-img-edit">
                         <input type="hidden" name="nombreImagenAntigua" value="<?= $imgActual ?>">
                         <input type="hidden" name="userID-img" value="<?= $idusuario ?>">
-                        <input type="file" name="img" id="img" style="opacity:0; position:absolute; width:0; height:0;">
-                        <button name="editar-img" type="button" onclick="document.getElementById('img').click()">
+                        <input type="file" name="img" id="img-edit" style="opacity:0; position:absolute; width:0; height:0;">
+                        <button name="editar-img" type="button" onclick="document.getElementById('img-edit').click()">
                             <i class="fa-solid fa-camera"></i> Editar
                         </button>
                     </form>
-                    <script>
-                        document.getElementById('img').addEventListener('change', function() {
-                            if (this.files.length > 0) {
-                                document.getElementById('form-img').submit();
-                            }
-                        });
-                    </script>
                 </div>
                 <h3>Editar perfil</h3>
             </div>
@@ -249,6 +252,15 @@
                 
             </form>
         </div>
+        <?php 
+            if($mensaje) { ?>
+                <script>
+                    const phpMensaje = <?= json_encode($mensaje) ?>;
+                    const phpTipo = <?= json_encode($tipo_popup) ?>;
+                </script>
+        <?php
+            }
+        ?>
     </main>
 <?php
     require_once(__DIR__. "/../templates/footer.php");

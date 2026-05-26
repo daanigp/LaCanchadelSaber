@@ -422,8 +422,9 @@
 
 /* DESKTOP */
 @media (min-width: 1024px) {
+
     .layout-amigos {
-        max-width: 60em;
+        max-width: none;
         margin: 0 auto;
         padding: 2em;
     }

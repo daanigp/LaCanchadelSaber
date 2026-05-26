@@ -94,7 +94,7 @@
             </div>
         </div>
     </main>
-
+<script src="../js/utils/slider.js"></script>
 <?php
     require_once(__DIR__. "/../templates/footer.php");
 ?>

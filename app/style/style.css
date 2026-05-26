@@ -364,3 +364,47 @@ footer p {
     margin-top: 0.5em;
     margin-bottom: 1em;
 }
+
+/* -----------------------
+   ---- MENSAJE POPUP ----
+   ----------------------- */
+.overlay-popup {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(5, 5, 5, 0.753);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay-popup.activo-popup { 
+    display: flex; 
+}
+
+.popup-cont {
+    background:var(--color-surface);
+    padding: 2rem 2.5rem;
+    border-radius: 10px;
+    max-width: 380px;
+    width: 90%;
+    position: relative;
+    text-align: center;
+    font-size: 16px;
+}
+
+.popup-cont.success { 
+    border-top: 4px solid var(--color-res-correct); 
+    background: var(--color-res-correct-back);
+    color: var(--color-surface);
+}
+.popup-cont.err { 
+    border-top: 4px solid var(--color-error);
+    background: var(--color-error-back);
+    color: var(--color-surface);
+}
+
+.cerrar-popup {
+    position: absolute; top: 10px; right: 14px;
+    background: none; border: none;
+    font-size: 1.4rem; cursor: pointer; color: var(--color-muted);
+}

@@ -16,7 +16,8 @@
     require_once('../includes/conexion.php');
     $conexion = conectarDB();
 
-    $error = "";
+    $mensaje = "";
+    $tipo_popup = "";
 
     if($_SERVER['REQUEST_METHOD'] === 'GET') {
         if(isset($_GET['id'])) {
@@ -37,10 +38,11 @@
             $borrado = borrarPregunta($conexion, $idPregunta);
 
             if($borrado) {
-                header('Location: panelPreguntas.php?borrado=true');
+                header('Location: panelPreguntas.php?borrada=true');
                 exit;
             } else {
-                $error = "Ha ocurrido un error mientras intentábamos borrar la pregunta, lo sentimos.";
+                $mensaje = "<i class='fa-solid fa-file-circle-exclamation'></i> Ha ocurrido un error mientras intentábamos borrar la pregunta, lo sentimos.";
+                $tipo_popup = "err";
             }
         }
     }
@@ -49,9 +51,11 @@
 <main>
     <div class="panel-borrarPregunta">
         <h1><i class="fa-regular fa-trash-can"></i> BORRAR PREGUNTA</h1>
+
         <div class="mensajeBorrado">
             <p>¿Estás seguro de que deseas borrar la pregunta <span><?= $titulo ?></span> (ID: <?= $idPreg ?>)?</p>
         </div>
+
         <form action="" method="post">
             <div class="botones">
                 <input type="hidden" name="idPregunta" value="<?= $idPreg ?>">
@@ -59,8 +63,23 @@
                 <input type="submit" id="btnBorrar" value="BORRAR" name="borrar">
             </div>
         </form>
-        
+
+        <div id="overlayPopUp" class="overlay-popup">
+            <div class="popup-cont">
+                <button class="cerrar-popup" id="btnCerrarPopUp">&times;</button>
+                <p id="mensajePopUp"></p>
+            </div>
+        </div>
     </div>
+    <?php 
+    if($mensaje) { ?>
+        <script>
+            const phpMensaje = <?= json_encode($mensaje) ?>;
+            const phpTipo = <?= json_encode($tipo_popup) ?>;
+        </script>
+<?php
+    }
+?>
 </main>
 
 <?php

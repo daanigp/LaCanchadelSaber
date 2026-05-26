@@ -13,8 +13,8 @@
     $imgActual = "nutria-2.jpg";
     $nacionalidad = "España";
 
-    $errores = "";
-    $guardado = "";
+    $mensaje = "";
+    $tipo_popup = "";
 
     if($_SERVER['REQUEST_METHOD'] === "POST") {
         if(isset($_POST['cancelar'])) {
@@ -36,7 +36,9 @@
 
             if(!empty($_FILES['img']['name'])) {
                 if(!in_array($_FILES['img']['type'], $imagenesPermitidas)) {
-                    $errores = "La imagen seleccionada no tiene el tipo necesario (jpeg, png, jpg).";
+                    $errores[] = "La imagen seleccionada no tiene el tipo necesario (jpeg, png, jpg).";
+                    $mensaje = "<i class='fa-solid fa-person-circle-exclamation'></i> La imagen seleccionada no tiene el tipo necesario (jpeg, png, jpg).";
+                    $tipo_popup = "err";
                 }
                 $imagenNueva = $_FILES['img']['name'];
                 $existeImagen = true;
@@ -49,9 +51,13 @@
                     if(is_uploaded_file($_FILES['img']['tmp_name'])) {
                         if(!move_uploaded_file($_FILES['img']['tmp_name'], "../static/img/profile/$nombreUnicoIMG")) {
                             $errores[]= "Error al mover el archivo al directorio de destino";
+                            $mensaje = "<i class='fa-solid fa-person-circle-exclamation'></i> Error al mover el archivo al directorio de destino";
+                            $tipo_popup = "err";
                         }
                     } else {
-                        $errores = "No se ha seleccionado ningún archivo, o se ha producido un error.";
+                        $errores[] = "No se ha seleccionado ningún archivo, o se ha producido un error.";
+                        $mensaje = "<i class='fa-solid fa-person-circle-exclamation'></i> No se ha seleccionado ningún archivo, o se ha producido un error.";
+                        $tipo_popup = "err";
                     }
                 } else {
                     $nombreUnicoIMG = '';
@@ -69,11 +75,13 @@
                         $pais,
                         $nombreUnicoIMG);
 
-                    //Editamos el usuario y añadimos la nueva img:
+                    //Registramos al usuario:
                     if ($update) {
-                        $guardado = "SE HA GUARDADO OK";
+                        $mensaje = "<i class='fa-solid fa-person-circle-check'></i> Se ha registrado el usuario correctamente.";
+                        $tipo_popup = "success";
                     } else {
-                        $errores = "Nick o email existentes.";
+                        $mensaje = "<i class='fa-solid fa-person-circle-exclamation'></i> El nick o el correo ya han sido registrados. Prueba con otros :)";
+                        $tipo_popup = "err";
                     }
                 }
             }
@@ -91,15 +99,12 @@
             </button>
         </form>
 
-       <?php
-        if($guardado !== "") {
-            echo "<p class='txt-success>$guardado</p>";
-        }
-
-        if(!empty($errores)) {
-            echo "<p class='txt-err'>$errores</p>";
-        }
-        ?>
+        <div id="overlayPopUp" class="overlay-popup">
+            <div class="popup-cont">
+                <button class="cerrar-popup" id="btnCerrarPopUp">&times;</button>
+                <p id="mensajePopUp"></p>
+            </div>
+        </div>
 
         <div class="register-profile-card">
             <div class="header-register-profile">
@@ -178,6 +183,15 @@
                 
             </form>
         </div>
+        <?php 
+            if($mensaje) { ?>
+                <script>
+                    const phpMensaje = <?= json_encode($mensaje) ?>;
+                    const phpTipo = <?= json_encode($tipo_popup) ?>;
+                </script>
+        <?php
+            }
+        ?>
     </main>
 <?php
     require_once(__DIR__. "/../templates/footer.php");

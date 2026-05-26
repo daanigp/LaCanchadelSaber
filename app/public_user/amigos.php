@@ -23,6 +23,9 @@
     $aceptado = false;
     $enviada = false;
 
+    $mensaje = "";
+    $tipo_popup = "";
+
     if($_SERVER['REQUEST_METHOD'] === "POST") {
         if(isset($_POST['env-solicitud'])) {
             $nombreAmigo = $_POST['buscar-amigo'];
@@ -50,6 +53,8 @@
             $borrado = borrarAmigo($conexion, $userId, $idAmigo);
             if($borrado) {
                 $_SESSION['textBorrado'] = $nombreAmigo ." ha sido eliminado de tu lista de amigos";
+                $mensaje = "<i class='fa-solid fa-user-xmark'></i> " . $nombreAmigo ." ha sido eliminado de tu lista de amigos";
+                $tipo_popup = "success";
             }
         }
 
@@ -59,6 +64,8 @@
             $rechazado = rechazarAmigo($conexion, $userId, $idNuevoAmigo);
             if($rechazado) {
                 $_SESSION['txtRechazado'] = $nombreAmigo ." ha sido rechazado de tu lista de amigos";
+                $mensaje = "<i class='fa-solid fa-user-xmark'></i> " . $nombreAmigo ." ha sido rechazado de tu lista de amigos";
+                $tipo_popup = "success";
             }
         }
 
@@ -68,6 +75,8 @@
             $aceptado = aceptarAmigo($conexion, $userId, $idNuevoAmigo);
             if($aceptado) {
                 $_SESSION['txtAceptado'] = $nombreAmigo ." ha sido aceptado en tu lista de amigos";
+                $mensaje = "<i class='fa-solid fa-user-check'></i> " . $nombreAmigo ." ha sido aceptado en tu lista de amigos";
+                $tipo_popup = "success";
             }
         }
     }
@@ -86,8 +95,17 @@
             <?php veramigos($conexion, $userId) ?>
         </div>
 
+        <div id="overlayPopUp" class="overlay-popup">
+            <div class="popup-cont">
+                <button class="cerrar-popup" id="btnCerrarPopUp">&times;</button>
+                <p id="mensajePopUp"></p>
+            </div>
+        </div>
+
         <div class="solicitudes">
             <h4>SOLICITUDES</h4>
+
+
             <div class="solicitud">
                 <?php
                 if(isset($_SESSION['txtRechazado'])) {
@@ -169,6 +187,16 @@
                     </div>
         <?php   }   ?>
         </div>
+
+    <?php 
+        if($mensaje) { ?>
+            <script>
+                const phpMensaje = <?= json_encode($mensaje) ?>;
+                const phpTipo = <?= json_encode($tipo_popup) ?>;
+            </script>
+    <?php
+        }
+    ?>
     </main>
 <?php
     require_once(__DIR__. "/../templates/footer.php");

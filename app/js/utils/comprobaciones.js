@@ -104,14 +104,14 @@ $(function () {
      */
     function validarDatosEditarUsuario() {
         let valido = true;
-        const nick = $('#nick-register').val().trim();
-        const nombre = $('#name-register').val().trim();
-        const ape1 = $('#ape1-register').val().trim();
-        const ape2 = $('#ape2-register').val().trim();
-        const pais = $('#pais-register').val().trim();
-        const email = $('#email-register').val().trim();
-        const pass = $('#pass-register').val().trim();
-        const passConf = $('#pass-conf-register').val().trim();
+        const nick = $('#nick-edit').val().trim();
+        const nombre = $('#name-edit').val().trim();
+        const ape1 = $('#ape1-edit').val().trim();
+        const ape2 = $('#ape2-edit').val().trim();
+        const pais = $('#pais-edit').val().trim();
+        const email = $('#email-edit').val().trim();
+        const pass = $('#pass-edit').val().trim();
+        const passConf = $('#pass-conf-edit').val().trim();
 
         if(nick.length < 2) {
             showTxtErr('nick-txt-err', 'El nick tiene que tener al menos 2 caracteres.');
@@ -261,6 +261,7 @@ $(function () {
         return valida;
     }
 
+    // Formulario de registro
     $('#form-register').on('submit', function(e) {
 
         if (!validarDatosUsuario()) {
@@ -268,12 +269,14 @@ $(function () {
         }
     });
 
+    // Formulario de edición de usuarioss
     $('#form-edit').on('submit', function(e) {
         if (!validarDatosEditarUsuario()) {
             e.preventDefault();
         }
     });
 
+    // Formulario de inicio de sesión
     $('#form-login').on('submit', function(e) {
         if (document.activeElement.id === "btnCancelar") {
             return;
@@ -284,6 +287,7 @@ $(function () {
         }
     });
 
+    // Formulario de añadir pregunta
     $('#new-pregunta').on('submit', function(e) {
         if (document.activeElement.id === "btnCancelar") {
             return;
@@ -299,6 +303,7 @@ $(function () {
         }
     });
 
+    // Formularo de editar pregunta
     $('#editar-pregunta').on('submit', function(e) {
         if (document.activeElement.id === "btnCancelar") {
             return;

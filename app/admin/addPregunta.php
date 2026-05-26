@@ -16,7 +16,8 @@
     require_once('../includes/conexion.php');
     $conexion = conectarDB();
 
-    $error = "";
+    $mensaje = "";
+    $tipo_popup = "";
 
     $autor = $_SESSION['id'];
     $validadaPor = $_SESSION['id'];
@@ -59,9 +60,10 @@
             );
 
             if(!$guardada) {
-                $error = "No se ha podido crear la pregunta correctamente.";
+                $mensaje = "<i class='fa-solid fa-file-circle-exclamation'></i> No se ha podido crear la pregunta correctamente.";
+                $tipo_popup = "err";
             } else {
-                header('Location: panelPreguntas.php');
+                header('Location: panelPreguntas.php?added=true');
                 exit;
             }
         }
@@ -69,11 +71,14 @@
 ?>
     <main>
         <h1><i class="fa-solid fa-file-circle-plus"></i> CREAR PREGUNTA</h1>
-        <?php
-            if($error !== "") {
-                echo "<p class='txt-err'>" . $error . "</p>";
-            }
-        ?>
+
+        <div id="overlayPopUp" class="overlay-popup">
+            <div class="popup-cont">
+                <button class="cerrar-popup" id="btnCerrarPopUp">&times;</button>
+                <p id="mensajePopUp"></p>
+            </div>
+        </div>
+
         <form action="" class="edit-pregunta" id="new-pregunta" method="post">
             <div class="titulo-preg">
                 <label for="tit">Titulo</label>
@@ -132,6 +137,15 @@
             <input type="submit" id="btnCancelar" value="Cancelar" name="cancelar">
             <input type="submit" id="btnGuardar" value="Guardar cambios" name="nueva-pregunta">
         </form>
+    <?php 
+        if($mensaje) { ?>
+            <script>
+                const phpMensaje = <?= json_encode($mensaje) ?>;
+                const phpTipo = <?= json_encode($tipo_popup) ?>;
+            </script>
+    <?php
+        }
+    ?>
     </main>
 <?php
     include("../templates/footer_admin.php");

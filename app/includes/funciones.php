@@ -419,13 +419,7 @@
             ":idUser" => $id
         ]);
 
-        if (!$update) {
-            return false;
-        }
-
-        return $stmt->rowCount() > 0;
-
-
+        return $update;
     }
 
     /**
@@ -444,13 +438,7 @@
             ":idUser" => $id
         ]);
 
-        if (!$update) {
-            return false;
-        }
-
-        return $stmt->rowCount() > 0;
-
-
+        return $update;
     }
 
     /**
@@ -481,7 +469,7 @@
                 :nacionalidad,
                 :imagen)";
         $stmt = $conexion->prepare($sql);
-        $update = $stmt->execute([
+        $creado = $stmt->execute([
             ":nick" => $nick,
             ":email" => $email,
             ":pass" => $pwd,
@@ -492,7 +480,7 @@
             ":imagen" => $imageURL
         ]);
 
-        if (!$update) {
+        if (!$creado) {
             return false;
         }
 
@@ -1140,11 +1128,7 @@
             ":idPreg" => $idPregunta
         ]);
 
-        if (!$update) {
-            return false;
-        }
-
-        return $stmt->rowCount() > 0;
+        return $update;
     }
 
     /**
