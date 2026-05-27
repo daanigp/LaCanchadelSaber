@@ -83,13 +83,13 @@ Los iconos utilizan FontAwesome 7.0.1.
 
 ### _Logo de la web_
 
-* Imagen header: `app/static/img/logo-header-LCDS.png`
+* Imagen header: `app/src/static/img/logo-header-LCDS.png`
 * Dimensiones: 300px x 125px
-* Logotipo: `app/static/icon/logo-LCDS.ico`
+* Logotipo: `app/src/static/icon/logo-LCDS.ico`
 
 ### _Fotos de perfil_
 
-* Imagens alojadas en: `app/static/img/profile`
+* Imagens alojadas en: `app/src/static/img/profile`
 * Dimensiones en `perfil.php`: 150px x 150px
 * Dimensiones en `perfil_edit.php`: 80px x 80px
 * Dimensiones en `amigos.php`: 60px x 60px

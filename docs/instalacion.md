@@ -31,13 +31,19 @@ cd "app"
 cp .env.example .env
 ```
 
-4. Levanta los contenedores:
+4. Renombra las variables de entorno con tus datos:
+
+```bash
+nano .env
+```
+
+5. Levanta los contenedores:
 
 ```bash
 docker compose up -d
 ```
 
-5. Abre el navegador en:
+6. Abre el navegador en:
 
 * **Para ver la web:** (http://localhost:8080)
 * **phpMyAdmin:** (http://localhost:8081)
@@ -77,6 +83,10 @@ app
     │       └───profile
     ├───style
     └───templates
+docs
+├───imgs
+├───mock
+└───styleGuide
 ```
 
 ## Despliegue en producción (AWS)
