@@ -9,7 +9,7 @@
     $conexion = conectarDB();
 
     $dificultades = [];
-    $sql = "SELECT DISTINCT nombre FROM dificultades ORDER BY id";
+    $sql = "SELECT DISTINCT id, nombre FROM dificultades ORDER BY id";
     $stmt = $conexion->prepare($sql);
     $stmt->execute();
 

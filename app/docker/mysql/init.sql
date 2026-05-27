@@ -88,7 +88,7 @@ INSERT INTO dificultades (nombre) VALUES
 -- ============================
 CREATE TABLE preguntas (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    titulo VARCHAR(100) NOT NULL,
+    titulo VARCHAR(500) NOT NULL,
     respuesta_correcta CHAR(1) NOT NULL,
     respuesta_A TEXT NOT NULL,
     respuesta_B TEXT NOT NULL,
