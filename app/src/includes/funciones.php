@@ -160,7 +160,7 @@
      * @param Int $pagina (por defecto = 1)
      * @param Int $porPagina (por defecto = 10)
      */
-    function generarTabla($conexion, $userID = 0, $tabla, $filtroDifc = null, $pagina = 1, $porPagina = 10) {
+    function generarTabla($conexion, $userID, $tabla, $filtroDifc = null, $pagina = 1, $porPagina = 10) {
         if($filtroDifc === "TODAS") {
             $filtroDifc = null;
         }
