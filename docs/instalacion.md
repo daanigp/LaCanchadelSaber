@@ -88,8 +88,4 @@ La aplicación está desplegada en AWS. Para un nuevo despliegue:
 3. Configura las variables de entorno en `config/config.php`
 4. Importa `docker/mysql/init.sql` en la base de datos
 
-## Despliegue en producción (InfinityFree)
-
-La aplicación está desplegada en InfinityFree. http://antnet.gamer.gd/
-
 [Volver](index.md)
