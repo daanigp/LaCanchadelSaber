@@ -6,7 +6,8 @@
 
 #### Dificultades
 
-* 
+* Empezar con la creación de las tablas (muchas ideas en la cabeza, pero no sabía como reflejarlas).
+* Funcionamiento del juego (pulsar sobre la respuesta, que compruebe si es correcta, mostrar resultado).
 
 #### Aprendizajes
 

@@ -6,11 +6,11 @@
 
 #### Diagrama
 
-![Arquitectura del sistema](imgs/arquitectura.png)
+![Arquitectura del sistema](imgs/arquitectura_LCDS.png)
 
 #### Diagrama de base de datos
 
-![IMG](imgs/bbdd_diagrama.png);
+![IMG](imgs/diagrama_clases_LCDS.png.png);
 
 | Tabla                   | Información                                   |
 |-------------------------|-----------------------------------------------|

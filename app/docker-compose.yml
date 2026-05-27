@@ -5,9 +5,9 @@ services:
     container_name: lacanchadelsaber_php
     restart: unless-stopped
     volumes:
-      - ./src:/var/www/html
+      - ./src/public:/var/www/html
     ports:
-      - "8080:80"
+      - "80:80"
     depends_on:
       - mysql
     environment:
