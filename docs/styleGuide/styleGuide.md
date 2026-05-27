@@ -114,4 +114,4 @@ Para el resto de la web:
 | **Tablet**     | 768px > – < 1024px | Padding ligeramente reducido, tamaño fuente medio  |
 | **Desktop**    |      > 1024px      | Padding normal, tamaño fuente normal               |
 
-[Volver](index.md)
+[Volver](../index.md)
