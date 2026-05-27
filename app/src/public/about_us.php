@@ -72,6 +72,9 @@
                 <p>Algunas de las posibles mejoras que he pensado para la web:</p>
                 <ul>
                     <li>Poner distintos deportes</li>
+                    <li>Dificultad Extrema, en la que no hayan vidas, si fallas, pierdes.</li>
+                    <li>En las preguntas, durante el juego, añadir un botón para reportar algún fallo.</li>
+                    <li>Chat de amigos.</li>
                 </ul>
 
                 <!--
