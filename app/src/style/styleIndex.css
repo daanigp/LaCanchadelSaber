@@ -181,6 +181,7 @@ main {
     display: flex;
     flex-direction: column;
     gap: 0.75em;
+    overflow-x: auto;
 }
 
 .tabla-top5 legend {
@@ -200,7 +201,6 @@ main {
     background: var(--background-card-game);
     border: 1px solid var(--border-cards);
     border-radius: 0.75em;
-    overflow: hidden;
     padding: 1em;
 }
 
