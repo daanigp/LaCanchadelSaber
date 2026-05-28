@@ -484,6 +484,22 @@
             return false;
         }
 
+	
+        // Se le asigna el rol de USER
+        $idUser = $conexion->lastInsertId();
+
+        $sqlRol = "SELECT id FROM role_names WHERE nombre_rol = 'USER'";
+        $stmtRol = $conexion->prepare($sqlRol);
+        $stmtRol->execute();
+        $rol = $stmtRol->fetch(PDO::FETCH_ASSOC);
+
+        $sqlUserRol = "INSERT INTO user_role (id_user, id_role) VALUES (:id_user, :id_role)";
+        $stmtUserRol = $conexion->prepare($sqlUserRol);
+        $stmtUserRol->execute([
+            ":id_user" => $idUser,
+            ":id_role" => $rol['id']
+        ]);
+
         return $stmt->rowCount() > 0;
     }
 

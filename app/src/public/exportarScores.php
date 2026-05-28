@@ -10,7 +10,7 @@ $dificultad = $_GET['difc'] ?? null;
 $where = [];
 $params = [];
 
-if($dificultad && $dificultad !== 'todas') {
+if($dificultad && $dificultad !== 'TODAS') {
     $idDificultad = obtenerIDByName($conexion, 'dificultades', $dificultad);
  
     if ($dificultad) {
@@ -22,7 +22,7 @@ if($dificultad && $dificultad !== 'todas') {
 $sql = "
     SELECT 
         p.id,
-        u.nombre AS usuario,
+        u.nick AS usuario,
         p.puntuacion,
         d.nombre AS dificultad,
         p.fecha
