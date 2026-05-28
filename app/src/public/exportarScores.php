@@ -5,15 +5,18 @@ require_once('../includes/funciones.php');
 $conexion = conectarDB();
 
 $dificultad = $_GET['difc'] ?? null;
-$idDificultad = obtenerIDByName($conexion, 'dificultades', $dificultad);
 
 // Construir WHERE dinámico
 $where = [];
 $params = [];
 
-if ($dificultad) {
-    $where[] = "d.id = ?";
-    $params[] = $idDificultad;
+if($dificultad && $dificultad !== 'todas') {
+    $idDificultad = obtenerIDByName($conexion, 'dificultades', $dificultad);
+ 
+    if ($dificultad) {
+        $where[] = "d.id = ?";
+        $params[] = $idDificultad;
+    }
 }
 
 $sql = "
