@@ -1,3 +1,8 @@
+SET NAMES utf8mb4;
+SET CHARACTER SET utf8mb4;
+
+USE lacanchadelsaber;
+
 INSERT INTO preguntas (titulo, respuesta_correcta, respuesta_A, respuesta_B, respuesta_C, respuesta_D, categoria_id, autor_id, validada_por, dificultad_id, validada) VALUES
 
 
