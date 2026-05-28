@@ -8,6 +8,7 @@ function conectarDB() {
                             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
                         ]);
+        $conexion->exec("SET NAMES utf8mb4");
     } catch (PDOException $e) {
         die('Error de conexión con la base de datos: ' . $e->getMessage());
     }
