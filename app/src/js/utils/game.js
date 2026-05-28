@@ -10,7 +10,7 @@ const letras = ["A", "B", "C", "D"];
 // Puntos por dificultad
 const PUNTOS_POR_ACIERTO = {
     facil: 15,
-    medio: 30,
+    media: 30,
     dificil: 50,
 };
 
