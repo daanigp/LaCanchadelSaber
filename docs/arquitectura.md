@@ -10,7 +10,7 @@
 
 #### Diagrama de base de datos
 
-![IMG](imgs/diagrama_clases_LCDS.png.png);
+![IMG](imgs/diagrama_clases_LCDS.png);
 
 | Tabla                   | Información                                   |
 |-------------------------|-----------------------------------------------|

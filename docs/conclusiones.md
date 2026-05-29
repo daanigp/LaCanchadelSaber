@@ -12,7 +12,8 @@
 
 #### Aprendizajes
 
-* Manejo de la validación de las respuestas usando AJAX. (js + php)
+* Manejo de la validación de las respuestas usando AJAX. (js + php).
+* También me ha servido para volver a recordar cómo funciona Docker.
 
 #### Posibles mejoras
 
