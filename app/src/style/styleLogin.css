@@ -67,7 +67,7 @@
     position: absolute;
     right: 0;
     top: 0;
-    bottom: 0;
+    bottom: 1rem;
     width: 48px;
     background: none;
     border: none;
@@ -76,6 +76,14 @@
     align-items: center;
     justify-content: center;
     color: var(--color-muted);
+}
+
+.formLogin .pwd .field-toggle:hover {
+    color: var(--color-greenLight);
+}
+
+.formLogin .pwd .field-toggle.active {
+    color: var(--color-greenLight-dark);
 }
 
 .txt-err {

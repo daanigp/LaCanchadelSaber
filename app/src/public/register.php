@@ -60,7 +60,7 @@
                         $tipo_popup = "err";
                     }
                 } else {
-                    $nombreUnicoIMG = '';
+                    $nombreUnicoIMG = 'nutria-1.jpg';
                 }
 
                 if(empty($errores)) {
@@ -192,6 +192,7 @@
         <?php
             }
         ?>
+        <script src="../js/utils/mostrarPwd.js"></script>
     </main>
 <?php
     require_once(__DIR__. "/../templates/footer.php");
