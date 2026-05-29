@@ -34,6 +34,11 @@ services:
       - ./docker/mysql/preguntas.sql:/docker-entrypoint-initdb.d/02_preguntas.sql
     ports:
       - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${DB_ROOT_PASS}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
     networks:
       - lacanchadelsaber_net
 

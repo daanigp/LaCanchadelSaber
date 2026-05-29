@@ -57,7 +57,7 @@ a:visited {
 
 body {
     background-color: var(--background-main);
-    width: 100dvw;
+    
     min-height: 100dvh;
     /*height: 100dvh;*/
     display: flex;

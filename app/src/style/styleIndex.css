@@ -347,6 +347,10 @@ main {
         height: 15em;
     }
 
+    .tabla-top5 {
+        overflow-x: initial;
+    }
+
     .tabla-ranking {
         font-size: 0.9em;
     }
@@ -364,7 +368,7 @@ main {
 /* DESKTOP */
 @media (min-width: 1024px) {
     main {
-        max-width: none;
+        max-width: auto;
         margin: 0 auto;
         padding: 2em;
     }
