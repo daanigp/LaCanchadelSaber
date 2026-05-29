@@ -1,6 +1,12 @@
 <?php
     $css = "../style/styleIndex.css";
     require_once(__DIR__. "/../templates/header.php");
+
+    $redirigido = "";
+    if(isset($_GET["redirigidoAdmin"])) {
+        $redirigido = "<i class='fa-solid fa-user-secret'></i> NECESITAS SER ADMINISTRADOR PARA ENTRAR AHI  <i class='fa-solid fa-user-secret'></i>";
+        $tipo_popup = "err";
+    }
 ?>
 
     <main>
@@ -12,6 +18,13 @@
             </div>
 
             <p class="txt-index-top">Se trata de una aplicación web en la cual los aficionados al fútbol, donde van a poder demostrar todos sus conocimientos acerca de jugadores, equipos e incluso historia del fútbol.</p>
+        </div>
+
+        <div id="overlayPopUp" class="overlay-popup">
+            <div class="popup-cont">
+                <button class="cerrar-popup" id="btnCerrarPopUp">&times;</button>
+                <p id="mensajePopUp"></p>
+            </div>
         </div>
 
         <div class="slider-layaout">
@@ -93,6 +106,15 @@
                     </ul>
             </div>
         </div>
+        <?php 
+            if($redirigido) { ?>
+                <script>
+                    const phpMensaje = <?= json_encode($redirigido) ?>;
+                    const phpTipo = <?= json_encode($tipo_popup) ?>;
+                </script>
+        <?php
+            }
+        ?>
     </main>
 <script src="../js/utils/slider.js"></script>
 <?php
