@@ -90,7 +90,7 @@
                 if(empty($errores)) {
                     //ELIMINAMOS LA IMAGEN DEL SERVIDOR
                     //Borrar la ruta de la imagen
-                    if($imagenAntigua && file_exists("../static/img/".$imagenAntigua)) {
+                    if($imagenAntigua && file_exists("../static/img/profile/".$imagenAntigua)) {
                         unlink("../static/img/profile/".$imagenAntigua);
                     }
 
@@ -99,7 +99,7 @@
                     //Editamos el usuario y añadimos la nueva img:
                     if ($updateIMG) {
                         $imgActual = $nombreUnicoIMG;
-                        $mensaje = "<i class='fa-solid fa-person-circle-check'></i> Se ha editado el la imagen correctamente.";
+                        $mensaje = "<i class='fa-solid fa-person-circle-check'></i> Se ha editado la imagen correctamente.";
                         $tipo_popup = "success";
                     } else {
                         $mensaje = "<i class='fa-solid fa-person-circle-exclamation'></i> Ha ocurrido un error inesperado en el guardado de la imagen, lo sentimos :(.";
