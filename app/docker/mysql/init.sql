@@ -178,10 +178,10 @@ VALUES (1, 1);
 -- USUARIOS DE EJEMPLO
 -- ============================
 INSERT INTO users (nick, email, password, nombre, apellido1, apellido2, nacionalidad) VALUES
-('mariamv', 'maria.mv@email.com', '12345Aa', 'María', 'Martínez', 'Vidal', 'España'),
-('carlostf', 'carlos.tf@email.com', '12345Aa', 'Carlos', 'Torres', 'Fuentes', 'México'),
-('anapg', 'ana.pg@email.com', '12345Aa', 'Ana', 'Pérez', 'García', 'Argentina'),
-('luisrb', 'luis.rb@email.com', '12345Aa', 'Luis', 'Romero', 'Blanco', 'España');
+('mariamv', 'maria.mv@email.com', '123456Aa', 'María', 'Martínez', 'Vidal', 'España'),
+('carlostf', 'carlos.tf@email.com', '123456Aa', 'Carlos', 'Torres', 'Fuentes', 'México'),
+('anapg', 'ana.pg@email.com', '123456Aa', 'Ana', 'Pérez', 'García', 'Argentina'),
+('luisrb', 'luis.rb@email.com', '123456Aa', 'Luis', 'Romero', 'Blanco', 'España');
 
 -- Roles: mariamv = ADMIN, el resto = USER
 INSERT INTO user_role (id_user, id_role) VALUES

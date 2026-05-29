@@ -18,7 +18,7 @@
     $pais = "";
     $email = "";
     $contraseña = "";
-    $imgActual = "nutria-2.jpg";
+    $imgActual = "nutria-1.jpg";
     $mensaje = "";
     $tipo_popup = "";
     $pass = "";
@@ -36,7 +36,7 @@
         $apellido2 = $usuario['apellido2'];
         $pais = $usuario['nacionalidad'];
         $email = $usuario['email'];
-        $imgActual = $usuario['avatar_url'] ?? "nutria-2.jpg";
+        $imgActual = $usuario['avatar_url'] ?? "nutria-1.jpg";
     }
 
     if($_SERVER['REQUEST_METHOD'] === "POST") {
@@ -84,13 +84,13 @@
                         $tipo_popup = "err";
                     }
                 } else {
-                    $nombreUnicoIMG = '';
+                    $nombreUnicoIMG = $imagenAntigua;
                 }
 
                 if(empty($errores)) {
                     //ELIMINAMOS LA IMAGEN DEL SERVIDOR
                     //Borrar la ruta de la imagen
-                    if($imagenAntigua && file_exists("../static/img/profile/".$imagenAntigua)) {
+                    if($imagenAntigua && $imagenAntigua !== 'nutria-1.jpg' && file_exists("../static/img/profile/".$imagenAntigua)) {
                         unlink("../static/img/profile/".$imagenAntigua);
                     }
 
@@ -261,6 +261,7 @@
         <?php
             }
         ?>
+        <script src="../js/utils/mostrarPwd.js"></script>
     </main>
 <?php
     require_once(__DIR__. "/../templates/footer.php");

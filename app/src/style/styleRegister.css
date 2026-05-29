@@ -127,7 +127,7 @@
 .field-toggle {
     position: absolute;
     right: 0.7rem;
-    bottom: 1.6rem;
+    bottom: 2.8rem;
     background: transparent;
     border: none;
     color: #555;
@@ -140,6 +140,10 @@
 
 .field-toggle:hover {
     color: var(--color-greenLight);
+}
+
+.field-toggle.active {
+    color: var(--color-greenLight-dark);
 }
 
 /* Mensaje de error */
